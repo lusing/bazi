@@ -1,7 +1,7 @@
 
 package com.github.lusing.bazi.base;
 
-public class WuXing {
+public class WuXing{
     public static final int MU = 0;
     public static final int HUO = 1;
     public static final int TU = 2;
@@ -57,6 +57,10 @@ public class WuXing {
         return false;
     }
     
+    public boolean equals(WuXing other){
+        return this.xing == other.getXing();
+    }
+    
     public boolean isSheng(WuXing xing2){
         return isSheng(this.xing,xing2.getXing());
     }
@@ -66,6 +70,10 @@ public class WuXing {
     }
     
     public String toString(){
+        return getWuXingName(this.xing);
+    }
+    
+    public String toStringLong(){
         StringBuffer sb = new StringBuffer();
         switch (xing % 5) {
             case MU:
