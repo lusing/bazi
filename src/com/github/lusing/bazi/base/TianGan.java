@@ -13,7 +13,7 @@ public class TianGan {
     public static final int REN = 8;
     public static final int GUI = 9;
     
-    public static final String sTianGan = "¼×ÒÒ±û¶¡Îì¼º¸ıĞÁÈÉ¹ï";
+    public static final String sTianGan = "ç”²ä¹™ä¸™ä¸æˆŠå·±åºšè¾›å£¬ç™¸";
     
     public String toString(){
         return new String(sTianGan.charAt(tg)+"");
@@ -30,7 +30,7 @@ public class TianGan {
     }
 
     public WuXing getXing() {
-        return new WuXing((tg + 1) / 2 - 1);
+        return new WuXing(tg / 2);
     }
 
     public boolean isYang() {
@@ -38,7 +38,7 @@ public class TianGan {
     }
 
     /**
-     * Éú
+     * ç”Ÿ
      * @param tg2
      * @return
      */
@@ -47,7 +47,7 @@ public class TianGan {
     }
 
     /**
-     * ¿Ë
+     * å…‹
      * @param tg2
      * @return
      */
@@ -56,7 +56,7 @@ public class TianGan {
     }
 
     /**
-     * ³å
+     * å†²
      * @param tg2
      * @return
      */

@@ -14,7 +14,7 @@ public class DiZhi {
     public static final int XU = 0;
     public static final int HAI = 0;
     
-    public static final String sDiZhi = "×Ó³óÒúÃ®³½ËÈÎçÎ´ÉêÓÏĞçº¥";
+    public static final String sDiZhi = "å­ä¸‘å¯…å¯è¾°å·³åˆæœªç”³é…‰æˆŒäº¥";
     
     private int iDiZhi;
     

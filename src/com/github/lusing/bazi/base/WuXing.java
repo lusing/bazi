@@ -21,21 +21,21 @@ public class WuXing {
     public static final String getWuXingName(int xing) {
         switch (xing % 5) {
             case MU:
-                return "Ä¾";
+                return "æœ¨";
             case HUO:
-                return "»ğ";
+                return "ç«";
             case TU:
-                return "ÍÁ";
+                return "åœŸ";
             case JIN:
-                return "½ğ";
+                return "é‡‘";
             case SHUI:
-                return "Ë®";
+                return "æ°´";
             default:
                 return null;
         }
     }
     
-    //Éú, Ë³Î»¶øÉú
+    //ç”Ÿ, é¡ºä½è€Œç”Ÿ
     public static final boolean isSheng(int xing1, int xing2){
         int x1 = (xing1+5) % 5;
         int x2 = (xing2+5) % 5;
@@ -46,7 +46,7 @@ public class WuXing {
         return false;
     }
     
-    //¿Ë,¸ôÎ»Ïà¿Ë
+    //å…‹,éš”ä½ç›¸å…‹
     public static final boolean isKe(int xing1, int xing2){
         int x1 = (xing1+5) % 5;
         int x2 = (xing2+5) % 5;
@@ -69,34 +69,34 @@ public class WuXing {
         StringBuffer sb = new StringBuffer();
         switch (xing % 5) {
             case MU:
-                sb.append("Ä¾\n");
-                sb.append("Ö÷ÈÊ\n");
-                sb.append("¸ÎÔà\n");
-                sb.append("ÂÌÉ«\n");
+                sb.append("æœ¨\n");
+                sb.append("ä¸»ä»\n");
+                sb.append("è‚è„\n");
+                sb.append("ç»¿è‰²\n");
                 break;
             case HUO:
-                sb.append("»ğ\n");
-                sb.append("Ö÷Àñ\n");
-                sb.append("ĞÄÔà\n");
-                sb.append("ºìÉ«\n");
+                sb.append("ç«\n");
+                sb.append("ä¸»ç¤¼\n");
+                sb.append("å¿ƒè„\n");
+                sb.append("çº¢è‰²\n");
                 break;
             case TU:
-                sb.append("ÍÁ\n");
-                sb.append("Ö÷ĞÅ\n");
-                sb.append("Æ¢Ôà\n");
-                sb.append("»ÆÉ«\n");
+                sb.append("åœŸ\n");
+                sb.append("ä¸»ä¿¡\n");
+                sb.append("è„¾è„\n");
+                sb.append("é»„è‰²\n");
                 break;
             case JIN:
-                sb.append("½ğ\n");
-                sb.append("Ö÷Òå\n");
-                sb.append("·ÎÔà\n");
-                sb.append("°×É«\n");
+                sb.append("é‡‘\n");
+                sb.append("ä¸»ä¹‰\n");
+                sb.append("è‚ºè„\n");
+                sb.append("ç™½è‰²\n");
                 break;
             case SHUI:
-                sb.append("Ë®\n");
-                sb.append("Ö÷ÖÇ\n");
-                sb.append("ÉöÔà\n");
-                sb.append("ºÚÉ«\n");
+                sb.append("æ°´\n");
+                sb.append("ä¸»æ™º\n");
+                sb.append("è‚¾è„\n");
+                sb.append("é»‘è‰²\n");
                 break;
             default:
         }
