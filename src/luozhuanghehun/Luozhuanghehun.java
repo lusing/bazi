@@ -2,9 +2,9 @@
 package luozhuanghehun;
 
 /**
- * ±¾ÃüØÔºÏ»é
+ * æœ¬å‘½å¦åˆå©š
  * 
- * @author luozhuang ´óÊ¦¡áÂŞÇf
+ * @author luozhuang å¤§å¸ˆâ™‚ç½—èŠ
  * modified by liuziying
  */
 public class Luozhuanghehun {
@@ -16,12 +16,12 @@ public class Luozhuanghehun {
 
     enum basicstring {
 
-        ¿², À¤, Õğ, Ùã, Ç¬, ¶Ò, ôŞ, Àë;
+        å, å¤, éœ‡, å·½, ä¹¾, å…‘, è‰®, ç¦»;
     }
 
     public String hehun(String man, String woman) {
         if (man.length() != 4 || woman.length() != 4) {
-            return "ÊäÈë²»ÕıÈ·";
+            return "è¾“å…¥ä¸æ­£ç¡®";
         }
 
         return peihun(getnumber(man, sex.man), getnumber(woman, sex.woman));
@@ -36,313 +36,313 @@ public class Luozhuanghehun {
         basicstring mang = basicsnumber(man, sex.man);
         basicstring womang = basicsnumber(woman, sex.woman);
 
-        // Ç¬ÃüÄĞÅäôŞÃüÅ® £¬ôŞÃüÄĞÅäÇ¬ÃüÅ®£»
-        if (mang == basicstring.Ç¬ && womang == basicstring.ôŞ) {
-            return "ÑÓÄê»é";
+        // ä¹¾å‘½ç”·é…è‰®å‘½å¥³ ï¼Œè‰®å‘½ç”·é…ä¹¾å‘½å¥³ï¼›
+        if (mang == basicstring.ä¹¾ && womang == basicstring.è‰®) {
+            return "å»¶å¹´å©š";
         }
 
-        if (womang == basicstring.Ç¬ && mang == basicstring.ôŞ) {
-            return "ÑÓÄê»é";
+        if (womang == basicstring.ä¹¾ && mang == basicstring.è‰®) {
+            return "å»¶å¹´å©š";
         }
 
-        // ÕğÃüÄĞÅä¿²ÃüÅ®£¬¿²ÃüÄĞÅäÕğÃüÅ®£»
-        if (mang == basicstring.Õğ && womang == basicstring.¿²) {
-            return "ÑÓÄê»é";
+        // éœ‡å‘½ç”·é…åå‘½å¥³ï¼Œåå‘½ç”·é…éœ‡å‘½å¥³ï¼›
+        if (mang == basicstring.éœ‡ && womang == basicstring.å) {
+            return "å»¶å¹´å©š";
         }
-        if (womang == basicstring.Õğ && mang == basicstring.¿²) {
-            return "ÑÓÄê»é";
-        }
-
-        // ¶ÒÃüÄĞÅäÀ¤ÃüÅ®£¬À¤ÃüÄĞÅä¶ÒÃüÅ®£»
-        if (mang == basicstring.¶Ò && womang == basicstring.À¤) {
-            return "ÑÓÄê»é";
-        }
-        if (womang == basicstring.¶Ò && mang == basicstring.À¤) {
-            return "ÑÓÄê»é";
+        if (womang == basicstring.éœ‡ && mang == basicstring.å) {
+            return "å»¶å¹´å©š";
         }
 
-        // ÙãÃüÄĞÅäÀëÃüÅ®£¬ÀëÃüÄĞÅäÙãÃüÅ®£»
-        if (mang == basicstring.Ùã && womang == basicstring.Àë) {
-            return "ÑÓÄê»é";
+        // å…‘å‘½ç”·é…å¤å‘½å¥³ï¼Œå¤å‘½ç”·é…å…‘å‘½å¥³ï¼›
+        if (mang == basicstring.å…‘ && womang == basicstring.å¤) {
+            return "å»¶å¹´å©š";
         }
-        if (womang == basicstring.Ùã && mang == basicstring.Àë) {
-            return "ÑÓÄê»é";
-        }
-
-        // ¿²ÃüÄĞÅäÙãÃüÅ®£¬ÙãÃüÄĞÅä¿²ÃüÅ®£»
-        if (mang == basicstring.¿² && womang == basicstring.Ùã) {
-            return "ÉúÆø»é";
-        }
-        if (womang == basicstring.¿² && mang == basicstring.Ùã) {
-            return "ÉúÆø»é";
+        if (womang == basicstring.å…‘ && mang == basicstring.å¤) {
+            return "å»¶å¹´å©š";
         }
 
-        // ÕğÃüÄĞÅäÀëÃüÅ®£¬ÀëÃüÅ®ÅäÕğÃüÄĞ£»
-        if (mang == basicstring.Õğ && womang == basicstring.Àë) {
-            return "ÉúÆø»é";
+        // å·½å‘½ç”·é…ç¦»å‘½å¥³ï¼Œç¦»å‘½ç”·é…å·½å‘½å¥³ï¼›
+        if (mang == basicstring.å·½ && womang == basicstring.ç¦») {
+            return "å»¶å¹´å©š";
         }
-        if (womang == basicstring.Õğ && mang == basicstring.Àë) {
-            return "ÉúÆø»é";
-        }
-
-        // Ç¬ÃüÄĞÅä¶ÒÃüÅ®£¬¶ÒÃüÄĞÅäÇ¬ÃüÅ®£»
-        if (mang == basicstring.Ç¬ && womang == basicstring.¶Ò) {
-            return "ÉúÆø»é";
-        }
-        if (womang == basicstring.Ç¬ && mang == basicstring.¶Ò) {
-            return "ÉúÆø»é";
+        if (womang == basicstring.å·½ && mang == basicstring.ç¦») {
+            return "å»¶å¹´å©š";
         }
 
-        // ôŞÃüÄĞÅäÀ¤ÃüÅ®£¬À¤ÃüÄĞÅäôŞÃüÅ®¡£
-        if (mang == basicstring.ôŞ && womang == basicstring.À¤) {
-            return "ÉúÆø»é";
+        // åå‘½ç”·é…å·½å‘½å¥³ï¼Œå·½å‘½ç”·é…åå‘½å¥³ï¼›
+        if (mang == basicstring.å && womang == basicstring.å·½) {
+            return "ç”Ÿæ°”å©š";
         }
-        if (womang == basicstring.ôŞ && mang == basicstring.À¤) {
-            return "ÉúÆø»é";
-        }
-
-        // ¿²ÃüÄĞÅäôŞÃüÅ®£¬ôŞÃüÄĞÅä¿²ÃüÅ®£»
-        if (mang == basicstring.ôŞ && womang == basicstring.¿²) {
-            return "ÌìÒ½»é";
-        }
-        if (womang == basicstring.ôŞ && mang == basicstring.¿²) {
-            return "ÌìÒ½»é";
+        if (womang == basicstring.å && mang == basicstring.å·½) {
+            return "ç”Ÿæ°”å©š";
         }
 
-        // À¤ÃüÄĞÅäÙãÃüÅ®£¬ÙãÃüÄĞÅäÀ¤ÃüÅ®£»
-        if (mang == basicstring.À¤ && womang == basicstring.Ùã) {
-            return "ÌìÒ½»é";
+        // éœ‡å‘½ç”·é…ç¦»å‘½å¥³ï¼Œç¦»å‘½å¥³é…éœ‡å‘½ç”·ï¼›
+        if (mang == basicstring.éœ‡ && womang == basicstring.ç¦») {
+            return "ç”Ÿæ°”å©š";
         }
-        if (womang == basicstring.À¤ && mang == basicstring.Ùã) {
-            return "ÌìÒ½»é";
-        }
-
-        // ÕğÃüÄĞÅäÇ¬ÃüÅ®£¬Ç¬ÃüÄĞÅäÕğÃüÅ®£»
-        if (mang == basicstring.Õğ && womang == basicstring.Ç¬) {
-            return "ÌìÒ½»é";
-        }
-        if (womang == basicstring.Õğ && mang == basicstring.Ç¬) {
-            return "ÌìÒ½»é";
+        if (womang == basicstring.éœ‡ && mang == basicstring.ç¦») {
+            return "ç”Ÿæ°”å©š";
         }
 
-        // ¶ÒÃüÄĞÅäÀëÃüÅ®£¬ÀëÃüÄĞÅä¶ÒÃüÅ®¡£
-        if (mang == basicstring.¶Ò && womang == basicstring.Àë) {
-            return "ÌìÒ½»é";
+        // ä¹¾å‘½ç”·é…å…‘å‘½å¥³ï¼Œå…‘å‘½ç”·é…ä¹¾å‘½å¥³ï¼›
+        if (mang == basicstring.ä¹¾ && womang == basicstring.å…‘) {
+            return "ç”Ÿæ°”å©š";
         }
-        if (womang == basicstring.¶Ò && mang == basicstring.Àë) {
-            return "ÌìÒ½»é";
-        }
-
-        // ¿²ÃüÄĞÅäÇ¬ÃüÅ®£¬Ç¬ÃüÄĞÅä¿²ÃüÅ®£»
-        if (mang == basicstring.¿² && womang == basicstring.Ç¬) {
-            return "ÁùÉ·»é";
-        }
-        if (womang == basicstring.¿² && mang == basicstring.Ç¬) {
-            return "ÁùÉ·»é";
+        if (womang == basicstring.ä¹¾ && mang == basicstring.å…‘) {
+            return "ç”Ÿæ°”å©š";
         }
 
-        // ÕğÃüÄĞÅäôŞÃüÅ®£¬ôŞÃüÄĞÅäÕğÃüÅ®£»
-        if (mang == basicstring.Õğ && womang == basicstring.ôŞ) {
-            return "ÁùÉ·»é";
+        // è‰®å‘½ç”·é…å¤å‘½å¥³ï¼Œå¤å‘½ç”·é…è‰®å‘½å¥³ã€‚
+        if (mang == basicstring.è‰® && womang == basicstring.å¤) {
+            return "ç”Ÿæ°”å©š";
         }
-        if (womang == basicstring.Õğ && mang == basicstring.ôŞ) {
-            return "ÁùÉ·»é";
-        }
-
-        // ¶ÒÃüÄĞÅäÙãÃüÅ®£¬ÙãÃüÄĞÅä¶ÒÃüÅ®£»
-        if (mang == basicstring.¶Ò && womang == basicstring.Ùã) {
-            return "ÁùÉ·»é";
-        }
-        if (womang == basicstring.¶Ò && mang == basicstring.Ùã) {
-            return "ÁùÉ·»é";
+        if (womang == basicstring.è‰® && mang == basicstring.å¤) {
+            return "ç”Ÿæ°”å©š";
         }
 
-        // ÀëÃüÄĞÅäÀ¤ÃüÅ®£¬À¤ÃüÄĞÅäÀëÃüÅ®¡£
-        if (mang == basicstring.Àë && womang == basicstring.À¤) {
-            return "ÁùÉ·»é";
+        // åå‘½ç”·é…è‰®å‘½å¥³ï¼Œè‰®å‘½ç”·é…åå‘½å¥³ï¼›
+        if (mang == basicstring.è‰® && womang == basicstring.å) {
+            return "å¤©åŒ»å©š";
         }
-        if (womang == basicstring.Àë && mang == basicstring.À¤) {
-            return "ÁùÉ·»é";
-        }
-
-        // ¿²ÃüÄĞÅäÀëÃüÅ®£¬ÀëÃüÄĞÅä¿²ÃüÅ®£»
-        if (mang == basicstring.¿² && womang == basicstring.Àë) {
-            return "»öº¦»é";
-        }
-        if (womang == basicstring.¿² && mang == basicstring.Àë) {
-            return "»öº¦»é";
+        if (womang == basicstring.è‰® && mang == basicstring.å) {
+            return "å¤©åŒ»å©š";
         }
 
-        // ÙãÃüÄĞÅäÕğÃüÅ®£¬ÕğÃüÄĞÅäÙãÃüÅ®£»
-        if (mang == basicstring.Ùã && womang == basicstring.Õğ) {
-            return "»öº¦»é";
+        // å¤å‘½ç”·é…å·½å‘½å¥³ï¼Œå·½å‘½ç”·é…å¤å‘½å¥³ï¼›
+        if (mang == basicstring.å¤ && womang == basicstring.å·½) {
+            return "å¤©åŒ»å©š";
         }
-        if (womang == basicstring.Ùã && mang == basicstring.Õğ) {
-            return "»öº¦»é";
-        }
-
-        // Ç¬ÃüÄĞÅäÀ¤ÃüÅ®£¬À¤ÃüÄĞÅäÇ¬ÃüÅ®£»
-        if (mang == basicstring.Ç¬ && womang == basicstring.À¤) {
-            return "»öº¦»é";
-        }
-        if (womang == basicstring.Ç¬ && mang == basicstring.À¤) {
-            return "»öº¦»é";
+        if (womang == basicstring.å¤ && mang == basicstring.å·½) {
+            return "å¤©åŒ»å©š";
         }
 
-        // ¶ÒÃüÄĞÅäÙãÃüÅ®£¬ÙãÃüÄĞÅä¶ÒÃüÅ®£»
-        if (mang == basicstring.¶Ò && womang == basicstring.Ùã) {
-            return "»öº¦»é";
+        // éœ‡å‘½ç”·é…ä¹¾å‘½å¥³ï¼Œä¹¾å‘½ç”·é…éœ‡å‘½å¥³ï¼›
+        if (mang == basicstring.éœ‡ && womang == basicstring.ä¹¾) {
+            return "å¤©åŒ»å©š";
         }
-        if (womang == basicstring.¶Ò && mang == basicstring.Ùã) {
-            return "»öº¦»é";
+        if (womang == basicstring.éœ‡ && mang == basicstring.ä¹¾) {
+            return "å¤©åŒ»å©š";
         }
 
-        // ¿²ÃüÄĞÅä¿²ÃüÅ®£¬Ç¬ÃüÄĞÅäÇ¬ÃüÅ®£»
+        // å…‘å‘½ç”·é…ç¦»å‘½å¥³ï¼Œç¦»å‘½ç”·é…å…‘å‘½å¥³ã€‚
+        if (mang == basicstring.å…‘ && womang == basicstring.ç¦») {
+            return "å¤©åŒ»å©š";
+        }
+        if (womang == basicstring.å…‘ && mang == basicstring.ç¦») {
+            return "å¤©åŒ»å©š";
+        }
+
+        // åå‘½ç”·é…ä¹¾å‘½å¥³ï¼Œä¹¾å‘½ç”·é…åå‘½å¥³ï¼›
+        if (mang == basicstring.å && womang == basicstring.ä¹¾) {
+            return "å…­ç…å©š";
+        }
+        if (womang == basicstring.å && mang == basicstring.ä¹¾) {
+            return "å…­ç…å©š";
+        }
+
+        // éœ‡å‘½ç”·é…è‰®å‘½å¥³ï¼Œè‰®å‘½ç”·é…éœ‡å‘½å¥³ï¼›
+        if (mang == basicstring.éœ‡ && womang == basicstring.è‰®) {
+            return "å…­ç…å©š";
+        }
+        if (womang == basicstring.éœ‡ && mang == basicstring.è‰®) {
+            return "å…­ç…å©š";
+        }
+
+        // å…‘å‘½ç”·é…å·½å‘½å¥³ï¼Œå·½å‘½ç”·é…å…‘å‘½å¥³ï¼›
+        if (mang == basicstring.å…‘ && womang == basicstring.å·½) {
+            return "å…­ç…å©š";
+        }
+        if (womang == basicstring.å…‘ && mang == basicstring.å·½) {
+            return "å…­ç…å©š";
+        }
+
+        // ç¦»å‘½ç”·é…å¤å‘½å¥³ï¼Œå¤å‘½ç”·é…ç¦»å‘½å¥³ã€‚
+        if (mang == basicstring.ç¦» && womang == basicstring.å¤) {
+            return "å…­ç…å©š";
+        }
+        if (womang == basicstring.ç¦» && mang == basicstring.å¤) {
+            return "å…­ç…å©š";
+        }
+
+        // åå‘½ç”·é…ç¦»å‘½å¥³ï¼Œç¦»å‘½ç”·é…åå‘½å¥³ï¼›
+        if (mang == basicstring.å && womang == basicstring.ç¦») {
+            return "ç¥¸å®³å©š";
+        }
+        if (womang == basicstring.å && mang == basicstring.ç¦») {
+            return "ç¥¸å®³å©š";
+        }
+
+        // å·½å‘½ç”·é…éœ‡å‘½å¥³ï¼Œéœ‡å‘½ç”·é…å·½å‘½å¥³ï¼›
+        if (mang == basicstring.å·½ && womang == basicstring.éœ‡) {
+            return "ç¥¸å®³å©š";
+        }
+        if (womang == basicstring.å·½ && mang == basicstring.éœ‡) {
+            return "ç¥¸å®³å©š";
+        }
+
+        // ä¹¾å‘½ç”·é…å¤å‘½å¥³ï¼Œå¤å‘½ç”·é…ä¹¾å‘½å¥³ï¼›
+        if (mang == basicstring.ä¹¾ && womang == basicstring.å¤) {
+            return "ç¥¸å®³å©š";
+        }
+        if (womang == basicstring.ä¹¾ && mang == basicstring.å¤) {
+            return "ç¥¸å®³å©š";
+        }
+
+        // å…‘å‘½ç”·é…å·½å‘½å¥³ï¼Œå·½å‘½ç”·é…å…‘å‘½å¥³ï¼›
+        if (mang == basicstring.å…‘ && womang == basicstring.å·½) {
+            return "ç¥¸å®³å©š";
+        }
+        if (womang == basicstring.å…‘ && mang == basicstring.å·½) {
+            return "ç¥¸å®³å©š";
+        }
+
+        // åå‘½ç”·é…åå‘½å¥³ï¼Œä¹¾å‘½ç”·é…ä¹¾å‘½å¥³ï¼›
         //
-        // À¤ÃüÄĞÅäÀ¤ÃüÅ®£¬¶ÒÃüÄĞÅä¶ÒÃüÅ®£»
+        // å¤å‘½ç”·é…å¤å‘½å¥³ï¼Œå…‘å‘½ç”·é…å…‘å‘½å¥³ï¼›
         //
-        // ÕğÃüÄĞÅäÕğÃüÅ®£¬ôŞÃüÄĞÅäôŞÃüÅ®£»
+        // éœ‡å‘½ç”·é…éœ‡å‘½å¥³ï¼Œè‰®å‘½ç”·é…è‰®å‘½å¥³ï¼›
         //
-        // ÙãÃüÄĞÅäÙãÃüÅ®£¬ÀëÃüÄĞÅäÀëÃüÅ®¡£
+        // å·½å‘½ç”·é…å·½å‘½å¥³ï¼Œç¦»å‘½ç”·é…ç¦»å‘½å¥³ã€‚
 
         if (mang == womang) {
-            return "·üÎ»»é";
+            return "ä¼ä½å©š";
         }
 
-        // ¿²ÃüÄĞÅä¶ÒÃüÅ®£¬¶ÒÃüÄĞÅä¿²ÃüÅ®£»
-        if (mang == basicstring.¿² && womang == basicstring.¶Ò) {
-            return "Îå¹í»é";
+        // åå‘½ç”·é…å…‘å‘½å¥³ï¼Œå…‘å‘½ç”·é…åå‘½å¥³ï¼›
+        if (mang == basicstring.å && womang == basicstring.å…‘) {
+            return "äº”é¬¼å©š";
         }
-        if (womang == basicstring.¿² && mang == basicstring.¶Ò) {
-            return "Îå¹í»é";
-        }
-
-        // ÕğÃüÄĞÅäÀ¤ÃüÅ®£¬À¤ÃüÄĞÅäÕğÃüÅ®£»
-        if (mang == basicstring.Õğ && womang == basicstring.À¤) {
-            return "Îå¹í»é";
-        }
-        if (womang == basicstring.Õğ && mang == basicstring.À¤) {
-            return "Îå¹í»é";
+        if (womang == basicstring.å && mang == basicstring.å…‘) {
+            return "äº”é¬¼å©š";
         }
 
-        // ÀëÃüÄĞÅäôŞÃüÅ®£¬ôŞÃüÄĞÅäÀëÃüÅ®£»
-        if (mang == basicstring.Àë && womang == basicstring.ôŞ) {
-            return "Îå¹í»é";
+        // éœ‡å‘½ç”·é…å¤å‘½å¥³ï¼Œå¤å‘½ç”·é…éœ‡å‘½å¥³ï¼›
+        if (mang == basicstring.éœ‡ && womang == basicstring.å¤) {
+            return "äº”é¬¼å©š";
         }
-        if (womang == basicstring.Àë && mang == basicstring.ôŞ) {
-            return "Îå¹í»é";
-        }
-
-        // Ç¬ÃüÄĞÅäÙãÃüÅ®£¬ÙãÃüÄĞÅäÇ¬ÃüÅ®¡££»
-        if (mang == basicstring.Ç¬ && womang == basicstring.Ùã) {
-            return "Îå¹í»é";
-        }
-        if (womang == basicstring.Ç¬ && mang == basicstring.Ùã) {
-            return "Îå¹í»é";
+        if (womang == basicstring.éœ‡ && mang == basicstring.å¤) {
+            return "äº”é¬¼å©š";
         }
 
-        // ¿²ÃüÄĞÅäÀ¤ÃüÅ®£¬À¤ÃüÄĞÅä¿²ÃüÅ®£»
-        if (mang == basicstring.¿² && womang == basicstring.À¤) {
-            return "¾øÃü»é";
+        // ç¦»å‘½ç”·é…è‰®å‘½å¥³ï¼Œè‰®å‘½ç”·é…ç¦»å‘½å¥³ï¼›
+        if (mang == basicstring.ç¦» && womang == basicstring.è‰®) {
+            return "äº”é¬¼å©š";
         }
-        if (womang == basicstring.¿² && mang == basicstring.À¤) {
-            return "¾øÃü»é";
-        }
-
-        // ÕğÃüÄĞÅä¶ÒÃüÅ®£¬¶ÒÃüÄĞÅäÕğÃüÅ®£»
-        if (mang == basicstring.Õğ && womang == basicstring.¶Ò) {
-            return "¾øÃü»é";
-        }
-        if (womang == basicstring.Õğ && mang == basicstring.¶Ò) {
-            return "¾øÃü»é";
+        if (womang == basicstring.ç¦» && mang == basicstring.è‰®) {
+            return "äº”é¬¼å©š";
         }
 
-        // ÙãÃüÄĞÅäôŞÃüÅ®£¬ôŞÃüÄĞÅäÙãÃüÅ®£»
-        if (mang == basicstring.Ùã && womang == basicstring.ôŞ) {
-            return "¾øÃü»é";
+        // ä¹¾å‘½ç”·é…å·½å‘½å¥³ï¼Œå·½å‘½ç”·é…ä¹¾å‘½å¥³ã€‚ï¼›
+        if (mang == basicstring.ä¹¾ && womang == basicstring.å·½) {
+            return "äº”é¬¼å©š";
         }
-        if (womang == basicstring.Ùã && mang == basicstring.ôŞ) {
-            return "¾øÃü»é";
+        if (womang == basicstring.ä¹¾ && mang == basicstring.å·½) {
+            return "äº”é¬¼å©š";
         }
 
-        // Ç¬ÃüÄĞÅäÀëÃüÅ®£¬ÀëÃüÄĞÅäÇ¬ÃüÅ®¡£
-        if (mang == basicstring.Ç¬ && womang == basicstring.Àë) {
-            return "¾øÃü»é";
+        // åå‘½ç”·é…å¤å‘½å¥³ï¼Œå¤å‘½ç”·é…åå‘½å¥³ï¼›
+        if (mang == basicstring.å && womang == basicstring.å¤) {
+            return "ç»å‘½å©š";
         }
-        if (womang == basicstring.Ç¬ && mang == basicstring.Àë) {
-            return "¾øÃü»é";
+        if (womang == basicstring.å && mang == basicstring.å¤) {
+            return "ç»å‘½å©š";
         }
-        return "ÊäÈë²»ÕıÈ·";
+
+        // éœ‡å‘½ç”·é…å…‘å‘½å¥³ï¼Œå…‘å‘½ç”·é…éœ‡å‘½å¥³ï¼›
+        if (mang == basicstring.éœ‡ && womang == basicstring.å…‘) {
+            return "ç»å‘½å©š";
+        }
+        if (womang == basicstring.éœ‡ && mang == basicstring.å…‘) {
+            return "ç»å‘½å©š";
+        }
+
+        // å·½å‘½ç”·é…è‰®å‘½å¥³ï¼Œè‰®å‘½ç”·é…å·½å‘½å¥³ï¼›
+        if (mang == basicstring.å·½ && womang == basicstring.è‰®) {
+            return "ç»å‘½å©š";
+        }
+        if (womang == basicstring.å·½ && mang == basicstring.è‰®) {
+            return "ç»å‘½å©š";
+        }
+
+        // ä¹¾å‘½ç”·é…ç¦»å‘½å¥³ï¼Œç¦»å‘½ç”·é…ä¹¾å‘½å¥³ã€‚
+        if (mang == basicstring.ä¹¾ && womang == basicstring.ç¦») {
+            return "ç»å‘½å©š";
+        }
+        if (womang == basicstring.ä¹¾ && mang == basicstring.ç¦») {
+            return "ç»å‘½å©š";
+        }
+        return "è¾“å…¥ä¸æ­£ç¡®";
 
     }
     
     private String parseHun(String result){
         StringBuffer sb = new StringBuffer();
         
-        if(result=="ÑÓÄê»é"){
-            sb.append("ÑÓÄê»éÖ÷³¤ÊÙÓĞ¸££¬ÄĞÅ®ºÍĞ³£¬»ıµÂ»ıÇì£¬ÖÕÉú°²¿µ£¬ÉÏ¼ªÖ®Åä¡£");
-        }else if(result=="ÉúÆø»é"){
-            sb.append("ÉúÆø»éÖ÷¶à×Ó¶à¸££¬¶ùËïÂúÌÃ£¬×ÓĞ¢ËïÏÍ£¬ÓĞ¸£ÓĞÂ»£¬ÉÏ¼ªÖ®Åä¡£");
-        }else if(result=="ÌìÒ½»é"){
-            sb.append("ÌìÒ½»éÖ÷ÎŞÔÖÎŞ²¡£¬Ò»ÉúÆ½°²£¬¶ùÅ®ºÍÄÀ£¬ÎŞ¼éÎŞµÁ£¬ÉÏ¼ªÖ®Åä¡£");
-        }else if(result=="ÁùÉ·»é"){
-            sb.append("ÁùÉ·»éÖ÷»¯ÏÕÎªÒÄ£¬·òÆŞºÍË³£¬Ëä¸»²»´ï£¬·áÒÂ×ãÊ³¡£Ñ°³£Ö®Åä¡£");
-        }else if(result=="»öº¦»é"){
-            sb.append("»öº¦»éÖ÷ÓöÄÑ¿É½â£¬·êĞ×»¯¼ª£¬¿²¿ÀÀÍÂµ£¬¿É±£Ğ¡¿µ£¬Ñ°³£Ö®Åä¡£");
-        }else if(result=="·üÎ»»é"){
-            sb.append("·üÎ»»éÖ÷Ò»ÉúÆ½µ­£¬ÓĞ×ÓÓĞÅ®£¬ÍÅÔ²ºÍÆø£¬ÎŞ¾ªÎŞÏÕ£¬Ñ°³£Ö®Åä¡£");
-        }else if(result=="Îå¹í»é"){
-            sb.append("Îå¹í»éÖ÷¿ÚÉàÊÇ·Ç£¬Éú»î²»Äş£¬ÁÚÀï²»ºÍ£¬Ê±ÓĞ¹ÙË¾£¬´ÎĞ×Ö®Åä¡£");
-        }else if(result=="¾øÃü»é"){
-            sb.append("¾øÃü»éÖ÷Æ½Éú¿²¿À£¬ÉúÊÀ¼èĞÁ£¬¶«ÀëÎ÷×ß£¬¼ÒÔâĞ×»ö£¬´óĞ×Ö®Åä¡£");
+        if(result=="å»¶å¹´å©š"){
+            sb.append("å»¶å¹´å©šä¸»é•¿å¯¿æœ‰ç¦ï¼Œç”·å¥³å’Œè°ï¼Œç§¯å¾·ç§¯åº†ï¼Œç»ˆç”Ÿå®‰åº·ï¼Œä¸Šå‰ä¹‹é…ã€‚");
+        }else if(result=="ç”Ÿæ°”å©š"){
+            sb.append("ç”Ÿæ°”å©šä¸»å¤šå­å¤šç¦ï¼Œå„¿å­™æ»¡å ‚ï¼Œå­å­å­™è´¤ï¼Œæœ‰ç¦æœ‰ç¦„ï¼Œä¸Šå‰ä¹‹é…ã€‚");
+        }else if(result=="å¤©åŒ»å©š"){
+            sb.append("å¤©åŒ»å©šä¸»æ— ç¾æ— ç—…ï¼Œä¸€ç”Ÿå¹³å®‰ï¼Œå„¿å¥³å’Œç¦ï¼Œæ— å¥¸æ— ç›—ï¼Œä¸Šå‰ä¹‹é…ã€‚");
+        }else if(result=="å…­ç…å©š"){
+            sb.append("å…­ç…å©šä¸»åŒ–é™©ä¸ºå¤·ï¼Œå¤«å¦»å’Œé¡ºï¼Œè™½å¯Œä¸è¾¾ï¼Œä¸°è¡£è¶³é£Ÿã€‚å¯»å¸¸ä¹‹é…ã€‚");
+        }else if(result=="ç¥¸å®³å©š"){
+            sb.append("ç¥¸å®³å©šä¸»é‡éš¾å¯è§£ï¼Œé€¢å‡¶åŒ–å‰ï¼Œåå·åŠ³ç¢Œï¼Œå¯ä¿å°åº·ï¼Œå¯»å¸¸ä¹‹é…ã€‚");
+        }else if(result=="ä¼ä½å©š"){
+            sb.append("ä¼ä½å©šä¸»ä¸€ç”Ÿå¹³æ·¡ï¼Œæœ‰å­æœ‰å¥³ï¼Œå›¢åœ†å’Œæ°”ï¼Œæ— æƒŠæ— é™©ï¼Œå¯»å¸¸ä¹‹é…ã€‚");
+        }else if(result=="äº”é¬¼å©š"){
+            sb.append("äº”é¬¼å©šä¸»å£èˆŒæ˜¯éï¼Œç”Ÿæ´»ä¸å®ï¼Œé‚»é‡Œä¸å’Œï¼Œæ—¶æœ‰å®˜å¸ï¼Œæ¬¡å‡¶ä¹‹é…ã€‚");
+        }else if(result=="ç»å‘½å©š"){
+            sb.append("ç»å‘½å©šä¸»å¹³ç”Ÿåå·ï¼Œç”Ÿä¸–è‰°è¾›ï¼Œä¸œç¦»è¥¿èµ°ï¼Œå®¶é­å‡¶ç¥¸ï¼Œå¤§å‡¶ä¹‹é…ã€‚");
         }
         
         return sb.toString();
     }
 
     /**
-     * Êı×ÖÑ¡¹¬¹Ò
+     * æ•°å­—é€‰å®«æŒ‚
      * 
-     * @param number Êı×Ö
-     * @param isman ÄĞÈËÃ´
-     * @return ÊôÓÚ¹¬¹Ò
+     * @param number æ•°å­—
+     * @param isman ç”·äººä¹ˆ
+     * @return å±äºå®«æŒ‚
      */
     public Luozhuanghehun.basicstring basicsnumber(int number, sex isman) {
         switch (number) {
             case 1:
-                return basicstring.¿²;
+                return basicstring.å;
 
             case 2:
-                return basicstring.À¤;
+                return basicstring.å¤;
             case 3:
-                return basicstring.Õğ;
+                return basicstring.éœ‡;
             case 4:
-                return basicstring.Ùã;
+                return basicstring.å·½;
             case 5:
                 if (isman == sex.man) {
-                    return basicstring.À¤;
+                    return basicstring.å¤;
                 } else {
-                    return basicstring.ôŞ;
+                    return basicstring.è‰®;
                 }
             case 6:
-                return basicstring.Ç¬;
+                return basicstring.ä¹¾;
             case 7:
-                return basicstring.¶Ò;
+                return basicstring.å…‘;
             case 8:
-                return basicstring.ôŞ;
+                return basicstring.è‰®;
             case 9:
-                return basicstring.Àë;
+                return basicstring.ç¦»;
 
         }
         return null;
     }
 
     /**
-     * ÄĞĞÔ£º11-³öÉúÄêºá¼Ó£¨Ò²ÎªÁ÷ÄêĞş¿Õ·ÉĞÇÈëÖĞ¹¬¼ÆËã¹«Ê½£© Å®ĞÔ£º4+³öÉúÄêºá¼Ó
-     * 1989Äê³öÉúµÄÄĞĞÔ£º11-£¨1+9+8+9£©=11-£¨27£©=11-£¨2+7£©=2£¬¼´±¾ÃüØÔÎªÀ¤ØÔ
+     * ç”·æ€§ï¼š11-å‡ºç”Ÿå¹´æ¨ªåŠ ï¼ˆä¹Ÿä¸ºæµå¹´ç„ç©ºé£æ˜Ÿå…¥ä¸­å®«è®¡ç®—å…¬å¼ï¼‰ å¥³æ€§ï¼š4+å‡ºç”Ÿå¹´æ¨ªåŠ 
+     * 1989å¹´å‡ºç”Ÿçš„ç”·æ€§ï¼š11-ï¼ˆ1+9+8+9ï¼‰=11-ï¼ˆ27ï¼‰=11-ï¼ˆ2+7ï¼‰=2ï¼Œå³æœ¬å‘½å¦ä¸ºå¤å¦
      * 
-     * @param year ÊäÈëÄê·İ×Ö·û
-     * @return ÖØÔØgetnumber
+     * @param year è¾“å…¥å¹´ä»½å­—ç¬¦
+     * @return é‡è½½getnumber
      */
     public int getnumber(String year, sex isman) throws NumberFormatException {
 
@@ -352,11 +352,11 @@ public class Luozhuanghehun {
     }
 
     /**
-     * ÄĞĞÔ£º11-³öÉúÄêºá¼Ó£¨Ò²ÎªÁ÷ÄêĞş¿Õ·ÉĞÇÈëÖĞ¹¬¼ÆËã¹«Ê½£© Å®ĞÔ£º4+³öÉúÄêºá¼Ó
-     * 1989Äê³öÉúµÄÄĞĞÔ£º11-£¨1+9+8+9£©=11-£¨27£©=11-£¨2+7£©=2£¬¼´±¾ÃüØÔÎªÀ¤ØÔ
+     * ç”·æ€§ï¼š11-å‡ºç”Ÿå¹´æ¨ªåŠ ï¼ˆä¹Ÿä¸ºæµå¹´ç„ç©ºé£æ˜Ÿå…¥ä¸­å®«è®¡ç®—å…¬å¼ï¼‰ å¥³æ€§ï¼š4+å‡ºç”Ÿå¹´æ¨ªåŠ 
+     * 1989å¹´å‡ºç”Ÿçš„ç”·æ€§ï¼š11-ï¼ˆ1+9+8+9ï¼‰=11-ï¼ˆ27ï¼‰=11-ï¼ˆ2+7ï¼‰=2ï¼Œå³æœ¬å‘½å¦ä¸ºå¤å¦
      * 
-     * @param year ÊäÈëÄê·İÊı×Ö
-     * @return ·µ»Ø½á¹û
+     * @param year è¾“å…¥å¹´ä»½æ•°å­—
+     * @return è¿”å›ç»“æœ
      */
     public int getnumber(int year, sex isman) {
 
@@ -373,7 +373,7 @@ public class Luozhuanghehun {
             result = 4 + ((int) (sum / 10) % 10) + (sum % 10);
         }
         if (result > 10) {
-            result = result - 9;// Èç¹û³¬¹ı10£¬Ô­ÎÄÃ»ÓĞĞ´ÔõÃ´×ö£¬ÎÒ×Ô¼ºÍÆµÄ
+            result = result - 9;// å¦‚æœè¶…è¿‡10ï¼ŒåŸæ–‡æ²¡æœ‰å†™æ€ä¹ˆåšï¼Œæˆ‘è‡ªå·±æ¨çš„
         }
         return result;
 

@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 /**
- * ¸ù¾İÎ÷ÔªµÄÉúÈÕÊ±³½»ñÈ¡Ä³¸öÈËµÄÉú³½°Ë×Ö£¬ÒÔ¼°Å©ÀúÉúÈÕ
+ * æ ¹æ®è¥¿å…ƒçš„ç”Ÿæ—¥æ—¶è¾°è·å–æŸä¸ªäººçš„ç”Ÿè¾°å…«å­—ï¼Œä»¥åŠå†œå†ç”Ÿæ—¥
  *@author kongqz 
  * */
 public class BaZi {
@@ -14,9 +14,9 @@ public class BaZi {
     private int day;
     private boolean leap;
     Date baseDate = null;
-    final static String chineseNumber[] = {"Õı", "¶ş", "Èı", "ËÄ", "Îå", "Áù", "Æß", "°Ë", "¾Å", "Ê®", "Ê®Ò»", "À°"};
-   public final static String[] Gan = {"¼×", "ÒÒ", "±û", "¶¡", "Îì", "¼º", "¸ı", "ĞÁ", "ÈÉ", "¹ï"};
-   public final static String[] Zhi = {"×Ó", "³ó", "Òú", "Ã®", "³½", "ËÈ", "Îç", "Î´", "Éê", "ÓÏ", "Ğç", "º¥"};
+    final static String chineseNumber[] = {"æ­£", "äºŒ", "ä¸‰", "å››", "äº”", "å…­", "ä¸ƒ", "å…«", "ä¹", "å", "åä¸€", "è…Š"};
+   public final static String[] Gan = {"ç”²", "ä¹™", "ä¸™", "ä¸", "æˆŠ", "å·±", "åºš", "è¾›", "å£¬", "ç™¸"};
+   public final static String[] Zhi = {"å­", "ä¸‘", "å¯…", "å¯", "è¾°", "å·³", "åˆ", "æœª", "ç”³", "é…‰", "æˆŒ", "äº¥"};
     static SimpleDateFormat chineseDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     final static long[] lunarInfo = new long[]{0x04bd8, 0x04ae0, 0x0a570, 0x054d5, 0x0d260, 0x0d950, 0x16554, 0x056a0, 0x09ad0, 0x055d2,
         0x04ae0, 0x0a5b6, 0x0a4d0, 0x0d250, 0x1d255, 0x0b540, 0x0d6a0, 0x0ada2, 0x095b0, 0x14977,
@@ -63,7 +63,7 @@ public class BaZi {
         return month;
     }
         /**
-     * @return the year ·µ»ØÄêµÄË³Ğò£¬×Ó0 ³ó2
+     * @return the year è¿”å›å¹´çš„é¡ºåºï¼Œå­0 ä¸‘2
      */
     public int getYearindex() {
           return (year - 4) % 12;
@@ -76,26 +76,26 @@ public class BaZi {
         return getChinaDayString(day);
     }
     /**
-     * ÁùÊ®¼××Ó
+     * å…­åç”²å­
      */
     public static final String[] jiazhi = {
-        "¼××Ó", "ÒÒ³ó", "±ûÒú", "¶¡Ã®", "Îì³½", "¼ºËÈ", "¸ıÎç", "ĞÁÎ´", "ÈÉÉê", "¹ïÓÏ",
-        "¼×Ğç", "ÒÒº¥", "±û×Ó", "¶¡³ó", "ÎìÒú", "¼ºÃ®", "¸ı³½", "ĞÁËÈ", "ÈÉÎç", "¹ïÎ´",
-        "¼×Éê", "ÒÒÓÏ", "±ûĞç", "¶¡º¥", "Îì×Ó", "¼º³ó", "¸ıÒú", "ĞÁÃ®", "ÈÉ³½", "¹ïËÈ",
-        "¼×Îç", "ÒÒÎ´", "±ûÉê", "¶¡ÓÏ", "ÎìĞç", "¼ºº¥", "¸ı×Ó", "ĞÁ³ó", "ÈÉÒú", "¹ïÃ®",
-        "¼×³½", "ÒÒËÈ", "±ûÎç", "¶¡Î´", "ÎìÉê", "¼ºÓÏ", "¸ıĞç", "ĞÁº¥", "ÈÉ×Ó", "¹ï³ó",
-        "¼×Òú", "ÒÒÃ®", "±û³½", "¶¡ËÈ", "ÎìÎç", "¼ºÎ´", "¸ıÉê", "ĞÁÓÏ", "ÈÉĞç", "¹ïº¥"
+        "ç”²å­", "ä¹™ä¸‘", "ä¸™å¯…", "ä¸å¯", "æˆŠè¾°", "å·±å·³", "åºšåˆ", "è¾›æœª", "å£¬ç”³", "ç™¸é…‰",
+        "ç”²æˆŒ", "ä¹™äº¥", "ä¸™å­", "ä¸ä¸‘", "æˆŠå¯…", "å·±å¯", "åºšè¾°", "è¾›å·³", "å£¬åˆ", "ç™¸æœª",
+        "ç”²ç”³", "ä¹™é…‰", "ä¸™æˆŒ", "ä¸äº¥", "æˆŠå­", "å·±ä¸‘", "åºšå¯…", "è¾›å¯", "å£¬è¾°", "ç™¸å·³",
+        "ç”²åˆ", "ä¹™æœª", "ä¸™ç”³", "ä¸é…‰", "æˆŠæˆŒ", "å·±äº¥", "åºšå­", "è¾›ä¸‘", "å£¬å¯…", "ç™¸å¯",
+        "ç”²è¾°", "ä¹™å·³", "ä¸™åˆ", "ä¸æœª", "æˆŠç”³", "å·±é…‰", "åºšæˆŒ", "è¾›äº¥", "å£¬å­", "ç™¸ä¸‘",
+        "ç”²å¯…", "ä¹™å¯", "ä¸™è¾°", "ä¸å·³", "æˆŠåˆ", "å·±æœª", "åºšç”³", "è¾›é…‰", "å£¬æˆŒ", "ç™¸äº¥"
     };
     private Calendar cal;
     /**
-     * @param hour ÕâÀïµÄÊ±¼ä·¶Î§ÊÇ1-12£¬¾ßÌå¼¸µãµ½¼¸µãÊÇ×ÓÊ±¡¢³óÊ±Çë²Î¿¼Ïà¹ØÎÄµµ
-     * ¾ßÌåµÄÑ¡ÔñÈçÏÂ "×Ó£º1", "³ó£º2", "Òú£º3", "Ã®£º4", "³½£º5", "ËÈ£º6", "Îç£º7", "Î´£º8", "Éê£º9", "ÓÏ£º10", "Ğç£º11", "º¥£º12" 
+     * @param hour è¿™é‡Œçš„æ—¶é—´èŒƒå›´æ˜¯1-12ï¼Œå…·ä½“å‡ ç‚¹åˆ°å‡ ç‚¹æ˜¯å­æ—¶ã€ä¸‘æ—¶è¯·å‚è€ƒç›¸å…³æ–‡æ¡£
+     * å…·ä½“çš„é€‰æ‹©å¦‚ä¸‹ "å­ï¼š1", "ä¸‘ï¼š2", "å¯…ï¼š3", "å¯ï¼š4", "è¾°ï¼š5", "å·³ï¼š6", "åˆï¼š7", "æœªï¼š8", "ç”³ï¼š9", "é…‰ï¼š10", "æˆŒï¼š11", "äº¥ï¼š12" 
      * @author kongqz
      * */
     public String getYearGanZhi(int hour) {
-        //1864ÄêÊÇ¼××ÓÄê£¬Ã¿¸ôÁùÊ®ÄêÒ»¸ö¼××Ó
+        //1864å¹´æ˜¯ç”²å­å¹´ï¼Œæ¯éš”å…­åå¹´ä¸€ä¸ªç”²å­
         int idx = (year - 1864) % 60;
-        //Ã»ÓĞ¹ı´º½ÚµÄ»°ÄÇÃ´Äê»¹ËãÉÏÒ»ÄêµÄ£¬´Ë´¦ÇóµÄÄê·İµÄ¸ÉÖ§
+        //æ²¡æœ‰è¿‡æ˜¥èŠ‚çš„è¯é‚£ä¹ˆå¹´è¿˜ç®—ä¸Šä¸€å¹´çš„ï¼Œæ­¤å¤„æ±‚çš„å¹´ä»½çš„å¹²æ”¯
         String y = jiazhi[idx];
         
         String m="";
@@ -104,36 +104,36 @@ public class BaZi {
         idx = idx % 5;
         int idxm=0;
         /**
-         * ÄêÉÏÆğÔÂ
-         * ¼×¼ºÖ®Äê±û×÷Ê×£¬ÒÒ¸ıÖ®ËêÎìÎªÍ·£¬
-         * ±ûĞÁ±Ø¶¨Ñ°¸ıÆğ£¬¶¡ÈÉÈÉÎ»Ë³ĞĞÁ÷£¬
-         * ¸üÓĞÎì¹ïºÎ·½ÃÙ£¬¼×ÒúÖ®ÉÏºÃ×·Çó¡£
+         * å¹´ä¸Šèµ·æœˆ
+         * ç”²å·±ä¹‹å¹´ä¸™ä½œé¦–ï¼Œä¹™åºšä¹‹å²æˆŠä¸ºå¤´ï¼Œ
+         * ä¸™è¾›å¿…å®šå¯»åºšèµ·ï¼Œä¸å£¬å£¬ä½é¡ºè¡Œæµï¼Œ
+         * æ›´æœ‰æˆŠç™¸ä½•æ–¹è§…ï¼Œç”²å¯…ä¹‹ä¸Šå¥½è¿½æ±‚ã€‚
          */
         idxm=(idx+1)*2;
         if(idxm==10) idxm=0;
-        //ÇóµÄÔÂ·İµÄ¸ÉÖ§
+        //æ±‚çš„æœˆä»½çš„å¹²æ”¯
         m=Gan[(idxm+month-1)%10]+Zhi[(month+2-1)%12];
        
         
-        /*Çó³öºÍ1900Äê1ÔÂ31ÈÕ¼×³½ÈÕÏà²îµÄÌìÊı 
-         * ¼×³½ÈÕÊÇµÚËÄÊ®Ìì
+        /*æ±‚å‡ºå’Œ1900å¹´1æœˆ31æ—¥ç”²è¾°æ—¥ç›¸å·®çš„å¤©æ•° 
+         * ç”²è¾°æ—¥æ˜¯ç¬¬å››åå¤©
         */
         int offset = (int) ((cal.getTime().getTime() - baseDate.getTime()) / 86400000L);
         offset=(offset+40)%60;
-        //ÇóµÄÈÕµÄ¸ÉÖ§
+        //æ±‚çš„æ—¥çš„å¹²æ”¯
         d=jiazhi[offset];
         
         /**
-         * ÈÕÉÏÆğÊ±
-         * ¼×¼º»¹Éú¼×£¬ÒÒ¸ı±û×÷³õ£¬
-         * ±ûĞÁ´ÓÎìÆğ£¬¶¡ÈÉ¸ı×Ó¾Ó£¬
-         * Îì¹ïºÎ·½·¢£¬ÈÉ×ÓÊÇÕæÍ¾¡£  
+         * æ—¥ä¸Šèµ·æ—¶
+         * ç”²å·±è¿˜ç”Ÿç”²ï¼Œä¹™åºšä¸™ä½œåˆï¼Œ
+         * ä¸™è¾›ä»æˆŠèµ·ï¼Œä¸å£¬åºšå­å±…ï¼Œ
+         * æˆŠç™¸ä½•æ–¹å‘ï¼Œå£¬å­æ˜¯çœŸé€”ã€‚  
          */ 
         
         offset=(offset % 5 )*2;
-        //ÇóµÃÊ±³½µÄ¸ÉÖ§   
+        //æ±‚å¾—æ—¶è¾°çš„å¹²æ”¯   
         h=Gan[(offset+hour)%10]+Zhi[hour];
-        //ÔÚ´Ë´¦Êä³öÎÒÃÇµÄÄêÔÂÈÕÊ±µÄÌì¸ÉµØÖ§
+        //åœ¨æ­¤å¤„è¾“å‡ºæˆ‘ä»¬çš„å¹´æœˆæ—¥æ—¶çš„å¤©å¹²åœ°æ”¯
         //return y+","+m+","+d+","+h;
         return y+m+d+h;
     }
@@ -141,7 +141,7 @@ public class BaZi {
        
         return null;
     }
-//====== ´«»ØÅ©Àú yÄêµÄ×ÜÌìÊı
+//====== ä¼ å›å†œå† yå¹´çš„æ€»å¤©æ•°
     final private static int yearDays(int y) {
         int i,  sum = 348;
         for (i = 0x8000; i > 0x8; i >>= 1) {
@@ -151,7 +151,7 @@ public class BaZi {
         }
         return (sum + leapDays(y));
     }
-//====== ´«»ØÅ©Àú yÄêÈòÔÂµÄÌìÊı
+//====== ä¼ å›å†œå† yå¹´é—°æœˆçš„å¤©æ•°
     final private static int leapDays(int y) {
         if (leapMonth(y) != 0) {
             if ((lunarInfo[y - 1900] & 0x10000) != 0) {
@@ -163,11 +163,11 @@ public class BaZi {
             return 0;
         }
     }
-//====== ´«»ØÅ©Àú yÄêÈòÄÄ¸öÔÂ 1-12 , Ã»Èò´«»Ø 0
+//====== ä¼ å›å†œå† yå¹´é—°å“ªä¸ªæœˆ 1-12 , æ²¡é—°ä¼ å› 0
     final private static int leapMonth(int y) {
         return (int) (lunarInfo[y - 1900] & 0xf);
     }
-//====== ´«»ØÅ©Àú yÄêmÔÂµÄ×ÜÌìÊı
+//====== ä¼ å›å†œå† yå¹´mæœˆçš„æ€»å¤©æ•°
     final private static int monthDays(int y, int m) {
         if ((lunarInfo[y - 1900] & (0x10000 >> m)) == 0) {
             return 29;
@@ -176,26 +176,26 @@ public class BaZi {
         }
     }
 /*** 
- * @return ´«»ØÅ©Àú yÄêµÄÉúĞ¤
+ * @return ä¼ å›å†œå† yå¹´çš„ç”Ÿè‚–
  */
     final public String animalsYear() {
-        final String[] Animals = new String[]{"Êó", "Å£", "»¢", "ÍÃ", "Áú", "Éß", "Âí", "Ñò", "ºï", "¼¦", "¹·", "Öí"};
+        final String[] Animals = new String[]{"é¼ ", "ç‰›", "è™", "å…”", "é¾™", "è›‡", "é©¬", "ç¾Š", "çŒ´", "é¸¡", "ç‹—", "çŒª"};
         return Animals[(year - 4) % 12];
     }
-//====== ´«Èë ÔÂÈÕµÄoffset ´«»Ø¸ÉÖ§, 0=¼××Ó
+//====== ä¼ å…¥ æœˆæ—¥çš„offset ä¼ å›å¹²æ”¯, 0=ç”²å­
     final private static String cyclicalm(int num) {
         return (Gan[num % 10] + Zhi[num % 12]);
     }
-//====== ´«Èë offset ´«»Ø¸ÉÖ§, 0=¼××Ó
+//====== ä¼ å…¥ offset ä¼ å›å¹²æ”¯, 0=ç”²å­
     final public String cyclical() {
         int num = year - 1900 + 36;
         return (cyclicalm(num));
     }
     /**
-     * ´«³öyÄêmÔÂdÈÕ¶ÔÓ¦µÄÅ©Àú.
-     * yearCyl3:Å©ÀúÄêÓë1864µÄÏà²îÊı ?
-     * monCyl4:´Ó1900Äê1ÔÂ31ÈÕÒÔÀ´,ÈòÔÂÊı
-     * dayCyl5:Óë1900Äê1ÔÂ31ÈÕÏà²îµÄÌìÊı,ÔÙ¼Ó40 ?
+     * ä¼ å‡ºyå¹´mæœˆdæ—¥å¯¹åº”çš„å†œå†.
+     * yearCyl3:å†œå†å¹´ä¸1864çš„ç›¸å·®æ•° ?
+     * monCyl4:ä»1900å¹´1æœˆ31æ—¥ä»¥æ¥,é—°æœˆæ•°
+     * dayCyl5:ä¸1900å¹´1æœˆ31æ—¥ç›¸å·®çš„å¤©æ•°,å†åŠ 40 ?
      *
      * @param cal
      * @return
@@ -210,14 +210,14 @@ public class BaZi {
         } catch (ParseException e) {
             e.printStackTrace(); //To change body of catch statement use Options | File Templates.
         }
-//Çó³öºÍ1900Äê1ÔÂ31ÈÕÏà²îµÄÌìÊı
+//æ±‚å‡ºå’Œ1900å¹´1æœˆ31æ—¥ç›¸å·®çš„å¤©æ•°
         int offset = (int) ((cal.getTime().getTime() - baseDate.getTime()) / 86400000L);
         dayCyl = offset + 40;
         monCyl = 14;
-//ÓÃoffset¼õÈ¥Ã¿Å©ÀúÄêµÄÌìÊı
-// ¼ÆËãµ±ÌìÊÇÅ©ÀúµÚ¼¸Ìì
-//i×îÖÕ½á¹ûÊÇÅ©ÀúµÄÄê·İ
-//offsetÊÇµ±ÄêµÄµÚ¼¸Ìì
+//ç”¨offsetå‡å»æ¯å†œå†å¹´çš„å¤©æ•°
+// è®¡ç®—å½“å¤©æ˜¯å†œå†ç¬¬å‡ å¤©
+//iæœ€ç»ˆç»“æœæ˜¯å†œå†çš„å¹´ä»½
+//offsetæ˜¯å½“å¹´çš„ç¬¬å‡ å¤©
         int iYear,  daysOfYear = 0;
         for (iYear = 1900; iYear < 2050 && offset > 0; iYear++) {
             daysOfYear = yearDays(iYear);
@@ -229,15 +229,15 @@ public class BaZi {
             iYear--;
             monCyl -= 12;
         }
-//Å©ÀúÄê·İ
+//å†œå†å¹´ä»½
         year = iYear;
         yearCyl = iYear - 1864;
-        leapMonth = leapMonth(iYear); //ÈòÄÄ¸öÔÂ,1-12
+        leapMonth = leapMonth(iYear); //é—°å“ªä¸ªæœˆ,1-12
         leap = false;
-//ÓÃµ±ÄêµÄÌìÊıoffset,Öğ¸ö¼õÈ¥Ã¿ÔÂ£¨Å©Àú£©µÄÌìÊı£¬Çó³öµ±ÌìÊÇ±¾ÔÂµÄµÚ¼¸Ìì
+//ç”¨å½“å¹´çš„å¤©æ•°offset,é€ä¸ªå‡å»æ¯æœˆï¼ˆå†œå†ï¼‰çš„å¤©æ•°ï¼Œæ±‚å‡ºå½“å¤©æ˜¯æœ¬æœˆçš„ç¬¬å‡ å¤©
         int iMonth,  daysOfMonth = 0;
         for (iMonth = 1; iMonth < 13 && offset > 0; iMonth++) {
-//ÈòÔÂ
+//é—°æœˆ
             if (leapMonth > 0 && iMonth == (leapMonth + 1) && !leap) {
                 --iMonth;
                 leap = true;
@@ -246,7 +246,7 @@ public class BaZi {
                 daysOfMonth = monthDays(year, iMonth);
             }
             offset -= daysOfMonth;
-//½â³ıÈòÔÂ
+//è§£é™¤é—°æœˆ
             if (leap && iMonth == (leapMonth + 1)) {
                 leap = false;
             }
@@ -254,7 +254,7 @@ public class BaZi {
                 monCyl++;
             }
         }
-//offsetÎª0Ê±£¬²¢ÇÒ¸Õ²Å¼ÆËãµÄÔÂ·İÊÇÈòÔÂ£¬ÒªĞ£Õı
+//offsetä¸º0æ—¶ï¼Œå¹¶ä¸”åˆšæ‰è®¡ç®—çš„æœˆä»½æ˜¯é—°æœˆï¼Œè¦æ ¡æ­£
         if (offset == 0 && leapMonth > 0 && iMonth == leapMonth + 1) {
             if (leap) {
                 leap = false;
@@ -264,7 +264,7 @@ public class BaZi {
                 --monCyl;
             }
         }
-//offsetĞ¡ÓÚ0Ê±£¬Ò²ÒªĞ£Õı
+//offsetå°äº0æ—¶ï¼Œä¹Ÿè¦æ ¡æ­£
         if (offset < 0) {
             offset += daysOfMonth;
             --iMonth;
@@ -274,23 +274,23 @@ public class BaZi {
         day = offset + 1;
     }
     public static String getChinaDayString(int day) {
-        String chineseTen[] = {"³õ", "Ê®", "Ø¥", "Ø¦"};
+        String chineseTen[] = {"åˆ", "å", "å»¿", "å…"};
         int n = day % 10 == 0 ? 9 : day % 10 - 1;
         if (day > 30) {
             return "";
         }
         if (day == 10) {
-            return "³õÊ®";
+            return "åˆå";
         } else {
             return chineseTen[day / 10] + chineseNumber[n];
         }
     }
     public String toString() {
-        return getYearStr(year) + "Äê" + (leap ? "Èò" : "") + chineseNumber[month - 1] + "ÔÂ" + getChinaDayString(day);
+        return getYearStr(year) + "å¹´" + (leap ? "é—°" : "") + chineseNumber[month - 1] + "æœˆ" + getChinaDayString(day);
     }
     
     public String getYearStr(int year) {
-        String[] chineseword = {"Áã", "Ò»", "¶ş", "Èı", "ËÄ", "Îå", "Áù", "Æß", "°Ë", "¾Å"};
+        String[] chineseword = {"é›¶", "ä¸€", "äºŒ", "ä¸‰", "å››", "äº”", "å…­", "ä¸ƒ", "å…«", "ä¹"};
         String ys = "";
         int index = year / 1000;
         ys += chineseword[index];
@@ -314,24 +314,24 @@ public class BaZi {
     }
     
     /**
-     * Õë¶ÔÒ»¸öÔÚÎ÷Ôª 1983-01-10 ÖĞÎç12£º30ÉúµÄÈËµÄ¼ÆËã¡£
-     * ÕâÀï12µã°ëÔÚÖĞ¹úµÄ¹Å´úÀúÊéÖĞËãÊÇÎçÊ±
-     * ×ÓÊ±24.00£­2.00,³óÊ±2.00£­4.00,ÒúÊ±4.00£­6.00,Ã®Ê±6.00£­8.00,
-     * ³½Ê±8.00£­10.00,ËÈÊ±10.00£­12.00,ÎçÊ±12.00£­14.00,Î´Ê±14.00£­16.00
-     * ÉêÊ±16.00£­18.00,ÓÏÊ±18.00£­20.00,ĞçÊ±20.00£­22.00,º¥Ê±22.00£­24.00
+     * é’ˆå¯¹ä¸€ä¸ªåœ¨è¥¿å…ƒ 1983-01-10 ä¸­åˆ12ï¼š30ç”Ÿçš„äººçš„è®¡ç®—ã€‚
+     * è¿™é‡Œ12ç‚¹åŠåœ¨ä¸­å›½çš„å¤ä»£å†ä¹¦ä¸­ç®—æ˜¯åˆæ—¶
+     * å­æ—¶24.00ï¼2.00,ä¸‘æ—¶2.00ï¼4.00,å¯…æ—¶4.00ï¼6.00,å¯æ—¶6.00ï¼8.00,
+     * è¾°æ—¶8.00ï¼10.00,å·³æ—¶10.00ï¼12.00,åˆæ—¶12.00ï¼14.00,æœªæ—¶14.00ï¼16.00
+     * ç”³æ—¶16.00ï¼18.00,é…‰æ—¶18.00ï¼20.00,æˆŒæ—¶20.00ï¼22.00,äº¥æ—¶22.00ï¼24.00
      * */
     public static void main(String[] args){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar cal = Calendar.getInstance();
         try {
-                //Éè¶¨´ËÈËµÄÎ÷ÔªÊ±¼äÎª1983-01-10
+                //è®¾å®šæ­¤äººçš„è¥¿å…ƒæ—¶é—´ä¸º1983-01-10
                 cal.setTime(sdf.parse("1980-06-18"));
                 BaZi lunar = new BaZi(cal);
-                System.out.println("´ËÈËÅ©ÀúµÄÈÕÆÚ¡¾"+lunar.toString()+"¡¿");
-                //´Ë´¦ÊÇÎªÁË»ñÈ¡Ê±¼äÔÚÖĞ¹úµÄ°Ë×ÖÑ§ËµÉÏµÄÏÔÊ¾£¬´ËÈËÊÇÎçÊ±ÉúµÄ
-                System.out.println("´ËÈË°Ë×Ö¡¾"+lunar.getYearGanZhi(5)+"¡¿");
-                //»ñÈ¡ÉúĞ¤
-                System.out.println("´ËÈËµÄÅ©ÀúÉúĞ¤¡¾"+lunar.animalsYear()+"¡¿");
+                System.out.println("æ­¤äººå†œå†çš„æ—¥æœŸã€"+lunar.toString()+"ã€‘");
+                //æ­¤å¤„æ˜¯ä¸ºäº†è·å–æ—¶é—´åœ¨ä¸­å›½çš„å…«å­—å­¦è¯´ä¸Šçš„æ˜¾ç¤ºï¼Œæ­¤äººæ˜¯åˆæ—¶ç”Ÿçš„
+                System.out.println("æ­¤äººå…«å­—ã€"+lunar.getYearGanZhi(5)+"ã€‘");
+                //è·å–ç”Ÿè‚–
+                System.out.println("æ­¤äººçš„å†œå†ç”Ÿè‚–ã€"+lunar.animalsYear()+"ã€‘");
                 
                 Luozhuanghehun.main2(args);
         }catch(Exception e){
