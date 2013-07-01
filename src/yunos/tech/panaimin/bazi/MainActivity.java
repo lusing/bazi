@@ -7,12 +7,23 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.*;
+import android.widget.DatePicker.OnDateChangedListener;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class MainActivity extends Activity {
     TextView txtResult;
     Button btnEval;
-    Spinner[] spinners;
+    DatePicker datePicker;
+    TimePicker timePicker;
+    //Spinner[] spinners;
     String[] baziInputs;
+    
+    private int year;
+    private int month;
+    private int day;
+    private int hour; 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,80 +32,97 @@ public class MainActivity extends Activity {
         txtResult = (TextView) findViewById(R.id.txtResult);
         btnEval = (Button) findViewById(R.id.btnEval);
 
-        spinners = new Spinner[4];
         baziInputs = new String[4];
 
-        spinners[0] = (Spinner) findViewById(R.id.spinner1);
-        spinners[1] = (Spinner) findViewById(R.id.spinner2);
-        spinners[2] = (Spinner) findViewById(R.id.spinner3);
-        spinners[3] = (Spinner) findViewById(R.id.spinner4);
+        datePicker = (DatePicker)findViewById(R.id.datePicker);
+        timePicker = (TimePicker)findViewById(R.id.timePicker);
 
-        ArrayAdapter<String> adapBaziList = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, BaZi.getGanZhiList());
-        adapBaziList.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Calendar cNow = Calendar.getInstance();
+        int yearNow = cNow.get(Calendar.YEAR);
+        int monthNow = cNow.get(Calendar.MONTH);
+        int dayNow = cNow.get(Calendar.DAY_OF_MONTH);
+        
+        datePicker.init(yearNow, monthNow, dayNow, new OnDateChangedListener(){
 
-        for (Spinner s : spinners) {
-            s.setAdapter(adapBaziList);
-            s.setOnItemSelectedListener(spnItemSelLis);
-        }
+            @Override
+            public void onDateChanged(DatePicker obj, int year, int month, int day) {
+                MainActivity.this.year = year;
+                MainActivity.this.month = month+1;
+                MainActivity.this.day = day;
+            }
+        });
+        
+        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            
+            @Override
+            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                MainActivity.this.hour = hourOfDay;
+            }
+        });
 
         btnEval.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                final String paraStr = spinners[0].getSelectedItem().toString()
-                        + spinners[1].getSelectedItem().toString()
-                        + spinners[2].getSelectedItem().toString()
-                        + spinners[3].getSelectedItem().toString();
-                new AsyncTask<String, Integer, String>() {
-                    @Override
-                    protected void onPreExecute() {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Calendar cal = Calendar.getInstance();
+                try {
+                        //设定此人的西元时间为1983-01-10
+                        cal.setTime(sdf.parse(year+"-"+month+"-"+day));
+                        luozhuanghehun.BaZi lunar = new luozhuanghehun.BaZi(cal);
+                        txtResult.setText("");
+                        txtResult.setText("公历生日:"+year+"年"+month+"月"+day+"日\n");
+                        txtResult.setText(txtResult.getText()+"此人农历的日期【"+lunar.toString()+"】\n");
+                        //此处是为了获取时间在中国的八字学说上的显示，此人是午时生的
+                        txtResult.setText(txtResult.getText()+"此人八字【"+lunar.getYearGanZhi(MainActivity.this.getHour())+"】\n");
+                        //获取生肖
+                        txtResult.setText(txtResult.getText()+"此人的农历生肖【"+lunar.animalsYear()+"】\n");
+                        
+                        final String paraStr = lunar.getYearGanZhi(MainActivity.this.getHour()); 
+                        
+                        new AsyncTask<String, Integer, String>() {
+                            @Override
+                            protected void onPreExecute() {
 
-                    }
+                            }
 
-                    @Override
-                    protected String doInBackground(String... paraStrs) {
-                        BaZi bz = new BaZi();
-                        return bz.evalBazi(paraStrs[0]);
-                    }
+                            @Override
+                            protected String doInBackground(String... paraStrs) {
+                                BaZi bz = new BaZi();
+                                return bz.evalBazi(paraStrs[0]);
+                            }
 
-                    @Override
-                    protected void onPostExecute(String result) {
-                        if (result == null) {
-                            txtResult.setText("测算不成功，另请高明！");
-                        } else {
-                            txtResult.setText("此八字的五行平衡分析结果如下：" + result);
-                        }
-                    }
+                            @Override
+                            protected void onPostExecute(String result) {
+                                if (result == null) {
+                                    txtResult.setText(txtResult.getText()+"测算不成功，另请高明！");
+                                } else {
+                                    txtResult.setText(txtResult.getText()+"此八字的五行平衡分析结果如下：" + result);
+                                }
+                            }
 
-                    @Override
-                    protected void onProgressUpdate(Integer... value) {
+                            @Override
+                            protected void onProgressUpdate(Integer... value) {
 
-                    }
-                }.execute(paraStr);
+                            }
+                        }.execute(paraStr);
+
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+                
             }
         });
     }
-
-    private Spinner.OnItemSelectedListener spnItemSelLis = new Spinner.OnItemSelectedListener() {
-
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
-
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-            // TODO Auto-generated method stub
-
-        }
-
-    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+    
+    private int getHour(){
+        return hour/2+1;
     }
 }
