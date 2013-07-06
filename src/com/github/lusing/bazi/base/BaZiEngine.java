@@ -98,6 +98,8 @@ public class BaZiEngine {
                 yins++;
             }
         }
+        
+		// 5. 印星临年月以弱论。即使天干印比一片也弱。地支中印星同时出现两个，不论在何位置均以弱论。
         if(yins==2){
             return new BaziResult(BaziResult.RUO, "图5");
         }
@@ -110,20 +112,28 @@ public class BaZiEngine {
 				return new BaziResult(BaziResult.WANG, "图1~2");
 		}
 
-		// 3.日主根印临日时支以身弱论命。
 		if (isGenYin(dzs[DAY])) {
 			if(isGenYin(dzs[HOUR])){
 				if(isAllBiOrYin()){
+                    // 4. 如果天干全是印比则以身旺论。
 					return new BaziResult(BaziResult.WANG, "图4");
 				}
 				else{
+                    // 3.日主根印临日时支以身弱论命。
 					return new BaziResult(BaziResult.RUO, "图3");
 				}
 			}
 		}
-		// 4. 如果天干全是印比则以身旺论。
-
-		// 5. 印星临年月以弱论。即使天干印比一片也弱。地支中印星同时出现两个，不论在何位置均以弱论。
+		
+		//8.年支或时支临印星以身弱论
+		if(isYin(dzs[YEAR]) || isYin(dzs[HOUR])){
+			return new BaziResult(BaziResult.RUO, "图8");
+		}
+        
+        //9.根在年支或时支出现一个以身弱论
+		if(isGen(dzs[YEAR]) || isGen(dzs[HOUR])){
+			return new BaziResult(BaziResult.RUO, "图9");
+		}
 
 		return new BaziResult(BaziResult.UNKNOWN, "暂时还处理不了");
 	}

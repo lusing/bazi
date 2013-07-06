@@ -29,32 +29,40 @@ public class Main {
 				DiZhi.XU, TianGan.GUI, DiZhi.HAI, TianGan.XIN, DiZhi.YOU);
 		bze_3.run();
 
-		//图4
-        BaZiEngine bze_3_2 = new BaZiEngine(TianGan.GENG, DiZhi.WU,
+		// 图4
+		BaZiEngine bze_3_2 = new BaZiEngine(TianGan.GENG, DiZhi.WU,
 				TianGan.REN, DiZhi.XU, TianGan.GUI, DiZhi.HAI, TianGan.XIN,
 				DiZhi.YOU);
 		bze_3_2.run();
-        
+
 		BaZiEngine bze_3_3 = new BaZiEngine(TianGan.JIA, DiZhi.CHEN,
 				TianGan.JI, DiZhi.SI, TianGan.GUI, DiZhi.YOU, TianGan.REN,
 				DiZhi.ZI);
 		bze_3_3.run();
-        
+
 		BaZiEngine bze_3_4 = new BaZiEngine(TianGan.WU, DiZhi.SHEN,
 				TianGan.GENG, DiZhi.SHEN, TianGan.JIA, DiZhi.YIN, TianGan.YI,
 				DiZhi.HAI);
 		bze_3_4.run();
 
-        //图5，有且仅有两个印，以弱论
-        BaZiEngine bze_5 = new BaZiEngine(TianGan.BING, DiZhi.XU,
-				TianGan.YI, DiZhi.WEI, TianGan.XIN, DiZhi.HAI, TianGan.JI,
-				DiZhi.HAI);
+		// 图5，有且仅有两个印，以弱论
+		BaZiEngine bze_5 = new BaZiEngine(TianGan.BING, DiZhi.XU, TianGan.YI,
+				DiZhi.WEI, TianGan.XIN, DiZhi.HAI, TianGan.JI, DiZhi.HAI);
 		bze_5.run();
+
+		// 图6，如果有3个印，按旺论
+		BaZiEngine bze_6 = new BaZiEngine(TianGan.YI, DiZhi.MAO, TianGan.YI,
+				DiZhi.MAO, TianGan.BING, DiZhi.YIN, TianGan.WU, DiZhi.XU);
+		bze_6.run();
         
-        //图6，如果有3个印，按旺论
-        BaZiEngine bze_6 = new BaZiEngine(TianGan.YI, DiZhi.MAO,
-				TianGan.YI, DiZhi.MAO, TianGan.BING, DiZhi.YIN, TianGan.WU,
-				DiZhi.XU);
-		bze_6.run();        
-    }
+        //图7
+		BaZiEngine bze_7 = new BaZiEngine(TianGan.YI, DiZhi.MAO, TianGan.GUI,
+				DiZhi.WEI, TianGan.BING, DiZhi.CHEN, TianGan.JI, DiZhi.HAI);
+		bze_7.run(); 
+        
+        //图8
+		BaZiEngine bze_8 = new BaZiEngine(TianGan.WU, DiZhi.XU, TianGan.JI,
+				DiZhi.WEI, TianGan.YI, DiZhi.SI, TianGan.DING, DiZhi.HAI);
+		bze_8.run();         
+	}
 }
