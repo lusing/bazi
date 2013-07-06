@@ -45,5 +45,16 @@ public class Main {
 				DiZhi.HAI);
 		bze_3_4.run();
 
-	}
+        //图5，有且仅有两个印，以弱论
+        BaZiEngine bze_5 = new BaZiEngine(TianGan.BING, DiZhi.XU,
+				TianGan.YI, DiZhi.WEI, TianGan.XIN, DiZhi.HAI, TianGan.JI,
+				DiZhi.HAI);
+		bze_5.run();
+        
+        //图6，如果有3个印，按旺论
+        BaZiEngine bze_6 = new BaZiEngine(TianGan.YI, DiZhi.MAO,
+				TianGan.YI, DiZhi.MAO, TianGan.BING, DiZhi.YIN, TianGan.WU,
+				DiZhi.XU);
+		bze_6.run();        
+    }
 }
