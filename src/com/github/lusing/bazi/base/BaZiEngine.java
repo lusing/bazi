@@ -7,6 +7,11 @@ package com.github.lusing.bazi.base;
  */
 
 public class BaZiEngine {
+    public static final int YEAR = 0;
+    public static final int MONTH = 1;
+    public static final int DAY = 2;
+    public static final int HOUR = 3;
+    
 	int year_tg;
 	int year_dz;
 	int month_tg;
@@ -62,30 +67,41 @@ public class BaZiEngine {
             }
             System.out.println();
             
-            System.out.println("旺？"+checkWangShuai());
+            System.out.println(checkWangShuai());
         }
         
         /**
          * 检查日主的旺衰
          */
-        private boolean checkWangShuai(){
-            boolean isWang;
-            isWang = checkGenYinXiangFu();
-            return isWang;
+        private BaziResult checkWangShuai(){
+            return checkGenYinXiangFu();
         }
         
         /**
          * 根印帮扶法
          */
-        private boolean checkGenYinXiangFu(){
+        private BaziResult checkGenYinXiangFu(){
             boolean isWang = false;
-            //日主在月令得根或印一次便是有旺的可能，再得年支或日支根一次便以旺论, 不必再看天干。
-            int gen = tgs[2].getXing().getXing();
-            if(dzs[1].getXing().getXing()==gen || dzs[1].getXing().isSheng(tgs[2].getXing())){
-                if(dzs[0].getXing().getXing()==gen || dzs[2].getXing().getXing()==gen)
-                    return true;
+            //1.2.日主在月令得根或印一次便是有旺的可能，再得年支或日支根一次便以旺论, 不必再看天干。
+            int gen = tgs[DAY].getXing().getXing();
+            if(isGen(dzs[MONTH]) || isYin(dzs[MONTH])){
+                if(isGen(dzs[YEAR]) || isGen(dzs[DAY]))
+                    return new BaziResult(BaziResult.WANG,"图1~2");
             }
             
-            return isWang;
+            //3.日主根印临日时支以身弱论命。
+            //4. 如果天干全是印比则以身旺论。
+            
+            //5. 印星临年月以弱论。即使天干印比一片也弱。地支中印星同时出现两个，不论在何位置均以弱论。
+            
+            return new BaziResult(BaziResult.UNKNOWN,"暂时还处理不了");
+        }
+        
+        private boolean isGen(DiZhi dz){
+            return dz.getXing().getXing() == tgs[DAY].getXing().getXing();
+        }
+        
+        private boolean isYin(DiZhi dz){
+            return dz.getXing().isSheng(tgs[DAY].getXing());
         }
 }
