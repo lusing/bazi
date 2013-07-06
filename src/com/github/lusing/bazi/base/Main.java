@@ -29,10 +29,21 @@ public class Main {
 				DiZhi.XU, TianGan.GUI, DiZhi.HAI, TianGan.XIN, DiZhi.YOU);
 		bze_3.run();
 
-		BaZiEngine bze_3_2 = new BaZiEngine(TianGan.GENG, DiZhi.WU,
+		//图4
+        BaZiEngine bze_3_2 = new BaZiEngine(TianGan.GENG, DiZhi.WU,
 				TianGan.REN, DiZhi.XU, TianGan.GUI, DiZhi.HAI, TianGan.XIN,
 				DiZhi.YOU);
 		bze_3_2.run();
+        
+		BaZiEngine bze_3_3 = new BaZiEngine(TianGan.JIA, DiZhi.CHEN,
+				TianGan.JI, DiZhi.SI, TianGan.GUI, DiZhi.YOU, TianGan.REN,
+				DiZhi.ZI);
+		bze_3_3.run();
+        
+		BaZiEngine bze_3_4 = new BaZiEngine(TianGan.WU, DiZhi.SHEN,
+				TianGan.GENG, DiZhi.SHEN, TianGan.JIA, DiZhi.YIN, TianGan.YI,
+				DiZhi.HAI);
+		bze_3_4.run();
 
 	}
 }

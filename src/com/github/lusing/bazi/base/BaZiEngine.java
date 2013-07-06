@@ -90,13 +90,13 @@ public class BaZiEngine {
 		boolean isWang = false;
 		// 1.2.日主在月令得根或印一次便是有旺的可能，再得年支或日支根一次便以旺论, 不必再看天干。
 		int gen = tgs[DAY].getXing().getXing();
-		if (isGen(dzs[MONTH]) || isYin(dzs[MONTH])) {
+		if (isGenYin(dzs[MONTH])) {
 			if (isGen(dzs[YEAR]) || isGen(dzs[DAY]))
 				return new BaziResult(BaziResult.WANG, "图1~2");
 		}
 
 		// 3.日主根印临日时支以身弱论命。
-		if (isGen(dzs[DAY])) {
+		if (isGenYin(dzs[DAY])) {
 			if(isGenYin(dzs[HOUR])){
 				if(isAllBiOrYin()){
 					return new BaziResult(BaziResult.WANG, "图4");
