@@ -68,18 +68,26 @@ public class TianGan {
         return zR;
     }
     
-    public WuXing isHe(TianGan tg2){
-        if(tg == JIA && tg2.getTianGan()==JI)
+    public static WuXing isHe(TianGan tg1, TianGan tg2){
+        if(tg1.getTianGan() == JIA && tg2.getTianGan()==JI)
             return new WuXing(WuXing.TU);
-        else if(tg == YI && tg2.getTianGan()==GENG)
+        else if(tg1.getTianGan() == YI && tg2.getTianGan()==GENG)
             return new WuXing(WuXing.JIN);
-        else if(tg == BING && tg2.getTianGan()==XIN)
+        else if(tg1.getTianGan() == BING && tg2.getTianGan()==XIN)
             return new WuXing(WuXing.SHUI);
-        else if(tg == DING && tg2.getTianGan()==REN)
+        else if(tg1.getTianGan() == DING && tg2.getTianGan()==REN)
             return new WuXing(WuXing.MU);
-        else if(tg == WU && tg2.getTianGan()==GUI)
+        else if(tg1.getTianGan() == WU && tg2.getTianGan()==GUI)
             return new WuXing(WuXing.HUO);
         else 
-            return null;
+            return null;        
+    }
+    
+    public WuXing isHe(TianGan tg2){
+        if(isHe(this,tg2)==null){
+            return isHe(tg2,this);
+        }else{
+            return isHe(this,tg2);
+        }
     }
 }

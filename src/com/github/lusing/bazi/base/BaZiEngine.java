@@ -106,6 +106,18 @@ public class BaZiEngine {
         if(yins>=3){
             return new BaziResult(BaziResult.WANG, "图6");
         }
+        
+        //11.年支和日支同时得根印，只有两种组合为旺
+        if(isGenYin(dzs[YEAR])&&isGenYin(dzs[DAY])){
+            //年干与月干为印比
+            if(isYinBi(tgs[YEAR])&&isYinBi(tgs[MONTH])){
+                return new BaziResult(BaziResult.WANG, "图11-年干与月干为印比");
+            }else if(isWuHe(tgs[YEAR],tgs[MONTH])){
+                return new BaziResult(BaziResult.WANG, "图11-年干与月干得天干五合，合化后为印比");
+            }else{
+                return new BaziResult(BaziResult.RUO, "图11-年支和日支同时得根印,弱");
+            }
+        }
 
 		if (isGenYin(dzs[MONTH])) {
 			if (isGenYin(dzs[YEAR]) || isGenYin(dzs[DAY]))
@@ -131,9 +143,55 @@ public class BaZiEngine {
 		}
         
         //9.根在年支或时支出现一个以身弱论
+        //根的本气如透出，如不从弱
 		if(isGen(dzs[YEAR]) || isGen(dzs[HOUR])){
-			return new BaziResult(BaziResult.RUO, "图9");
+            if(isGen(dzs[YEAR])){
+                if(isGen(dzs[YEAR].getBenQin())){
+                    return new BaziResult(BaziResult.WANG, "图9-3");
+                }
+                else{
+                    return new BaziResult(BaziResult.RUO, "图9");
+                }
+            }else if(isGen(dzs[HOUR])){
+                if(isGen(dzs[HOUR].getBenQin())){
+                    return new BaziResult(BaziResult.WANG, "图9-3");
+                }
+                else{
+                    return new BaziResult(BaziResult.RUO, "图9");
+                }
+            }
 		}
+        
+        //10. 印星在月日地支中一次出现，一次被克从弱。本气秀出假从。两次被克从弱，即使本气透出也从弱。
+        int kes_m = 0;
+        if(dzs[YEAR].isKe(dzs[MONTH])){
+            kes_m++;
+        }
+        if(dzs[DAY].isKe(dzs[MONTH])){
+            kes_m++;
+        }
+
+        int kes_d = 0;
+        if(dzs[MONTH].isKe(dzs[DAY])){
+            kes_d++;
+        }
+        if(dzs[HOUR].isKe(dzs[DAY])){
+            kes_d++;
+        }
+
+        if(isYin(dzs[MONTH])){
+            if(isGen(dzs[MONTH].getBenQin()) && kes_m==1){
+                return new BaziResult(BaziResult.WANG, "图10-月支被克一次，假从弱");
+            }else{
+                return new BaziResult(BaziResult.RUO, "图10-月支被克"+kes_m+"次");
+            }            
+        }else if(isYin(dzs[DAY])){
+                     if(isGen(dzs[DAY].getBenQin()) && kes_m==1){
+                return new BaziResult(BaziResult.WANG, "图10-日支被克一次，假从弱");
+            }else{
+                return new BaziResult(BaziResult.RUO, "图10-日支被克"+kes_m+"次");
+            }    
+        }
 
 		return new BaziResult(BaziResult.UNKNOWN, "暂时还处理不了");
 	}
@@ -153,10 +211,41 @@ public class BaZiEngine {
 	private boolean isBi(TianGan tg){
 		return tgs[DAY].getXing().getXing() == tg.getXing().getXing();
 	}
+    
+    private boolean isGen(TianGan tg){
+        return tgs[DAY].getTianGan() == tg.getTianGan();
+    }
 	
 	private boolean isYin(TianGan tg){
 		return tg.isSheng(tgs[DAY]);
 	}
+    
+    private boolean isGen(WuXing xing){
+        if(xing==null){
+            return false;
+        }else{
+            return tgs[DAY].getXing().getXing() == xing.getXing();
+        }
+    }
+    
+    private boolean isYin(WuXing xing){
+        if(xing==null)
+            return false;
+        else
+            return xing.isSheng(tgs[DAY].getXing());
+    }
+    
+    private boolean isGenYin(WuXing xing){
+        return isGen(xing) || isYin(xing);
+    }
+    
+    private boolean isYinBi(TianGan tg){
+        return isYin(tg) || isBi(tg);
+    }
+    
+    private boolean isWuHe(TianGan tg1, TianGan tg2){
+         return isGenYin(tg1.isHe(tg2));
+    }
 	
 	private boolean isAllBiOrYin(){
 		boolean result = true;

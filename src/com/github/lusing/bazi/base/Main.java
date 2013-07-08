@@ -82,9 +82,20 @@ public class Main {
 		bze_9_3.run();    
 
         //图10
-        BaZiEngine bze_10 = new BaZiEngine(TianGan.WU, DiZhi.XU, TianGan.JI,
-				DiZhi.WEI, TianGan.YI, DiZhi.SI, TianGan.DING, DiZhi.HAI);
-		bze_10.run();    
+        System.out.println("===图10-1===");
+        BaZiEngine bze_10 = new BaZiEngine(TianGan.BING, DiZhi.CHEN, TianGan.BING,
+				DiZhi.SHEN, TianGan.REN, DiZhi.YIN, TianGan.XIN, DiZhi.CHOU);
+		bze_10.run();
+        
+        System.out.println("===图10-2===");
+        BaZiEngine bze_10_2 = new BaZiEngine(TianGan.DING, DiZhi.SI, TianGan.WU,
+				DiZhi.SHEN, TianGan.DING, DiZhi.WEI, TianGan.XIN, DiZhi.CHOU);
+		bze_10_2.run();
+
+        System.out.println("===图11===");
+        BaZiEngine bze_11 = new BaZiEngine(TianGan.REN, DiZhi.ZI, TianGan.DING,
+				DiZhi.WEI, TianGan.JIA, DiZhi.YIN, TianGan.WU, DiZhi.CHEN);
+		bze_11.run();
 
 	}
 }
