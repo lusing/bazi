@@ -107,18 +107,32 @@ public class BaZiEngine {
             return new BaziResult(BaziResult.WANG, "图6");
         }
         
-        //11.年支和日支同时得根印，只有两种组合为旺
-        if(isGenYin(dzs[YEAR])&&isGenYin(dzs[DAY])){
-            //年干与月干为印比
-            if(isYinBi(tgs[YEAR])&&isYinBi(tgs[MONTH])){
-                return new BaziResult(BaziResult.WANG, "图11-年干与月干为印比");
-            }else if(isWuHe(tgs[YEAR],tgs[MONTH])){
-                return new BaziResult(BaziResult.WANG, "图11-年干与月干得天干五合，合化后为印比");
-            }else{
-                return new BaziResult(BaziResult.RUO, "图11-年支和日支同时得根印,弱");
-            }
+     //11.年支和日支同时得根印，只有两种组合为旺
+        BaziResult brTemp = method_11(YEAR,DAY);
+        if(brTemp.status!=BaziResult.UNKNOWN){
+            return brTemp;
         }
-
+        
+        //12.根印在月时和年时时，以此类推
+        /* 月时交与图13解决
+          brTemp = method_11(MONTH,HOUR);
+        if(brTemp.status!=BaziResult.UNKNOWN){
+            return brTemp;
+        }*/
+        
+        brTemp = method_11(YEAR,HOUR);
+        if(brTemp.status!=BaziResult.UNKNOWN){
+            return brTemp;
+        }
+        
+        //13.月支与时支得根印，也以弱论。
+        //除非月干与时干临印比，或月干，时干与日干合化后是印比
+        brTemp = method_13(MONTH,HOUR);
+        if(brTemp.status!=BaziResult.UNKNOWN){
+            return brTemp;
+        }
+                
+        //图1,2 根印帮扶
 		if (isGenYin(dzs[MONTH])) {
 			if (isGenYin(dzs[YEAR]) || isGenYin(dzs[DAY]))
 				return new BaziResult(BaziResult.WANG, "图1~2");
@@ -143,11 +157,11 @@ public class BaZiEngine {
 		}
         
         //9.根在年支或时支出现一个以身弱论
-        //根的本气如透出，如不从弱
+        //根的本气如透出，则不从弱
 		if(isGen(dzs[YEAR]) || isGen(dzs[HOUR])){
             if(isGen(dzs[YEAR])){
                 if(isGen(dzs[YEAR].getBenQin())){
-                    return new BaziResult(BaziResult.WANG, "图9-3");
+                    return new BaziResult(BaziResult.WANG, "图9-3,本气透出");
                 }
                 else{
                     return new BaziResult(BaziResult.RUO, "图9");
@@ -254,4 +268,46 @@ public class BaZiEngine {
 		}
 		return result;
 	}
+    
+    /**
+     * 11.年支和日支同时得根印，只有两种组合为旺
+     * 12.根印在月时和年时时，以此类推
+     * @param dz1
+     * @param dz2
+     * @return 
+     */
+    private BaziResult method_11(int c1, int c2){
+        if(isGenYin(dzs[c1])&&isGenYin(dzs[c2])){
+            //年干与月干为印比
+            if(isYinBi(tgs[YEAR])&&isYinBi(tgs[MONTH])){
+                return new BaziResult(BaziResult.WANG, "图11-年干与月干为印比");
+            }else if(isWuHe(tgs[YEAR],tgs[MONTH])){
+                return new BaziResult(BaziResult.WANG, "图11-年干与月干得天干五合，合化后为印比");
+            }else{
+                return new BaziResult(BaziResult.RUO, "图11-年支和日支同时得根印,弱");
+            }
+        }else{
+            return new BaziResult(BaziResult.UNKNOWN,"");
+        }
+    }
+    
+    private BaziResult method_13(int c1, int c2){
+        if(isGenYin(dzs[c1])&&isGenYin(dzs[c2])){
+            
+            if(isYinBi(tgs[MONTH])&&isYinBi(tgs[HOUR])){
+                return new BaziResult(BaziResult.WANG, "图13-月干与时干为印比");
+            }else if(isWuHe(tgs[MONTH],tgs[DAY])){
+                return new BaziResult(BaziResult.WANG, "图13-月干与日干得天干五合，合化后为印比");
+            }else if(isWuHe(tgs[DAY],tgs[HOUR])){
+                return new BaziResult(BaziResult.WANG, "图13-日干与时干得天干五合，合化后为印比");
+            }else if(isWuHe(tgs[MONTH],tgs[HOUR])){
+                return new BaziResult(BaziResult.WANG, "图13-月干与时干得天干五合，合化后为印比");
+            }else{
+                return new BaziResult(BaziResult.RUO, "图13-月支和时支同时得根印,弱");
+            }
+        }else{
+            return new BaziResult(BaziResult.UNKNOWN,"");
+        }
+    }
+
 }
