@@ -1,5 +1,7 @@
 package com.github.lusing.bazi.base;
 
+import java.util.ArrayList;
+
 public class DiZhi {
     public static final int ZI = 0;
     public static final int CHOU = 1;
@@ -59,6 +61,113 @@ public class DiZhi {
         }        
         
         return new WuXing(xing);
+    }
+
+    public ArrayList<TianGan> getCangGan(){
+        ArrayList<TianGan> tgList = new ArrayList<TianGan>();
+                switch (this.iDiZhi){
+            case ZI:
+                tgList.add(new TianGan(TianGan.GUI));
+                break;
+            case CHOU:
+            	tgList.add(new TianGan(TianGan.JI));
+            	tgList.add(new TianGan(TianGan.GUI));
+            	tgList.add(new TianGan(TianGan.XIN));
+                break;
+            case YIN:
+            	tgList.add(new TianGan(TianGan.JIA));
+            	tgList.add(new TianGan(TianGan.BING));
+            	tgList.add(new TianGan(TianGan.WU));
+                break;
+            case MAO:
+            	tgList.add(new TianGan(TianGan.YI));
+                break;
+            case CHEN:
+            	tgList.add(new TianGan(TianGan.WU));
+            	tgList.add(new TianGan(TianGan.JI));
+            	tgList.add(new TianGan(TianGan.GUI));
+                break;
+            case SI:
+            	tgList.add(new TianGan(TianGan.BING));
+            	tgList.add(new TianGan(TianGan.WU));
+            	tgList.add(new TianGan(TianGan.GENG));
+                break;
+            case WU:
+            	tgList.add(new TianGan(TianGan.DING));
+            	tgList.add(new TianGan(TianGan.JI));
+                break;
+            case WEI:
+            	tgList.add(new TianGan(TianGan.JI));
+            	tgList.add(new TianGan(TianGan.YI));
+            	tgList.add(new TianGan(TianGan.DING));
+                break;
+            case SHEN:
+            	tgList.add(new TianGan(TianGan.GENG));
+            	tgList.add(new TianGan(TianGan.REN));
+            	tgList.add(new TianGan(TianGan.WU));
+                break;
+            case YOU:
+            	tgList.add(new TianGan(TianGan.XIN));
+                break;
+            case XU:
+            	tgList.add(new TianGan(TianGan.WU));
+            	tgList.add(new TianGan(TianGan.XIN));
+            	tgList.add(new TianGan(TianGan.DING));
+                break;
+            case HAI:
+            	tgList.add(new TianGan(TianGan.REN));
+            	tgList.add(new TianGan(TianGan.JIA));
+                break;
+            default:
+                break;
+        }
+
+        return tgList;
+    }
+
+    public TianGan getBenQin(){
+        int tg = -1;
+        switch (this.iDiZhi){
+            case ZI:
+                tg = TianGan.GUI;
+                break;
+            case CHOU:
+                tg = TianGan.JI;
+                break;
+            case YIN:
+                tg = TianGan.JIA;
+                break;
+            case MAO:
+                tg = TianGan.YI;
+                break;
+            case CHEN:
+                tg = TianGan.WU;
+                break;
+            case SI:
+                tg = TianGan.BING;
+                break;
+            case WU:
+                tg = TianGan.DING;
+                break;
+            case WEI:
+                tg = TianGan.JI;
+                break;
+            case SHEN:
+                tg = TianGan.GENG;
+                break;
+            case YOU:
+                tg = TianGan.XIN;
+                break;
+            case XU:
+                tg = TianGan.WU;
+                break;
+            case HAI:
+                tg = TianGan.REN;
+                break;
+            default:
+                break;
+        }
+        return new TianGan(tg);
     }
     
     public static WuXing isHe(int dz1, int dz2){
