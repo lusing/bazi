@@ -24,6 +24,9 @@ public class BaZiEngine {
 	int hour_dz;
 	TianGan[] tgs;
 	DiZhi[] dzs;
+    
+    private int dz_gens = 0;
+    private int dz_yins = 0;
 
 	public BaZiEngine(int y1, int y2, int m1, int m2, int d1, int d2, int h1,
 			int h2) {
@@ -87,11 +90,89 @@ public class BaZiEngine {
 	 * 根印帮扶法
 	 */
 	private BaziResult checkGenYinXiangFu() {
-		boolean isWang = false;
-		// 1.2.日主在月令得根或印一次便是有旺的可能，再得年支或日支根一次便以旺论, 不必再看天干。
-		int gen = tgs[DAY].getXing().getXing();
+		/**
+         * <b>一，根印或根根组合，两次在地支中出现</b>
+         */
+        
+        //1.1 根印相邻，两次在地支中出现
+        //图1,2 根印帮扶
+        // 1.2.日主在月令得根或印一次便是有旺的可能，再得年支或日支根一次便以旺论, 不必再看天干。
+        //新图1
+        //年和月支不能共同为印，否则为弱
+        if(!(isYin(dzs[MONTH])&&isYin(dzs[YEAR]))){
+            if(isGenYin(dzs[MONTH])&&isGenYin(dzs[YEAR])){
+                return new BaziResult(BaziResult.WANG, "新图1");
+            }
+        }
+        //新图2
+        if(!(isYin(dzs[MONTH])&&isYin(dzs[DAY]))){
+            if(isGenYin(dzs[MONTH])&&isGenYin(dzs[DAY])){
+                return new BaziResult(BaziResult.WANG, "新图2");
+            }
+        }
+        
+        //新图3，图4
+        if(!(isYin(dzs[DAY])&&isYin(dzs[HOUR]))){
+            if (isGenYin(dzs[DAY])&&isGenYin(dzs[HOUR])){
+				if(isAllBiOrYin()){
+                    // 4. 如果天干全是印比则以身旺论。
+					return new BaziResult(BaziResult.WANG, "新图4");
+				}
+				else{
+                    // 3.日主根印临日时支以身弱论命。
+					return new BaziResult(BaziResult.RUO, "新图3");
+				}                
+            }            
+        }
+        //新图5
+        if(!(isYin(dzs[YEAR])&&isYin(dzs[DAY]))){
+            if(isGenYin(dzs[YEAR])&&isGenYin(dzs[DAY])){
+            //年干与月干为印比
+                if(isYinBi(tgs[YEAR])&&isYinBi(tgs[MONTH])){
+                    return new BaziResult(BaziResult.WANG, "新图5-年干与月干为印比");
+                }else if(isWuHe(tgs[YEAR],tgs[MONTH])){
+                    return new BaziResult(BaziResult.WANG, "新图5-年干与月干得天干五合，合化后为印比");
+                }else{
+                    return new BaziResult(BaziResult.RUO, "新图5-年支和日支同时得根印,弱");
+                }
+            }
+        }
 
-        //图5，地支中印星同时出现两个，不论在任何位置皆以弱论
+        //新图6
+        if(!(isYin(dzs[MONTH])&&isYin(dzs[HOUR]))){
+            if(isGenYin(dzs[MONTH])&&isGenYin(dzs[HOUR])){
+            //年干与月干为印比
+                if(isYinBi(tgs[MONTH])&&isYinBi(tgs[HOUR])){
+                    return new BaziResult(BaziResult.WANG, "新图6-月干与时干为印比");
+                }else if(isWuHe(tgs[MONTH],tgs[DAY])&&isYinBi(tgs[HOUR])){
+                    return new BaziResult(BaziResult.WANG, "新图6-月干与日主得天干五合，合化后为印比");
+                }else if(isWuHe(tgs[DAY],tgs[HOUR])&&isYinBi(tgs[MONTH])){
+                    return new BaziResult(BaziResult.WANG, "新图6-时干与日主得天干五合，合化后为印比");
+                }else{
+                    return new BaziResult(BaziResult.RUO, "新图6-月支和时支同时得根印,弱");
+                }
+            }
+        }
+        
+        //新图7
+        if(!(isYin(dzs[YEAR])&&isYin(dzs[HOUR]))){
+            if(isGenYin(dzs[YEAR])&&isGenYin(dzs[HOUR])){
+            //年干与月干为印比
+                if(isYinBi(tgs[YEAR])&&isYinBi(tgs[MONTH])&&isYinBi(tgs[HOUR])){
+                    return new BaziResult(BaziResult.WANG, "新图7-年干月干与时干为印比");
+                }else if(isWuHe(tgs[YEAR],tgs[MONTH])&&isYinBi(tgs[HOUR])){
+                    return new BaziResult(BaziResult.WANG, "新图7-年干与月干得天干五合，合化后为印比");
+                }else if(isYinBi(tgs[YEAR])&&isWuHe(tgs[MONTH],tgs[DAY])&&isYinBi(tgs[HOUR])){
+                    return new BaziResult(BaziResult.WANG, "新图7-月干与日主得天干五合，合化后为印比");
+                }else if(isYinBi(tgs[YEAR])&&isWuHe(tgs[DAY],tgs[HOUR])&&isYinBi(tgs[MONTH])){
+                    return new BaziResult(BaziResult.WANG, "新图7-时干与日主得天干五合，合化后为印比");
+                }else{
+                    return new BaziResult(BaziResult.RUO, "新图7-月支和时支同时得根印,弱");
+                }
+            }
+        }        
+        
+        //新图8，地支中印星同时出现两个，不论在任何位置皆以弱论
         int yins = 0;
         for(int i=YEAR;i<=HOUR;i++){
             if(isYin(dzs[i])){
@@ -99,19 +180,16 @@ public class BaZiEngine {
             }
         }
         
-		// 5. 印星临年月以弱论。即使天干印比一片也弱。地支中印星同时出现两个，不论在何位置均以弱论。
+		// 新8. 印星临年月以弱论。即使天干印比一片也弱。地支中印星同时出现两个，不论在何位置均以弱论。
         if(yins==2){
-            return new BaziResult(BaziResult.RUO, "图5");
+            return new BaziResult(BaziResult.RUO, "新图8");
         }
         if(yins>=3){
             return new BaziResult(BaziResult.WANG, "图6");
         }
         
      //11.年支和日支同时得根印，只有两种组合为旺
-        BaziResult brTemp = method_11(YEAR,DAY);
-        if(brTemp.status!=BaziResult.UNKNOWN){
-            return brTemp;
-        }
+
         
         //12.根印在月时和年时时，以此类推
         /* 月时交与图13解决
@@ -120,36 +198,8 @@ public class BaZiEngine {
             return brTemp;
         }*/
         
-        brTemp = method_11(YEAR,HOUR);
-        if(brTemp.status!=BaziResult.UNKNOWN){
-            return brTemp;
-        }
-        
         //13.月支与时支得根印，也以弱论。
         //除非月干与时干临印比，或月干，时干与日干合化后是印比
-        brTemp = method_13(MONTH,HOUR);
-        if(brTemp.status!=BaziResult.UNKNOWN){
-            return brTemp;
-        }
-                
-        //图1,2 根印帮扶
-		if (isGenYin(dzs[MONTH])) {
-			if (isGenYin(dzs[YEAR]) || isGenYin(dzs[DAY]))
-				return new BaziResult(BaziResult.WANG, "图1~2");
-		}
-
-		if (isGenYin(dzs[DAY])) {
-			if(isGenYin(dzs[HOUR])){
-				if(isAllBiOrYin()){
-                    // 4. 如果天干全是印比则以身旺论。
-					return new BaziResult(BaziResult.WANG, "图4");
-				}
-				else{
-                    // 3.日主根印临日时支以身弱论命。
-					return new BaziResult(BaziResult.RUO, "图3");
-				}
-			}
-		}
 		
 		//8.年支或时支临印星以身弱论
 		if(isYin(dzs[YEAR]) || isYin(dzs[HOUR])){
@@ -276,15 +326,15 @@ public class BaZiEngine {
      * @param dz2
      * @return 
      */
-    private BaziResult method_11(int c1, int c2){
+    private BaziResult method_5(int c1, int c2){
         if(isGenYin(dzs[c1])&&isGenYin(dzs[c2])){
             //年干与月干为印比
             if(isYinBi(tgs[YEAR])&&isYinBi(tgs[MONTH])){
-                return new BaziResult(BaziResult.WANG, "图11-年干与月干为印比");
+                return new BaziResult(BaziResult.WANG, "新图5-年干与月干为印比");
             }else if(isWuHe(tgs[YEAR],tgs[MONTH])){
-                return new BaziResult(BaziResult.WANG, "图11-年干与月干得天干五合，合化后为印比");
+                return new BaziResult(BaziResult.WANG, "新图5-年干与月干得天干五合，合化后为印比");
             }else{
-                return new BaziResult(BaziResult.RUO, "图11-年支和日支同时得根印,弱");
+                return new BaziResult(BaziResult.RUO, "新图5-年支和日支同时得根印,弱");
             }
         }else{
             return new BaziResult(BaziResult.UNKNOWN,"");

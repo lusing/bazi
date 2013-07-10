@@ -11,25 +11,30 @@ public class Main {
 			// System.out.println(ShiShen.getShiShen(tg_jia,new TianGan(i)));
 
 		}
-		BaZiEngine bze1 = new BaZiEngine(TianGan.GENG, DiZhi.SHEN, TianGan.REN,
+		BaZiEngine bze0 = new BaZiEngine(TianGan.GENG, DiZhi.SHEN, TianGan.REN,
 				DiZhi.WU, TianGan.REN, DiZhi.XU, TianGan.YI, DiZhi.SI);
-		bze1.run();
-		BaZiEngine bze2 = new BaZiEngine(TianGan.JI, DiZhi.HAI, TianGan.GUI,
+		bze0.run();
+        
+        System.out.println("===图1,旺===");
+		BaZiEngine bze1 = new BaZiEngine(TianGan.JI, DiZhi.HAI, TianGan.GUI,
 				DiZhi.YOU, TianGan.GUI, DiZhi.MAO, TianGan.REN, DiZhi.XU);
-		bze2.run();
+		bze1.run();
 
 		// 根印帮扶法
 		// 例1,
-		BaZiEngine bze3 = new BaZiEngine(TianGan.GUI, DiZhi.MAO, TianGan.BING,
+        System.out.println("===图2,旺===");
+		BaZiEngine bze2 = new BaZiEngine(TianGan.GUI, DiZhi.MAO, TianGan.BING,
 				DiZhi.CHEN, TianGan.JI, DiZhi.CHOU, TianGan.YI, DiZhi.HAI);
-		bze3.run();
+		bze2.run();
 
 		// 图3
+        System.out.println("===图3,弱===");
 		BaZiEngine bze_3 = new BaZiEngine(TianGan.JIA, DiZhi.WU, TianGan.JIA,
 				DiZhi.XU, TianGan.GUI, DiZhi.HAI, TianGan.XIN, DiZhi.YOU);
 		bze_3.run();
 
 		// 图4
+        System.out.println("===图4,旺===");
 		BaZiEngine bze_3_2 = new BaZiEngine(TianGan.GENG, DiZhi.WU,
 				TianGan.REN, DiZhi.XU, TianGan.GUI, DiZhi.HAI, TianGan.XIN,
 				DiZhi.YOU);
@@ -46,6 +51,7 @@ public class Main {
 		bze_3_4.run();
 
 		// 图5，有且仅有两个印，以弱论
+        System.out.println("===新图8,弱===");
 		BaZiEngine bze_5 = new BaZiEngine(TianGan.BING, DiZhi.XU, TianGan.YI,
 				DiZhi.WEI, TianGan.XIN, DiZhi.HAI, TianGan.JI, DiZhi.HAI);
 		bze_5.run();
@@ -116,6 +122,11 @@ public class Main {
         BaZiEngine bze_13 = new BaZiEngine(TianGan.REN, DiZhi.ZI, TianGan.GUI,
 				DiZhi.CHOU, TianGan.WU, DiZhi.ZI, TianGan.GUI, DiZhi.CHOU);
 		bze_13.run();
+
+        System.out.println("===新图7,旺===");
+        BaZiEngine bze_n7 = new BaZiEngine(TianGan.XIN, DiZhi.HAI, TianGan.GUI,
+				DiZhi.SI, TianGan.GUI, DiZhi.MAO, TianGan.GUI, DiZhi.HAI);
+		bze_n7.run();
 
 	}
 }
