@@ -236,28 +236,116 @@ public class BaZiEngine {
 		 * 三. 根单独一次在命局地支中出现
 		 */
 		if (gens == 1) {
-            //1. 根在年支或时支单独出现一次
-            if(isGen(dzs[YEAR])){
-                if(dzs[YEAR].isSheng(dzs[MONTH])){
-                    if(isTouBenQi(dzs[YEAR])){
-                        return new BaziResult(BaziResult.RUO, "新图9-本气透出，身弱扶抑格");
-                    }else{
-                        return new BaziResult(BaziResult.RUO, "新图9-本气未透出，从弱");
-                    }
-                }else{
-                    return new BaziResult(BaziResult.RUO, "新图9-未被月支泄，身弱");
-                }
-            }else if(isGen(dzs[HOUR])){
-                if(dzs[HOUR].isSheng(dzs[DAY])){
-                    if(isTouBenQi(dzs[HOUR])){
-                        return new BaziResult(BaziResult.RUO, "新图9-本气透出，身弱扶抑格");
-                    }else{
-                        return new BaziResult(BaziResult.RUO, "新图9-本气未透出，从弱");
-                    }
-                }else{
-                    return new BaziResult(BaziResult.RUO, "新图9-未被月支泄，身弱");
-                }                
-            }
+			// 1. 根在年支或时支单独出现一次
+			if (isGen(dzs[YEAR])) {
+				if (dzs[YEAR].isSheng(dzs[MONTH])) {
+					if (isTouBenQi(dzs[YEAR])) {
+						return new BaziResult(BaziResult.RUO, "新图9-本气透出，身弱扶抑格");
+					} else {
+						return new BaziResult(BaziResult.RUO, "新图9-本气未透出，从弱");
+					}
+				} else {
+					return new BaziResult(BaziResult.RUO, "新图9-未被月支泄，身弱");
+				}
+			} else if (isGen(dzs[HOUR])) {
+				if (dzs[HOUR].isSheng(dzs[DAY])) {
+					if (isTouBenQi(dzs[HOUR])) {
+						return new BaziResult(BaziResult.RUO, "新图9-本气透出，身弱扶抑格");
+					} else {
+						return new BaziResult(BaziResult.RUO, "新图9-本气未透出，从弱");
+					}
+				} else {
+					return new BaziResult(BaziResult.RUO, "新图9-未被月支泄，身弱");
+				}
+			} else if (isGen(dzs[MONTH])) {
+				if (dzs[YEAR].isKe(dzs[MONTH]) && dzs[DAY].isKe(dzs[MONTH])) {
+					if (isTouBenQi(dzs[MONTH])) {
+						return new BaziResult(BaziResult.RUO, "新图12-本气透出，按假从论命");
+					} else {
+						return new BaziResult(BaziResult.RUO,
+								"新图12-本气未透出，按从格论命");
+					}
+				} else if (dzs[MONTH].isSheng(dzs[YEAR])
+						&& dzs[MONTH].isSheng(dzs[DAY])) {
+					if (isTouBenQi(dzs[MONTH])) {
+						return new BaziResult(BaziResult.RUO, "新图13-本气透出，按假从论命");
+					} else {
+						return new BaziResult(BaziResult.RUO, "新图13-本气未透出，按从格论命");
+					}
+				} else if (dzs[MONTH].isKe(dzs[YEAR])
+						&& dzs[MONTH].isKe(dzs[DAY])) {
+					return new BaziResult(BaziResult.RUO, "新图14-3-本气未透出，按从格论命");
+				} else if ((dzs[YEAR].isKe(dzs[MONTH]) && dzs[MONTH]
+						.isSheng(dzs[DAY]))
+						|| (dzs[DAY].isKe(dzs[MONTH]) && dzs[MONTH]
+								.isSheng(dzs[YEAR]))) {
+					if (isTouBenQi(dzs[MONTH])) {
+						return new BaziResult(BaziResult.RUO, "新图14-本气透出，按扶抑格身弱论命");
+					} else {
+						return new BaziResult(BaziResult.RUO,
+								"新图14-本气未透出，按假从格论命");
+					}
+				}else if ((dzs[MONTH].isKe(dzs[YEAR]) && dzs[MONTH]
+						.isSheng(dzs[DAY]))
+						|| (dzs[MONTH].isKe(dzs[DAY]) && dzs[MONTH]
+								.isSheng(dzs[YEAR]))) {
+					if (isTouBenQi(dzs[MONTH])) {
+						return new BaziResult(BaziResult.RUO, "新图14-2-一泄一耗，本气透出，按扶抑格身弱论命");
+					} else {
+						return new BaziResult(BaziResult.RUO,
+								"新图14-2-一泄一耗，本气未透出，按假从格论命");
+					}
+				}else if ((dzs[YEAR].isKe(dzs[MONTH]) && dzs[MONTH]
+						.isKe(dzs[DAY]))
+						|| (dzs[DAY].isKe(dzs[MONTH]) && dzs[MONTH]
+								.isKe(dzs[YEAR]))) {
+                    return new BaziResult(BaziResult.RUO,"新图14-1,一克一耗，以扶抑身弱论命");
+				}
+			} else if (isGen(dzs[DAY])) {
+				if (dzs[MONTH].isKe(dzs[DAY]) && dzs[HOUR].isKe(dzs[DAY])) {
+					if (isTouBenQi(dzs[DAY])) {
+						return new BaziResult(BaziResult.RUO, "新图12-被两次克，本气透出，按假从论命");
+					} else {
+						return new BaziResult(BaziResult.RUO,
+								"新图12-被两次克，本气未透出，按从格论命");
+					}
+				} else if (dzs[DAY].isSheng(dzs[MONTH])
+						&& dzs[DAY].isSheng(dzs[HOUR])) {
+					if (isTouBenQi(dzs[DAY])) {
+						return new BaziResult(BaziResult.RUO, "新图13-本气透出，按假从论命");
+					} else {
+						return new BaziResult(BaziResult.RUO, "新图13-本气未透出，按从格论命");
+					}
+				} else if (dzs[DAY].isKe(dzs[MONTH])
+						&& dzs[DAY].isKe(dzs[HOUR])) {
+					return new BaziResult(BaziResult.RUO, "新图14-3-本气未透出，按从格论命");
+				} else if ((dzs[MONTH].isKe(dzs[DAY]) && dzs[DAY]
+						.isSheng(dzs[HOUR]))
+						|| (dzs[HOUR].isKe(dzs[DAY]) && dzs[DAY]
+								.isSheng(dzs[MONTH]))) {
+					if (isTouBenQi(dzs[DAY])) {
+						return new BaziResult(BaziResult.RUO, "新图14-一克一泄，本气透出，按扶抑格身弱论命");
+					} else {
+						return new BaziResult(BaziResult.RUO,
+								"新图14-一克一泄，本气未透出，按假从格论命");
+					}
+				}else if ((dzs[DAY].isKe(dzs[MONTH]) && dzs[DAY]
+						.isSheng(dzs[HOUR]))
+						|| (dzs[DAY].isKe(dzs[HOUR]) && dzs[DAY]
+								.isSheng(dzs[MONTH]))) {
+					if (isTouBenQi(dzs[DAY])) {
+						return new BaziResult(BaziResult.RUO, "新图14-2-一泄一耗，本气透出，按扶抑格身弱论命");
+					} else {
+						return new BaziResult(BaziResult.RUO,
+								"新图14-2-一泄一耗，本气未透出，按假从格论命");
+					}
+				}else if ((dzs[MONTH].isKe(dzs[DAY]) && dzs[DAY]
+						.isKe(dzs[HOUR]))
+						|| (dzs[HOUR].isKe(dzs[DAY]) && dzs[DAY]
+								.isKe(dzs[MONTH]))) {
+                    return new BaziResult(BaziResult.RUO,"新图14-1,一克一耗，以扶抑身弱论命");
+				}
+			}
 		}
 
 		/**
