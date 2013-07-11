@@ -128,5 +128,10 @@ public class Main {
 				DiZhi.SI, TianGan.GUI, DiZhi.MAO, TianGan.GUI, DiZhi.HAI);
 		bze_n7.run();
 
+        System.out.println("===新图9,从弱===");
+        BaZiEngine bze_n9 = new BaZiEngine(TianGan.JI, DiZhi.WEI, TianGan.DING,
+				DiZhi.CHOU, TianGan.JIA, DiZhi.WU, TianGan.DING, DiZhi.MAO);
+		bze_n9.run();
+
 	}
 }

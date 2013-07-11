@@ -236,7 +236,28 @@ public class BaZiEngine {
 		 * 三. 根单独一次在命局地支中出现
 		 */
 		if (gens == 1) {
-
+            //1. 根在年支或时支单独出现一次
+            if(isGen(dzs[YEAR])){
+                if(dzs[YEAR].isSheng(dzs[MONTH])){
+                    if(isTouBenQi(dzs[YEAR])){
+                        return new BaziResult(BaziResult.RUO, "新图9-本气透出，身弱扶抑格");
+                    }else{
+                        return new BaziResult(BaziResult.RUO, "新图9-本气未透出，从弱");
+                    }
+                }else{
+                    return new BaziResult(BaziResult.RUO, "新图9-未被月支泄，身弱");
+                }
+            }else if(isGen(dzs[HOUR])){
+                if(dzs[HOUR].isSheng(dzs[DAY])){
+                    if(isTouBenQi(dzs[HOUR])){
+                        return new BaziResult(BaziResult.RUO, "新图9-本气透出，身弱扶抑格");
+                    }else{
+                        return new BaziResult(BaziResult.RUO, "新图9-本气未透出，从弱");
+                    }
+                }else{
+                    return new BaziResult(BaziResult.RUO, "新图9-未被月支泄，身弱");
+                }                
+            }
 		}
 
 		/**
@@ -402,5 +423,10 @@ public class BaZiEngine {
 			return new BaziResult(BaziResult.UNKNOWN, "");
 		}
 	}
+    
+    private boolean isTouBenQi(DiZhi dz){
+        int qi = dz.getBenQin().getTianGan();
+        return tgs[YEAR].getTianGan()== qi || tgs[MONTH].getTianGan()== qi || tgs[HOUR].getTianGan()== qi; 
+    }
 
 }
