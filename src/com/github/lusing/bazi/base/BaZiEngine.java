@@ -1,5 +1,7 @@
 package com.github.lusing.bazi.base;
 
+import java.util.ArrayList;
+
 /**
  * 天干代表所见到的表面，外性格。性格、行为举止、容颜、六亲状况、有钱、凶灾。
  * <p/>
@@ -61,12 +63,53 @@ public class BaZiEngine {
 
 	private void checkLiuQin() {
 		System.out.println("日主：" + tgs[2]);
+        System.out.println(tgs[0].toString()+dzs[0]+" "+tgs[1]+dzs[1]+" "+tgs[2]+dzs[2]+" "+tgs[3]+dzs[3]);
 		System.out.println(tgs[0] + " "
 				+ ShiShen.getShiShen(tgs[2], tgs[0]).toString());
 		System.out.println(tgs[1] + " "
 				+ ShiShen.getShiShen(tgs[2], tgs[1]).toString());
 		System.out.println(tgs[3] + " "
 				+ ShiShen.getShiShen(tgs[2], tgs[3]).toString());
+        
+        int yins = 0;
+        int bis = 0;
+        int cais = 0;
+        int guans = 0;
+        int shangs = 0;
+        
+        ArrayList<TianGan> tgFull = new ArrayList<TianGan>();
+        tgFull.add(tgs[YEAR]);
+        tgFull.add(tgs[MONTH]);
+        tgFull.add(tgs[HOUR]);
+        for(int i=YEAR;i<=HOUR;i++){
+            tgFull.addAll(dzs[i].getCangGan());
+        }
+        
+        for(TianGan tg: tgFull){
+            switch(ShiShen.getShiShen(tgs[DAY], tg).getShiShen()){
+                case ShiShen.ZHENGYIN:
+                case ShiShen.PIANYIN:
+                    yins++;
+                    break;
+                case ShiShen.BIJIAN:
+                case ShiShen.JIECAI:
+                    bis++;
+                    break;
+                case ShiShen.ZHENGCAI:
+                case ShiShen.PIANCAI:
+                    cais++;
+                    break;
+                case ShiShen.ZHENGGUAN:
+                case ShiShen.QISHA:
+                    guans++;
+                    break;
+                case ShiShen.SHISHEN:
+                case ShiShen.SHANGGUAN:
+                    shangs++;
+                    break;
+            }
+        }
+        System.out.println("共有食伤:"+shangs+"个，财:"+cais+"个，官:"+guans+"个，印:"+yins+"个，根比："+bis+"个");
 	}
 
 	private void checkWuXing() {
@@ -76,8 +119,38 @@ public class BaZiEngine {
 		}
 		System.out.println();
 
-		System.out.println(checkWangShuai());
+        BaziResult br = checkWangShuai();
+        System.out.println(br);
+        System.out.println(getYongShen(br));
 	}
+    
+    /**
+     * 取用神
+     */
+    private String getYongShen(BaziResult br){
+        StringBuffer sb = new StringBuffer();
+        switch(br.status){
+            case BaziResult.RUO:
+                sb.append("身弱用印比\n");
+                break;
+            case BaziResult.WANG:
+                sb.append("身旺用财官伤\n");
+                break;
+            case BaziResult.CONG_QIANG:
+                sb.append("印比帮扶为用神\n");
+                break;
+            case BaziResult.CONG_RUO:
+                sb.append("财官伤食都是用神\n");
+                break;
+            case BaziResult.JIA_CONG:
+                sb.append("随岁运变化而变\n");
+                break;
+            default:
+                break;
+        }
+        
+        return sb.toString();
+    }
 
 	/**
 	 * 检查日主的旺衰
@@ -102,10 +175,10 @@ public class BaZiEngine {
 		// 新23
 		if (yins == 0 && gens == 0) {
 			if (isAllBiOrYin()) {
-				return new BaziResult(BaziResult.RUO, "新图23-扶抑格");
+				return new BaziResult(BaziResult.RUO, "新图23-弱，扶抑格");
 			} else {
 				// TODO
-				return new BaziResult(BaziResult.RUO, "新图23-从弱格");
+				return new BaziResult(BaziResult.CONG_RUO, "新图23-从弱格");
 			}
 		}
 
@@ -122,7 +195,7 @@ public class BaZiEngine {
 		 */
 		// 新21
 		if (gens + yins == 4) {
-			return new BaziResult(BaziResult.WANG, "新图21-从强格");
+			return new BaziResult(BaziResult.CONG_QIANG, "新图21-从强格");
 		}
 
 		/**
@@ -136,18 +209,17 @@ public class BaZiEngine {
                 return new BaziResult(BaziResult.WANG, "新图20-特殊格局");
             }else if(isGuan(dzs[MONTH])){
                 if(isTouBenQi(dzs[MONTH])){
-                    return new BaziResult(BaziResult.WANG, "新图20-本气透出，假从印格");
+                    return new BaziResult(BaziResult.JIA_CONG, "新图20-本气透出，假从印格");
                 }else{
-                    return new BaziResult(BaziResult.WANG, "新图20-本气不透，从印格");
+                    return new BaziResult(BaziResult.CONG_QIANG, "新图20-本气不透，从印格");
                 }
             }else if(isGuan(dzs[DAY])){
                 if(isTouBenQi(dzs[DAY])){
-                    return new BaziResult(BaziResult.WANG, "新图20-本气透出，假从印格");
+                    return new BaziResult(BaziResult.JIA_CONG, "新图20-本气透出，假从印格");
                 }else{
-                    return new BaziResult(BaziResult.WANG, "新图20-本气不透，从印格");
+                    return new BaziResult(BaziResult.CONG_QIANG, "新图20-本气不透，从印格");
                 }
             }
-			return new BaziResult(BaziResult.WANG, "图6");
 		}
 
 		/**
@@ -164,9 +236,9 @@ public class BaZiEngine {
 					return new BaziResult(BaziResult.WANG, "新图17-财一次被克，身旺");
 				} else {
                     if(isTouBenQi(dzs[MONTH])){
-                        return new BaziResult(BaziResult.WANG, "新图17-假从强格");
+                        return new BaziResult(BaziResult.JIA_CONG, "新图17-假从强格");
                     }else{
-                        return new BaziResult(BaziResult.WANG, "新图17-真从强格");
+                        return new BaziResult(BaziResult.CONG_QIANG, "新图17-真从强格");
                     }
 				}
 			} else if (isGuan(dzs[MONTH])) {
@@ -174,9 +246,9 @@ public class BaZiEngine {
 					return new BaziResult(BaziResult.WANG, "新图18-不从，按扶抑身旺论命");
 				} else {
                     if(isTouBenQi(dzs[MONTH])){
-                        return new BaziResult(BaziResult.WANG, "新图18-假从强格");
+                        return new BaziResult(BaziResult.JIA_CONG, "新图18-假从强格");
                     }else{
-                        return new BaziResult(BaziResult.WANG, "新图18-真从强格");
+                        return new BaziResult(BaziResult.CONG_QIANG, "新图18-真从强格");
                     }
 				}
 			} else if (isShang(dzs[MONTH])) {
@@ -184,9 +256,9 @@ public class BaZiEngine {
 					return new BaziResult(BaziResult.WANG, "新图19-食伤一次被克，不以从强格，身旺");
 				} else {
                     if(isTouBenQi(dzs[MONTH])){
-                        return new BaziResult(BaziResult.WANG, "新图19-假从强格");
+                        return new BaziResult(BaziResult.JIA_CONG, "新图19-假从强格");
                     }else{
-                        return new BaziResult(BaziResult.WANG, "新图19-真从强格");
+                        return new BaziResult(BaziResult.CONG_QIANG, "新图19-真从强格");
                     }
 				}
 			} else if (isCai(dzs[DAY])) {
@@ -194,9 +266,9 @@ public class BaZiEngine {
 					return new BaziResult(BaziResult.WANG, "新图17-财一次被克，身旺");
 				} else {
                     if(isTouBenQi(dzs[DAY])){
-                        return new BaziResult(BaziResult.WANG, "新图17-假从强格");
+                        return new BaziResult(BaziResult.JIA_CONG, "新图17-假从强格");
                     }else{
-                        return new BaziResult(BaziResult.WANG, "新图17-真从强格");
+                        return new BaziResult(BaziResult.CONG_QIANG, "新图17-真从强格");
                     }
 				}
 			} else if (isGuan(dzs[DAY])) {
@@ -204,9 +276,9 @@ public class BaZiEngine {
 					return new BaziResult(BaziResult.WANG, "新图18-不从，按扶抑身旺论命");
 				} else {
                     if(isTouBenQi(dzs[DAY])){
-                        return new BaziResult(BaziResult.WANG, "新图18-假从强格");
+                        return new BaziResult(BaziResult.JIA_CONG, "新图18-假从强格");
                     }else{
-                        return new BaziResult(BaziResult.WANG, "新图18-真从强格");
+                        return new BaziResult(BaziResult.CONG_QIANG, "新图18-真从强格");
                     }
 				}
 			} else if (isShang(dzs[DAY])) {
@@ -214,9 +286,9 @@ public class BaZiEngine {
 					return new BaziResult(BaziResult.WANG, "新图19-食伤一次被克，不以从强格，身旺");
 				} else {
                     if(isTouBenQi(dzs[DAY])){
-                        return new BaziResult(BaziResult.WANG, "新图19-假从强格");
+                        return new BaziResult(BaziResult.JIA_CONG, "新图19-假从强格");
                     }else{
-                        return new BaziResult(BaziResult.WANG, "新图19-真从强格");
+                        return new BaziResult(BaziResult.CONG_QIANG, "新图19-真从强格");
                     }
 				}
 			}
@@ -224,7 +296,7 @@ public class BaZiEngine {
 
 		// 新8. 印星临年月以弱论。即使天干印比一片也弱。地支中印星同时出现两个，不论在何位置均以弱论。
 		if (yins == 2) {
-			return new BaziResult(BaziResult.RUO, "新图8");
+			return new BaziResult(BaziResult.RUO, "新图8-印星两次出现，不论组合，不看天干，皆以弱论");
 		}
 
 		/**
@@ -318,7 +390,7 @@ public class BaZiEngine {
 					if (isTouBenQi(dzs[YEAR])) {
 						return new BaziResult(BaziResult.RUO, "新图9-本气透出，身弱扶抑格");
 					} else {
-						return new BaziResult(BaziResult.RUO, "新图9-本气未透出，从弱");
+						return new BaziResult(BaziResult.CONG_RUO, "新图9-本气未透出，从弱");
 					}
 				} else {
 					return new BaziResult(BaziResult.RUO, "新图9-未被月支泄，身弱");
@@ -328,7 +400,7 @@ public class BaZiEngine {
 					if (isTouBenQi(dzs[HOUR])) {
 						return new BaziResult(BaziResult.RUO, "新图9-本气透出，身弱扶抑格");
 					} else {
-						return new BaziResult(BaziResult.RUO, "新图9-本气未透出，从弱");
+						return new BaziResult(BaziResult.CONG_RUO, "新图9-本气未透出，从弱");
 					}
 				} else {
 					return new BaziResult(BaziResult.RUO, "新图9-未被月支泄，身弱");
@@ -336,21 +408,21 @@ public class BaZiEngine {
 			} else if (isGen(dzs[MONTH])) {
 				if (dzs[YEAR].isKe(dzs[MONTH]) && dzs[DAY].isKe(dzs[MONTH])) {
 					if (isTouBenQi(dzs[MONTH])) {
-						return new BaziResult(BaziResult.RUO, "新图12-本气透出，按假从论命");
+						return new BaziResult(BaziResult.JIA_CONG, "新图12-本气透出，按假从论命");
 					} else {
-						return new BaziResult(BaziResult.RUO,
+						return new BaziResult(BaziResult.CONG_RUO,
 								"新图12-本气未透出，按从格论命");
 					}
 				} else if (dzs[MONTH].isSheng(dzs[YEAR])
 						&& dzs[MONTH].isSheng(dzs[DAY])) {
 					if (isTouBenQi(dzs[MONTH])) {
-						return new BaziResult(BaziResult.RUO, "新图13-本气透出，按假从论命");
+						return new BaziResult(BaziResult.JIA_CONG, "新图13-本气透出，按假从论命");
 					} else {
-						return new BaziResult(BaziResult.RUO, "新图13-本气未透出，按从格论命");
+						return new BaziResult(BaziResult.CONG_RUO, "新图13-本气未透出，按从格论命");
 					}
 				} else if (dzs[MONTH].isKe(dzs[YEAR])
 						&& dzs[MONTH].isKe(dzs[DAY])) {
-					return new BaziResult(BaziResult.RUO, "新图14-3-本气未透出，按从格论命");
+					return new BaziResult(BaziResult.CONG_RUO, "新图14-3-本气未透出，按从格论命");
 				} else if ((dzs[YEAR].isKe(dzs[MONTH]) && dzs[MONTH]
 						.isSheng(dzs[DAY]))
 						|| (dzs[DAY].isKe(dzs[MONTH]) && dzs[MONTH]
@@ -358,7 +430,7 @@ public class BaZiEngine {
 					if (isTouBenQi(dzs[MONTH])) {
 						return new BaziResult(BaziResult.RUO, "新图14-本气透出，按扶抑格身弱论命");
 					} else {
-						return new BaziResult(BaziResult.RUO,
+						return new BaziResult(BaziResult.CONG_RUO,
 								"新图14-本气未透出，按假从格论命");
 					}
 				}else if ((dzs[MONTH].isKe(dzs[YEAR]) && dzs[MONTH]
@@ -368,7 +440,7 @@ public class BaZiEngine {
 					if (isTouBenQi(dzs[MONTH])) {
 						return new BaziResult(BaziResult.RUO, "新图14-2-一泄一耗，本气透出，按扶抑格身弱论命");
 					} else {
-						return new BaziResult(BaziResult.RUO,
+						return new BaziResult(BaziResult.JIA_CONG,
 								"新图14-2-一泄一耗，本气未透出，按假从格论命");
 					}
 				}else if ((dzs[YEAR].isKe(dzs[MONTH]) && dzs[MONTH]
@@ -380,21 +452,21 @@ public class BaZiEngine {
 			} else if (isGen(dzs[DAY])) {
 				if (dzs[MONTH].isKe(dzs[DAY]) && dzs[HOUR].isKe(dzs[DAY])) {
 					if (isTouBenQi(dzs[DAY])) {
-						return new BaziResult(BaziResult.RUO, "新图12-被两次克，本气透出，按假从论命");
+						return new BaziResult(BaziResult.JIA_CONG, "新图12-被两次克，本气透出，按假从论命");
 					} else {
-						return new BaziResult(BaziResult.RUO,
+						return new BaziResult(BaziResult.CONG_RUO,
 								"新图12-被两次克，本气未透出，按从格论命");
 					}
 				} else if (dzs[DAY].isSheng(dzs[MONTH])
 						&& dzs[DAY].isSheng(dzs[HOUR])) {
 					if (isTouBenQi(dzs[DAY])) {
-						return new BaziResult(BaziResult.RUO, "新图13-本气透出，按假从论命");
+						return new BaziResult(BaziResult.JIA_CONG, "新图13-本气透出，按假从论命");
 					} else {
-						return new BaziResult(BaziResult.RUO, "新图13-本气未透出，按从格论命");
+						return new BaziResult(BaziResult.CONG_RUO, "新图13-本气未透出，按从格论命");
 					}
 				} else if (dzs[DAY].isKe(dzs[MONTH])
 						&& dzs[DAY].isKe(dzs[HOUR])) {
-					return new BaziResult(BaziResult.RUO, "新图14-3-本气未透出，按从格论命");
+					return new BaziResult(BaziResult.CONG_RUO, "新图14-3-本气未透出，按从格论命");
 				} else if ((dzs[MONTH].isKe(dzs[DAY]) && dzs[DAY]
 						.isSheng(dzs[HOUR]))
 						|| (dzs[HOUR].isKe(dzs[DAY]) && dzs[DAY]
@@ -402,7 +474,7 @@ public class BaZiEngine {
 					if (isTouBenQi(dzs[DAY])) {
 						return new BaziResult(BaziResult.RUO, "新图14-一克一泄，本气透出，按扶抑格身弱论命");
 					} else {
-						return new BaziResult(BaziResult.RUO,
+						return new BaziResult(BaziResult.JIA_CONG,
 								"新图14-一克一泄，本气未透出，按假从格论命");
 					}
 				}else if ((dzs[DAY].isKe(dzs[MONTH]) && dzs[DAY]
@@ -412,7 +484,7 @@ public class BaZiEngine {
 					if (isTouBenQi(dzs[DAY])) {
 						return new BaziResult(BaziResult.RUO, "新图14-2-一泄一耗，本气透出，按扶抑格身弱论命");
 					} else {
-						return new BaziResult(BaziResult.RUO,
+						return new BaziResult(BaziResult.JIA_CONG,
 								"新图14-2-一泄一耗，本气未透出，按假从格论命");
 					}
 				}else if ((dzs[MONTH].isKe(dzs[DAY]) && dzs[DAY]
@@ -441,12 +513,12 @@ public class BaZiEngine {
                 
                 if(yin_kes == 1){
                     if(isTouBenQi(dzs[MONTH])){
-                        return new BaziResult(BaziResult.RUO,"图15-2,假从");
+                        return new BaziResult(BaziResult.JIA_CONG,"图15-2,假从");
                     }else{
-                        return new BaziResult(BaziResult.RUO,"图15-2,论从");
+                        return new BaziResult(BaziResult.CONG_RUO,"图15-2,论从");
                     }
                 }else if(yin_kes == 2){
-                    return new BaziResult(BaziResult.RUO,"图15-3,从弱");
+                    return new BaziResult(BaziResult.CONG_RUO,"图15-3,从弱");
                 }else{
                     return new BaziResult(BaziResult.RUO,"图15-4,身弱?");
                 }
@@ -461,12 +533,12 @@ public class BaZiEngine {
                 
                 if(yin_kes == 1){
                     if(isTouBenQi(dzs[DAY])){
-                        return new BaziResult(BaziResult.RUO,"图15-2,假从");
+                        return new BaziResult(BaziResult.JIA_CONG,"图15-2,假从");
                     }else{
-                        return new BaziResult(BaziResult.RUO,"图15-2,论从");
+                        return new BaziResult(BaziResult.CONG_RUO,"图15-2,论从");
                     }
                 }else if(yin_kes == 2){
-                    return new BaziResult(BaziResult.RUO,"图15-3,从弱");
+                    return new BaziResult(BaziResult.CONG_RUO,"图15-3,从弱");
                 }else{
                     return new BaziResult(BaziResult.RUO,"图15-4,身弱?");
                 }

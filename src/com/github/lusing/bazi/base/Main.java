@@ -133,5 +133,45 @@ public class Main {
 				DiZhi.CHOU, TianGan.JIA, DiZhi.WU, TianGan.DING, DiZhi.MAO);
 		bze_n9.run();
 
-	}
+        System.out.println("===新图加1,从弱===");
+        BaZiEngine bze_n_p1 = new BaZiEngine(TianGan.DING, DiZhi.SI, TianGan.JIA,
+				DiZhi.CHEN, TianGan.XIN, DiZhi.CHOU, TianGan.XIN, DiZhi.MAO);
+		bze_n_p1.run();
+
+        System.out.println("===新图加2,弱极===");
+        BaZiEngine bze_n_p2 = new BaZiEngine(TianGan.WU, DiZhi.ZI, TianGan.XIN,
+				DiZhi.YOU, TianGan.BING, DiZhi.SHEN, TianGan.WU, DiZhi.XU);
+		bze_n_p2.run();
+
+        System.out.println("===图31-1,不从强===");
+        BaZiEngine bze_31_1 = new BaZiEngine(TianGan.XIN, DiZhi.SI, TianGan.XIN,
+				DiZhi.CHOU, TianGan.XIN, DiZhi.YOU, TianGan.JI, DiZhi.CHOU);
+		bze_31_1.run();
+
+        System.out.println("===论格局高低1,不从强===");
+        BaZiEngine bze_gd_1 = new BaZiEngine(TianGan.GENG, DiZhi.SHEN, TianGan.JI,
+				DiZhi.MAO, TianGan.GENG, DiZhi.YIN, TianGan.GENG, DiZhi.CHEN);
+		bze_gd_1.run();
+
+        System.out.println("===论格局高低2,不从强===");
+        BaZiEngine bze_gd_2 = new BaZiEngine(TianGan.YI, DiZhi.SI, TianGan.DING,
+				DiZhi.HAI, TianGan.JIA, DiZhi.XU, TianGan.JIA, DiZhi.ZI);
+		bze_gd_2.run();
+
+        System.out.println("===论格局高低3,===");
+        BaZiEngine bze_gd_3 = new BaZiEngine(TianGan.REN, DiZhi.YIN, TianGan.WU,
+				DiZhi.SHEN, TianGan.JIA, DiZhi.WU, TianGan.JIA, DiZhi.ZI);
+		bze_gd_3.run();
+
+        System.out.println("===论格局高低4,===");
+        BaZiEngine bze_gd_4 = new BaZiEngine(TianGan.XIN, DiZhi.CHOU, TianGan.GUI,
+				DiZhi.SI, TianGan.REN, DiZhi.YIN, TianGan.WU, DiZhi.SHEN);
+		bze_gd_4.run();
+        
+        //===
+        System.out.println("===用神判定1,===");
+        BaZiEngine bze_ys_1 = new BaZiEngine(TianGan.JI, DiZhi.YOU, TianGan.YI,
+				DiZhi.HAI, TianGan.REN, DiZhi.CHEN, TianGan.YI, DiZhi.SI);
+		bze_ys_1.run();
+    }
 }
