@@ -83,13 +83,7 @@ public class BaZiEngine {
 	 * 检查日主的旺衰
 	 */
 	private BaziResult checkWangShuai() {
-		return checkGenYinXiangFu();
-	}
 
-	/**
-	 * 根印帮扶法
-	 */
-	private BaziResult checkGenYinXiangFu() {
 		// 先算算根印各有多少个
 		int yins = 0;
 		int gens = 0;
@@ -136,6 +130,7 @@ public class BaZiEngine {
 		 */
 		if (yins == 3) {
 			// TODO:
+            
 			return new BaziResult(BaziResult.WANG, "图6");
 		}
 
@@ -143,7 +138,72 @@ public class BaZiEngine {
 		 * 五.根三次或 根印三次在命局地支出现
 		 */
 		if (gens + yins == 3) {
-
+			if (isCai(dzs[YEAR]) || isGuan(dzs[YEAR]) || isShang(dzs[YEAR])) {
+				return new BaziResult(BaziResult.WANG, "新图16-扶抑格身旺");
+			} else if (isCai(dzs[HOUR]) || isGuan(dzs[HOUR])
+					|| isShang(dzs[HOUR])) {
+				return new BaziResult(BaziResult.WANG, "新图16-扶抑格身旺");
+			} else if (isCai(dzs[MONTH])) {
+				if (isYin(dzs[YEAR]) || isYin(dzs[DAY])) {
+					return new BaziResult(BaziResult.WANG, "新图17-财一次被克，身旺");
+				} else {
+                    if(isTouBenQi(dzs[MONTH])){
+                        return new BaziResult(BaziResult.WANG, "新图17-假从强格");
+                    }else{
+                        return new BaziResult(BaziResult.WANG, "新图17-真从强格");
+                    }
+				}
+			} else if (isGuan(dzs[MONTH])) {
+				if (isYin(dzs[YEAR]) || isYin(dzs[DAY])) {
+					return new BaziResult(BaziResult.WANG, "新图18-不从，按扶抑身旺论命");
+				} else {
+                    if(isTouBenQi(dzs[MONTH])){
+                        return new BaziResult(BaziResult.WANG, "新图18-假从强格");
+                    }else{
+                        return new BaziResult(BaziResult.WANG, "新图18-真从强格");
+                    }
+				}
+			} else if (isShang(dzs[MONTH])) {
+				if (isYin(dzs[YEAR]) || isYin(dzs[DAY])) {
+					return new BaziResult(BaziResult.WANG, "新图19-食伤一次被克，不以从强格，身旺");
+				} else {
+                    if(isTouBenQi(dzs[MONTH])){
+                        return new BaziResult(BaziResult.WANG, "新图19-假从强格");
+                    }else{
+                        return new BaziResult(BaziResult.WANG, "新图19-真从强格");
+                    }
+				}
+			} else if (isCai(dzs[DAY])) {
+				if (isYin(dzs[MONTH]) || isYin(dzs[HOUR])) {
+					return new BaziResult(BaziResult.WANG, "新图17-财一次被克，身旺");
+				} else {
+                    if(isTouBenQi(dzs[DAY])){
+                        return new BaziResult(BaziResult.WANG, "新图17-假从强格");
+                    }else{
+                        return new BaziResult(BaziResult.WANG, "新图17-真从强格");
+                    }
+				}
+			} else if (isGuan(dzs[DAY])) {
+				if (isYin(dzs[MONTH]) || isYin(dzs[HOUR])) {
+					return new BaziResult(BaziResult.WANG, "新图18-不从，按扶抑身旺论命");
+				} else {
+                    if(isTouBenQi(dzs[DAY])){
+                        return new BaziResult(BaziResult.WANG, "新图18-假从强格");
+                    }else{
+                        return new BaziResult(BaziResult.WANG, "新图18-真从强格");
+                    }
+				}
+			} else if (isShang(dzs[DAY])) {
+				if (isYin(dzs[MONTH]) || isYin(dzs[HOUR])) {
+					return new BaziResult(BaziResult.WANG, "新图19-食伤一次被克，不以从强格，身旺");
+				} else {
+                    if(isTouBenQi(dzs[DAY])){
+                        return new BaziResult(BaziResult.WANG, "新图19-假从强格");
+                    }else{
+                        return new BaziResult(BaziResult.WANG, "新图19-真从强格");
+                    }
+				}
+			}
 		}
 
 		// 新8. 印星临年月以弱论。即使天干印比一片也弱。地支中印星同时出现两个，不论在何位置均以弱论。
@@ -352,7 +412,49 @@ public class BaZiEngine {
          * 四.印单独一次在命局地支出现
          */
         if (yins == 1) {
-
+            if(isYin(dzs[YEAR])||isYin(dzs[HOUR])){
+                return new BaziResult(BaziResult.RUO,"新图15-1,身弱");
+            }else if(isYin(dzs[MONTH])){
+                int yin_kes = 0;
+                if(dzs[YEAR].isKe(dzs[MONTH])){
+                    yin_kes++;
+                }
+                if(dzs[DAY].isKe(dzs[MONTH])){
+                    yin_kes++;
+                }
+                
+                if(yin_kes == 1){
+                    if(isTouBenQi(dzs[MONTH])){
+                        return new BaziResult(BaziResult.RUO,"图15-2,假从");
+                    }else{
+                        return new BaziResult(BaziResult.RUO,"图15-2,论从");
+                    }
+                }else if(yin_kes == 2){
+                    return new BaziResult(BaziResult.RUO,"图15-3,从弱");
+                }else{
+                    return new BaziResult(BaziResult.RUO,"图15-4,身弱?");
+                }
+            }else if(isYin(dzs[DAY])){
+                int yin_kes = 0;
+                if(dzs[MONTH].isKe(dzs[DAY])){
+                    yin_kes++;
+                }
+                if(dzs[HOUR].isKe(dzs[DAY])){
+                    yin_kes++;
+                }
+                
+                if(yin_kes == 1){
+                    if(isTouBenQi(dzs[DAY])){
+                        return new BaziResult(BaziResult.RUO,"图15-2,假从");
+                    }else{
+                        return new BaziResult(BaziResult.RUO,"图15-2,论从");
+                    }
+                }else if(yin_kes == 2){
+                    return new BaziResult(BaziResult.RUO,"图15-3,从弱");
+                }else{
+                    return new BaziResult(BaziResult.RUO,"图15-4,身弱?");
+                }
+            }
 		}
 
 		// 8.年支或时支临印星以身弱论
@@ -419,6 +521,18 @@ public class BaZiEngine {
 	private boolean isYin(DiZhi dz) {
 		return dz.getXing().isSheng(tgs[DAY].getXing());
 	}
+    
+    private boolean isCai(DiZhi dz){
+        return tgs[DAY].getXing().isKe(dz.getXing());
+    }
+    
+    private boolean isGuan(DiZhi dz){
+        return dz.getXing().isKe(tgs[DAY].getXing());
+    }
+    
+    private boolean isShang(DiZhi dz){
+        return tgs[DAY].getXing().isSheng(dz.getXing());
+    }
 
 	private boolean isGenYin(DiZhi dz) {
 		return isGen(dz) || isYin(dz);
