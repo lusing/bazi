@@ -130,7 +130,23 @@ public class BaZiEngine {
 		 */
 		if (yins == 3) {
 			// TODO:
-            
+            if(isCai(dzs[YEAR])||isCai(dzs[MONTH])||isCai(dzs[HOUR])){
+                return new BaziResult(BaziResult.WANG, "新图20-特殊格局");
+            }else if(isGuan(dzs[YEAR])||isGuan(dzs[HOUR])){
+                return new BaziResult(BaziResult.WANG, "新图20-特殊格局");
+            }else if(isGuan(dzs[MONTH])){
+                if(isTouBenQi(dzs[MONTH])){
+                    return new BaziResult(BaziResult.WANG, "新图20-本气透出，假从印格");
+                }else{
+                    return new BaziResult(BaziResult.WANG, "新图20-本气不透，从印格");
+                }
+            }else if(isGuan(dzs[DAY])){
+                if(isTouBenQi(dzs[DAY])){
+                    return new BaziResult(BaziResult.WANG, "新图20-本气透出，假从印格");
+                }else{
+                    return new BaziResult(BaziResult.WANG, "新图20-本气不透，从印格");
+                }
+            }
 			return new BaziResult(BaziResult.WANG, "图6");
 		}
 
