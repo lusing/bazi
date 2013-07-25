@@ -169,9 +169,28 @@ public class Main {
 		bze_gd_4.run();
         
         //===
-        System.out.println("===用神判定1,===");
-        BaZiEngine bze_ys_1 = new BaZiEngine(TianGan.JI, DiZhi.YOU, TianGan.YI,
-				DiZhi.HAI, TianGan.REN, DiZhi.CHEN, TianGan.YI, DiZhi.SI);
-		bze_ys_1.run();
+            System.out.println("===用神判定1,===");
+            BaZiEngine bze_ys_1 = new BaZiEngine(TianGan.JI, DiZhi.YOU, TianGan.YI,
+                    DiZhi.HAI, TianGan.REN, DiZhi.CHEN, TianGan.YI, DiZhi.SI);
+            bze_ys_1.run();
+        
+            System.out.println("===曾欢===");
+            BaZiEngine bze_zenghuan = new BaZiEngine(TianGan.GUI, DiZhi.HAI, TianGan.BING,
+                    DiZhi.CHEN, TianGan.WU, DiZhi.CHEN, TianGan.JIA, DiZhi.YIN);
+            bze_zenghuan.run();
+                
+            System.out.println("===勾阳===");
+            BaZiEngine bze_gouyang = new BaZiEngine(TianGan.JIA, DiZhi.ZI, TianGan.DING,
+                    DiZhi.CHOU, TianGan.XIN, DiZhi.HAI, TianGan.GUI, DiZhi.SI);
+            bze_gouyang.run();
+            System.out.println("===喜超===");
+            BaZiEngine bze_xichao = new BaZiEngine(TianGan.GENG, DiZhi.SHEN, TianGan.BING,
+                    DiZhi.XU, TianGan.JIA, DiZhi.YIN, TianGan.XIN, DiZhi.WEI);
+            bze_xichao.run();
+            System.out.println("===林方君===");
+            BaZiEngine bze_fangjun = new BaZiEngine(TianGan.YI, DiZhi.CHOU, TianGan.JIA,
+                    DiZhi.SHEN, TianGan.XIN, DiZhi.MAO, TianGan.XIN, DiZhi.MAO);
+            bze_fangjun.run();
+                
     }
 }
