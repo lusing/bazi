@@ -180,4 +180,12 @@ public class DiZhi {
         }
         return new WuXing(xing);
     }
+    
+    public boolean isKe(DiZhi dz2){
+        return getXing().isKe(dz2.getXing());
+    }
+    
+    public boolean isSheng(DiZhi dz2){
+        return getXing().isSheng(dz2.getXing());
+    }
 }
