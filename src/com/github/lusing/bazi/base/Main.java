@@ -191,6 +191,26 @@ public class Main {
             BaZiEngine bze_fangjun = new BaZiEngine(TianGan.YI, DiZhi.CHOU, TianGan.JIA,
                     DiZhi.SHEN, TianGan.XIN, DiZhi.MAO, TianGan.XIN, DiZhi.MAO);
             bze_fangjun.run();
+            System.out.println("===乔俊琪===");
+            BaZiEngine bze_junqi = new BaZiEngine(TianGan.WU, DiZhi.WU, TianGan.GENG,
+                    DiZhi.SHEN, TianGan.GUI, DiZhi.MAO, TianGan.BING, DiZhi.CHEN);
+            bze_junqi.run();
+            System.out.println("===厉育锦===");
+            BaZiEngine bze_yujin = new BaZiEngine(TianGan.WU, DiZhi.WU, TianGan.YI,
+                    DiZhi.MAO, TianGan.GENG, DiZhi.YIN, TianGan.BING, DiZhi.ZI);
+            bze_yujin.run();
+            System.out.println("===张强===");
+            BaZiEngine bze_zq = new BaZiEngine(TianGan.JIA, DiZhi.ZI, TianGan.DING,
+                    DiZhi.CHOU, TianGan.DING, DiZhi.WEI, TianGan.WU, DiZhi.SHEN);
+            bze_zq.run();
+            System.out.println("===张连育===");
+            BaZiEngine bze_lianyu = new BaZiEngine(TianGan.GUI, DiZhi.HAI, TianGan.YI,
+                    DiZhi.MAO, TianGan.DING, DiZhi.YOU , TianGan.REN, DiZhi.YIN);
+            bze_lianyu.run();
+            System.out.println("===陈功===");
+            BaZiEngine bze_chengong = new BaZiEngine(TianGan.XIN, DiZhi.YOU, TianGan.REN,
+                    DiZhi.CHEN, TianGan.GUI, DiZhi.HAI , TianGan.BING, DiZhi.CHEN);
+            bze_chengong.run();
                 
     }
 }
