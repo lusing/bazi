@@ -23,106 +23,106 @@ public class BaZi {
     public BaZi() {
         DiZhi_Strength = new ZISTRENGTH[24];
 
-        DiZhi_Strength[0] = new ZISTRENGTH('◊”', 'πÔ', new double[] {
+        DiZhi_Strength[0] = new ZISTRENGTH('Â≠ê', 'Áô∏', new double[] {
                 1.2, 1.1, 1.0, 1.0, 1.04, 1.06, 1.0, 1.0, 1.2, 1.2, 1.06, 1.14
         });
 
-        DiZhi_Strength[1] = new ZISTRENGTH('≥Û', 'πÔ', new double[] {
+        DiZhi_Strength[1] = new ZISTRENGTH('‰∏ë', 'Áô∏', new double[] {
                 0.36, 0.33, 0.3, 0.3, 0.312, 0.318, 0.3, 0.3, 0.36, 0.36, 0.318, 0.342
         });
 
-        DiZhi_Strength[2] = new ZISTRENGTH('≥Û', '–¡', new double[] {
+        DiZhi_Strength[2] = new ZISTRENGTH('‰∏ë', 'Ëæõ', new double[] {
                 0.2, 0.228, 0.2, 0.2, 0.23, 0.212, 0.2, 0.22, 0.228, 0.248, 0.232, 0.2
         });
 
-        DiZhi_Strength[3] = new ZISTRENGTH('≥Û', 'º∫', new double[] {
+        DiZhi_Strength[3] = new ZISTRENGTH('‰∏ë', 'Â∑±', new double[] {
                 0.5, 0.55, 0.53, 0.5, 0.55, 0.57, 0.6, 0.58, 0.5, 0.5, 0.57, 0.5
         });
 
-        DiZhi_Strength[4] = new ZISTRENGTH('“˙', '±˚', new double[] {
+        DiZhi_Strength[4] = new ZISTRENGTH('ÂØÖ', '‰∏ô', new double[] {
                 0.3, 0.3, 0.36, 0.36, 0.318, 0.342, 0.36, 0.33, 0.3, 0.3, 0.342, 0.318
         });
 
-        DiZhi_Strength[5] = new ZISTRENGTH('“˙', 'º◊', new double[] {
+        DiZhi_Strength[5] = new ZISTRENGTH('ÂØÖ', 'Áî≤', new double[] {
                 0.84, 0.742, 0.798, 0.84, 0.77, 0.7, 0.7, 0.728, 0.742, 0.7, 0.7, 0.84
         });
 
-        DiZhi_Strength[6] = new ZISTRENGTH('√Æ', '““', new double[] {
+        DiZhi_Strength[6] = new ZISTRENGTH('ÂçØ', '‰πô', new double[] {
                 1.2, 1.06, 1.14, 1.2, 1.1, 1.0, 1.0, 1.04, 1.06, 1.0, 1.0, 1.2
         });
 
-        DiZhi_Strength[7] = new ZISTRENGTH('≥Ω', '““', new double[] {
+        DiZhi_Strength[7] = new ZISTRENGTH('Ëæ∞', '‰πô', new double[] {
                 0.36, 0.318, 0.342, 0.36, 0.33, 0.3, 0.3, 0.312, 0.318, 0.3, 0.3, 0.36
         });
 
-        DiZhi_Strength[8] = new ZISTRENGTH('≥Ω', 'πÔ', new double[] {
+        DiZhi_Strength[8] = new ZISTRENGTH('Ëæ∞', 'Áô∏', new double[] {
                 0.24, 0.22, 0.2, 0.2, 0.208, 0.2, 0.2, 0.2, 0.24, 0.24, 0.212, 0.228
         });
 
-        DiZhi_Strength[9] = new ZISTRENGTH('≥Ω', 'ŒÏ', new double[] {
+        DiZhi_Strength[9] = new ZISTRENGTH('Ëæ∞', 'Êàä', new double[] {
                 0.5, 0.55, 0.53, 0.5, 0.55, 0.6, 0.6, 0.58, 0.5, 0.5, 0.57, 0.5
         });
 
-        DiZhi_Strength[10] = new ZISTRENGTH('À»', '∏˝', new double[] {
+        DiZhi_Strength[10] = new ZISTRENGTH('Â∑≥', 'Â∫ö', new double[] {
                 0.3, 0.342, 0.3, 0.3, 0.33, 0.3, 0.3, 0.33, 0.342, 0.36, 0.348, 0.3
         });
 
-        DiZhi_Strength[11] = new ZISTRENGTH('À»', '±˚', new double[] {
+        DiZhi_Strength[11] = new ZISTRENGTH('Â∑≥', '‰∏ô', new double[] {
                 0.7, 0.7, 0.84, 0.84, 0.742, 0.84, 0.84, 0.798, 0.7, 0.7, 0.728, 0.742
         });
 
-        DiZhi_Strength[12] = new ZISTRENGTH('ŒÁ', '∂°', new double[] {
+        DiZhi_Strength[12] = new ZISTRENGTH('Âçà', '‰∏Å', new double[] {
                 1.0, 1.0, 1.2, 1.2, 1.06, 1.14, 1.2, 1.1, 1.0, 1.0, 1.04, 1.06
         });
 
-        DiZhi_Strength[13] = new ZISTRENGTH('Œ¥', '∂°', new double[] {
+        DiZhi_Strength[13] = new ZISTRENGTH('Êú™', '‰∏Å', new double[] {
                 0.3, 0.3, 0.36, 0.36, 0.318, 0.342, 0.36, 0.33, 0.3, 0.3, 0.312, 0.318
         });
 
-        DiZhi_Strength[14] = new ZISTRENGTH('Œ¥', '““', new double[] {
+        DiZhi_Strength[14] = new ZISTRENGTH('Êú™', '‰πô', new double[] {
                 0.24, 0.212, 0.228, 0.24, 0.22, 0.2, 0.2, 0.208, 0.212, 0.2, 0.2, 0.24
         });
 
-        DiZhi_Strength[15] = new ZISTRENGTH('Œ¥', 'º∫', new double[] {
+        DiZhi_Strength[15] = new ZISTRENGTH('Êú™', 'Â∑±', new double[] {
                 0.5, 0.55, 0.53, 0.5, 0.55, 0.57, 0.6, 0.58, 0.5, 0.5, 0.57, 0.5
         });
 
-        DiZhi_Strength[16] = new ZISTRENGTH('…Í', '»…', new double[] {
+        DiZhi_Strength[16] = new ZISTRENGTH('Áî≥', 'Â£¨', new double[] {
                 0.36, 0.33, 0.3, 0.3, 0.312, 0.318, 0.3, 0.3, 0.36, 0.36, 0.318, 0.342
         });
 
-        DiZhi_Strength[17] = new ZISTRENGTH('…Í', '∏˝', new double[] {
+        DiZhi_Strength[17] = new ZISTRENGTH('Áî≥', 'Â∫ö', new double[] {
                 0.7, 0.798, 0.7, 0.7, 0.77, 0.742, 0.7, 0.77, 0.798, 0.84, 0.812, 0.7
         });
 
-        DiZhi_Strength[18] = new ZISTRENGTH('”œ', '–¡', new double[] {
+        DiZhi_Strength[18] = new ZISTRENGTH('ÈÖâ', 'Ëæõ', new double[] {
                 1.0, 1.14, 1.0, 1.0, 1.1, 1.06, 1.0, 1.1, 1.14, 1.2, 1.16, 1.0
         });
 
-        DiZhi_Strength[19] = new ZISTRENGTH('–Á', '–¡', new double[] {
+        DiZhi_Strength[19] = new ZISTRENGTH('Êàå', 'Ëæõ', new double[] {
                 0.3, 0.342, 0.3, 0.3, 0.33, 0.318, 0.3, 0.33, 0.342, 0.36, 0.348, 0.3
         });
 
-        DiZhi_Strength[20] = new ZISTRENGTH('–Á', '∂°', new double[] {
+        DiZhi_Strength[20] = new ZISTRENGTH('Êàå', '‰∏Å', new double[] {
                 0.2, 0.2, 0.24, 0.24, 0.212, 0.228, 0.24, 0.22, 0.2, 0.2, 0.208, 0.212
         });
 
-        DiZhi_Strength[21] = new ZISTRENGTH('–Á', 'ŒÏ', new double[] {
+        DiZhi_Strength[21] = new ZISTRENGTH('Êàå', 'Êàä', new double[] {
                 0.5, 0.55, 0.53, 0.5, 0.55, 0.57, 0.6, 0.58, 0.5, 0.5, 0.57, 0.5
         });
 
-        DiZhi_Strength[22] = new ZISTRENGTH('∫•', 'º◊', new double[] {
+        DiZhi_Strength[22] = new ZISTRENGTH('‰∫•', 'Áî≤', new double[] {
                 0.36, 0.318, 0.342, 0.36, 0.33, 0.3, 0.3, 0.312, 0.318, 0.3, 0.3, 0.36
         });
 
-        DiZhi_Strength[23] = new ZISTRENGTH('∫•', '»…', new double[] {
+        DiZhi_Strength[23] = new ZISTRENGTH('‰∫•', 'Â£¨', new double[] {
                 0.84, 0.77, 0.7, 0.7, 0.728, 0.742, 0.7, 0.7, 0.84, 0.84, 0.724, 0.798
         });
     }
 
-    public static final String sTianGan = "º◊““±˚∂°ŒÏº∫∏˝–¡»…πÔ";
-    public static final String sDiZhi = "◊”≥Û“˙√Æ≥ΩÀ»ŒÁŒ¥…Í”œ–Á∫•";
-    public static final String sWuXingTable = "ΩƒæÀÆªÕ¡";
+    public static final String sTianGan = "Áî≤‰πô‰∏ô‰∏ÅÊàäÂ∑±Â∫öËæõÂ£¨Áô∏";
+    public static final String sDiZhi = "Â≠ê‰∏ëÂØÖÂçØËæ∞Â∑≥ÂçàÊú™Áî≥ÈÖâÊàå‰∫•";
+    public static final String sWuXingTable = "ÈáëÊú®Ê∞¥ÁÅ´Âúü";
     public static final int TianGan_WuXingProp[] = {
             1, 1, 3, 3, 4, 4, 0, 0, 2, 2
     };
@@ -171,7 +171,7 @@ public class BaZi {
         return result;
     }
 
-    // Ω´ÃÏ∏…◊™Œ™index
+    // Â∞ÜÂ§©Âπ≤ËΩ¨‰∏∫index
     int computeGanIndex(char gan) {
         int i;
         for (i = 0; i < 10; i++)
@@ -182,7 +182,7 @@ public class BaZi {
         return i;
     }
 
-    // Ω´µÿ÷ß◊™Œ™index
+    // Â∞ÜÂú∞ÊîØËΩ¨‰∏∫index
     int ComputeZhiIndex(char zhi) {
         int i;
         for (i = 0; i < 12; i++)
@@ -212,7 +212,7 @@ public class BaZi {
 
             int i;
 
-            // …®√Ë4∏ˆÃÏ∏…
+            // Êâ´Êèè4‰∏™Â§©Âπ≤
 
             for (i = 0; i < 8; i += 2) {
                 char gan = bazi.charAt(i);
@@ -225,7 +225,7 @@ public class BaZi {
                     value1 += TianGan_Strength[monthIndex][index];
             }
 
-            // …®√Ë÷ß≤ÿ
+            // Êâ´ÊèèÊîØËóè
 
             for (i = 1; i < 8; i += 2) {
                 char zhi = bazi.charAt(i);
@@ -242,7 +242,7 @@ public class BaZi {
                 }
             }
             strengthResult[wuXing] = value1 + value2;
-            //  ‰≥ˆ“ª––º∆À„Ω·π˚
+            // ËæìÂá∫‰∏ÄË°åËÆ°ÁÆóÁªìÊûú
             {
                 StringBuffer preStr = new StringBuffer();
                 StringBuffer tmpBuf = new StringBuffer();
@@ -255,7 +255,7 @@ public class BaZi {
             }
         }
 
-        // ∏˘æ›»’∏…«Û√¸¿Ô Ù–‘
+        // Ê†πÊçÆÊó•Âπ≤Ê±ÇÂëΩÈáåÂ±ûÊÄß
 
         int fateProp, srcProp;
 
@@ -267,7 +267,7 @@ public class BaZi {
             if (fateProp == -1)
                 return null;
 
-            tmpBuf.append("\n√¸ Ù");
+            tmpBuf.append("\nÂëΩÂ±û");
 
             tmpBuf.append(sWuXingTable.charAt(fateProp));
 
@@ -275,7 +275,7 @@ public class BaZi {
 
         }
 
-        // «ÛÕ¨¿‡∫Õ“Ï¿‡µƒ«ø∂»÷µ
+        // Ê±ÇÂêåÁ±ªÂíåÂºÇÁ±ªÁöÑÂº∫Â∫¶ÂÄº
 
         srcProp = GenerationSourceTable[fateProp];
 
@@ -299,7 +299,7 @@ public class BaZi {
             tmpBuf.append(new Double(strengthResult[srcProp]).toString() + "=");
             tmpBuf.append(new Double(tongLei).toString() + "\n");
 
-            preStr.append("Õ¨¿‡£∫");
+            preStr.append("ÂêåÁ±ªÔºö");
 
             preStr.append(sWuXingTable.charAt(fateProp) + "+" + sWuXingTable.charAt(srcProp));
 
@@ -309,7 +309,7 @@ public class BaZi {
 
             // tmpBuf.append((float) yiLei);
 
-            sResultBuf.append("“Ï¿‡£∫◊‹∫ÕŒ™ ");
+            sResultBuf.append("ÂºÇÁ±ªÔºöÊÄªÂíå‰∏∫ ");
 
             sResultBuf.append(new Double(yiLei) + "\n");
 
