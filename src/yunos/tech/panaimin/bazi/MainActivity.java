@@ -67,16 +67,16 @@ public class MainActivity extends Activity {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 Calendar cal = Calendar.getInstance();
                 try {
-                        //Éè¶¨´ËÈËµÄÎ÷ÔªÊ±¼äÎª1983-01-10
+                        //è®¾å®šæ­¤äººçš„è¥¿å…ƒæ—¶é—´ä¸º1983-01-10
                         cal.setTime(sdf.parse(year+"-"+month+"-"+day));
                         luozhuanghehun.BaZi lunar = new luozhuanghehun.BaZi(cal);
                         txtResult.setText("");
-                        txtResult.setText("¹«ÀúÉúÈÕ:"+year+"Äê"+month+"ÔÂ"+day+"ÈÕ\n");
-                        txtResult.setText(txtResult.getText()+"´ËÈËÅ©ÀúµÄÈÕÆÚ¡¾"+lunar.toString()+"¡¿\n");
-                        //´Ë´¦ÊÇÎªÁË»ñÈ¡Ê±¼äÔÚÖĞ¹úµÄ°Ë×ÖÑ§ËµÉÏµÄÏÔÊ¾£¬´ËÈËÊÇÎçÊ±ÉúµÄ
-                        txtResult.setText(txtResult.getText()+"´ËÈË°Ë×Ö¡¾"+lunar.getYearGanZhi(MainActivity.this.getHour())+"¡¿\n");
-                        //»ñÈ¡ÉúĞ¤
-                        txtResult.setText(txtResult.getText()+"´ËÈËµÄÅ©ÀúÉúĞ¤¡¾"+lunar.animalsYear()+"¡¿\n");
+                        txtResult.setText("å…¬å†ç”Ÿæ—¥:"+year+"å¹´"+month+"æœˆ"+day+"æ—¥\n");
+                        txtResult.setText(txtResult.getText()+"æ­¤äººå†œå†çš„æ—¥æœŸã€"+lunar.toString()+"ã€‘\n");
+                        //æ­¤å¤„æ˜¯ä¸ºäº†è·å–æ—¶é—´åœ¨ä¸­å›½çš„å…«å­—å­¦è¯´ä¸Šçš„æ˜¾ç¤ºï¼Œæ­¤äººæ˜¯åˆæ—¶ç”Ÿçš„
+                        txtResult.setText(txtResult.getText()+"æ­¤äººå…«å­—ã€"+lunar.getYearGanZhi(MainActivity.this.getHour())+"ã€‘\n");
+                        //è·å–ç”Ÿè‚–
+                        txtResult.setText(txtResult.getText()+"æ­¤äººçš„å†œå†ç”Ÿè‚–ã€"+lunar.animalsYear()+"ã€‘\n");
                         
                         final String paraStr = lunar.getYearGanZhi(MainActivity.this.getHour()); 
                         
@@ -95,9 +95,9 @@ public class MainActivity extends Activity {
                             @Override
                             protected void onPostExecute(String result) {
                                 if (result == null) {
-                                    txtResult.setText(txtResult.getText()+"²âËã²»³É¹¦£¬ÁíÇë¸ßÃ÷£¡");
+                                    txtResult.setText(txtResult.getText()+"æµ‹ç®—ä¸æˆåŠŸï¼Œå¦è¯·é«˜æ˜ï¼");
                                 } else {
-                                    txtResult.setText(txtResult.getText()+"´Ë°Ë×ÖµÄÎåĞĞÆ½ºâ·ÖÎö½á¹ûÈçÏÂ£º" + result);
+                                    txtResult.setText(txtResult.getText()+"æ­¤å…«å­—çš„äº”è¡Œå¹³è¡¡åˆ†æç»“æœå¦‚ä¸‹ï¼š" + result);
                                 }
                             }
 
