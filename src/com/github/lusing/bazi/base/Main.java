@@ -211,6 +211,10 @@ public class Main {
         BaZiEngine bze_chengong = new BaZiEngine(TianGan.XIN, DiZhi.YOU, TianGan.REN,
                 DiZhi.CHEN, TianGan.GUI, DiZhi.HAI, TianGan.BING, DiZhi.CHEN);
         bze_chengong.run();
+        System.out.println("===小冬===");
+        BaZiEngine bze_xiaodong = new BaZiEngine(TianGan.BING, DiZhi.YIN, TianGan.BING,
+                DiZhi.SHEN, TianGan.DING, DiZhi.WEI, TianGan.WU, DiZhi.SHEN);
+        bze_xiaodong.run();
 
         System.out.println("===孙中山===");
         BaZiEngine bze_zhongshan = new BaZiEngine(TianGan.YI, DiZhi.CHOU, TianGan.DING,

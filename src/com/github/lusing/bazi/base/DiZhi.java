@@ -167,7 +167,7 @@ public class DiZhi {
             default:
                 break;
         }
-        System.out.println(this.toString()+"的本气为"+new TianGan(tg).toString());
+        //System.out.println(this.toString()+"的本气为"+new TianGan(tg).toString());
         return new TianGan(tg);
     }
     

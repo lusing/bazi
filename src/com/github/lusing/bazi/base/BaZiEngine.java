@@ -59,7 +59,233 @@ public class BaZiEngine {
 	public void run() {
 		checkLiuQin();
 		checkWuXing();
+                manRenDuan();
 	}
+        
+    private void manRenDuan() {
+        shiZhuDuan();
+        checkRiZhu();
+        checkShiShen();
+    }
+
+    private void checkShiShen() {
+        StringBuffer sb = new StringBuffer();
+        int year_shishen_tg = ShiShen.getShiShen(tgs[DAY], tgs[YEAR]).getShiShen();
+        int year_shishen_dz = ShiShen.getShiShen(tgs[DAY], dzs[YEAR].getBenQin()).getShiShen();
+        int month_shishen_tg = ShiShen.getShiShen(tgs[DAY], tgs[MONTH]).getShiShen();
+        int month_shishen_dz = ShiShen.getShiShen(tgs[DAY], dzs[MONTH].getBenQin()).getShiShen();
+        int day_shishen_dz = ShiShen.getShiShen(tgs[DAY], dzs[DAY].getBenQin()).getShiShen();
+        int hour_shishen_tg = ShiShen.getShiShen(tgs[DAY], tgs[HOUR]).getShiShen();
+        int hour_shishen_dz = ShiShen.getShiShen(tgs[DAY], dzs[HOUR].getBenQin()).getShiShen();
+
+        if (year_shishen_tg == ShiShen.ZHENGGUAN || year_shishen_dz == ShiShen.ZHENGGUAN) {
+            sb.append("年上正官，祖上比较富贵，有功名气象，有权势。");
+            if (day_shishen_dz != ShiShen.SHANGGUAN) {
+                //TODO: 判断冲
+                sb.append("少年学业比较好.（要断冲）");
+            }
+            if (year_shishen_tg == ShiShen.ZHENGGUAN && year_shishen_dz == ShiShen.ZHENGGUAN) {
+                sb.append("从小读书非常用功，有成绩，如果不是头生子女，必然能接老人遗产。");
+            }
+        }
+        if (year_shishen_tg == ShiShen.ZHENGYIN || year_shishen_dz == ShiShen.ZHENGYIN) {
+            sb.append("少年读书有成绩，老来也是个有福人。");
+        }
+        if (year_shishen_tg == ShiShen.QISHA || year_shishen_dz == ShiShen.QISHA) {
+            sb.append("年上七杀，对父母有克。年上偏官不是头生子，幼年家中贫困。");
+        }
+        if (year_shishen_tg == ShiShen.PIANCAI || year_shishen_dz == ShiShen.PIANCAI) {
+            sb.append("年上偏财，少年有福。");
+            if ((year_shishen_tg == ShiShen.PIANCAI || year_shishen_dz == ShiShen.BIJIAN)) {
+                sb.append("年上偏财支比肩，父母死在外边。");
+            }
+            if (year_shishen_tg == ShiShen.PIANCAI && year_shishen_dz == ShiShen.PIANCAI) {
+                sb.append("幼年克父克母。");
+            }
+        }
+        if (year_shishen_tg == ShiShen.ZHENGCAI || year_shishen_dz == ShiShen.ZHENGCAI) {
+            sb.append("年上正财祖来强，家大业大借祖光，下有营地分三处，内有一处有力量。");
+            if (month_shishen_tg == ShiShen.ZHENGCAI || month_shishen_dz == ShiShen.ZHENGCAI) {
+                sb.append("月上正财同来现，不是两妻就俩娘。");
+            }
+        }
+        if (year_shishen_tg == ShiShen.SHANGGUAN || year_shishen_dz == ShiShen.SHANGGUAN) {
+            sb.append("年上伤官命不佳，祖业漂零没有啥。");
+            if (month_shishen_tg == ShiShen.SHANGGUAN || month_shishen_dz == ShiShen.SHANGGUAN) {
+                sb.append("月上再把伤官见，不是克爹就克娘，若遇财运尚可解，一生事业有发达。");
+            }
+            if (hour_shishen_tg == ShiShen.SHANGGUAN || hour_shishen_dz == ShiShen.SHANGGUAN) {
+                sb.append("时上再把伤官见，刑妻克子定不养。");
+            }
+            if (year_shishen_tg == ShiShen.SHANGGUAN) {
+                sb.append("年干为伤官，不论喜忌，皆主祖业漂零父母辈贫困多灾。");
+            }
+        }
+        if (year_shishen_tg == ShiShen.SHISHEN || year_shishen_dz == ShiShen.SHISHEN) {
+            sb.append("年上食神，主少年不缺衣食，财源丰厚有福气，还主为人多自在，少年吃些好东西。");
+            if (year_shishen_tg == ShiShen.SHISHEN && year_shishen_dz == ShiShen.BIJIAN) {
+                sb.append("干上食神支比肩，此人养子定无疑。");
+            }
+        }
+        if (year_shishen_tg == ShiShen.PIANYIN || year_shishen_dz == ShiShen.PIANYIN) {
+            sb.append("年上偏印命不强，不是离父就离娘，自幼与母无缘份，缺少家教在命上。");
+            if (year_shishen_tg == ShiShen.PIANYIN || year_shishen_dz == ShiShen.BIJIAN) {
+                sb.append("支为比肩为养子，少年名誉不太好，父母命硬克不动，疾病口舌不顺当。");
+            }
+        }
+        if (year_shishen_tg == ShiShen.BIJIAN || year_shishen_dz == ShiShen.BIJIAN) {
+            if (year_shishen_tg == ShiShen.BIJIAN) {
+                sb.append("年干比劫不利父。");
+            }
+            sb.append("年上比肩少远乡，生来就把父母克，父母命硬克不动，必有灾疾和口舌。祖业前程你没有，自力更生去生活，从小受苦受折磨.");
+        }
+        if (year_shishen_tg == ShiShen.JIECAI || year_shishen_dz == ShiShen.JIECAI) {
+            sb.append("年上劫财，祖业贫穷，靠自力更生创家业，为人心高气傲，讲义气，争强好胜。");
+        }
+        if ((tgs[YEAR].getTianGan() == TianGan.REN && tgs[HOUR].getTianGan() == TianGan.YI)
+                || (tgs[YEAR].getTianGan() == TianGan.YI && tgs[HOUR].getTianGan() == TianGan.REN)) {
+            sb.append("主母亲为偏房");
+        }
+        if ((dzs[YEAR].getDiZhi() == DiZhi.XU || dzs[YEAR].getDiZhi() == DiZhi.XU) && isYin(dzs[YEAR])) {
+            sb.append("主母亲或祖长多有宗教信仰或有懂五术玄学之人。");
+        }
+        sb.append("\n");
+        if (month_shishen_tg == ShiShen.ZHENGGUAN || month_shishen_dz == ShiShen.ZHENGGUAN) {
+            sb.append("月上正官正气星，为人生来主聪明。");
+        }
+        if (month_shishen_tg == ShiShen.PIANGUAN || month_shishen_dz == ShiShen.PIANGUAN) {
+            sb.append("月上偏官.");
+        }
+        if (month_shishen_tg == ShiShen.PIANYIN || month_shishen_dz == ShiShen.PIANYIN) {
+            sb.append("月上偏印.");
+        }
+        if (month_shishen_tg == ShiShen.BIJIAN || month_shishen_dz == ShiShen.BIJIAN) {
+            sb.append("月上比肩兄弟多，兄弟多了不相合，兄弟常常不和睦，自力更生把事谋。");
+        }
+        if (month_shishen_tg == ShiShen.JIECAI || month_shishen_dz == ShiShen.JIECAI) {
+            sb.append("月上劫财，一生钱存不下，好为朋友破钱财，此人喜欢外表光华，爱穿爱戴投机取巧，不能和别人合伙做买卖，有钱就有事，好打架骂人。");
+        }
+        if (month_shishen_tg == ShiShen.SHISHEN || month_shishen_dz == ShiShen.SHISHEN) {
+            sb.append("月柱有食神，为人人缘好，一生有贵人助");
+            if (month_shishen_dz == ShiShen.SHISHEN) {
+                sb.append("月支食神一般身体好。");
+            }
+        }
+        if (month_shishen_tg == ShiShen.SHANGGUAN && month_shishen_dz == ShiShen.QISHA) {
+            sb.append("月柱干伤官支坐七杀，女命逢之喝三眼井水之命。");
+        }
+        sb.append("\n");
+        if (day_shishen_dz == ShiShen.SHANGGUAN) {
+            sb.append("女命日坐伤官不论喜忌，必克夫婚姻不顺。");
+        }
+        if (day_shishen_dz == ShiShen.BIJIAN || day_shishen_dz == ShiShen.JIECAI) {
+            sb.append("男命坐比劫，必克妻，婚姻不顺。");
+        }
+        if ((tgs[DAY].getTianGan() == TianGan.JIA && dzs[DAY].getDiZhi() == DiZhi.YIN)
+                || (tgs[DAY].getTianGan() == TianGan.WU && dzs[DAY].getDiZhi() == DiZhi.SHEN)) {
+            sb.append("女命甲寅、wu申日柱，夫有横死之灾。");
+        }
+        if (day_shishen_dz == ShiShen.PIANCAI) {
+            sb.append("男命日坐偏财者主自己风流，不喜正妻偏爱小妾。");
+        }
+        if (day_shishen_dz == ShiShen.PIANYIN) {
+            sb.append("男命日坐偏印必克妻且妻与母不合。");
+        }
+        if (dzs[DAY].getDiZhi() == dzs[MONTH].getDiZhi()) {
+            sb.append("主配偶漂亮或能力强");
+        } else {
+            switch (dzs[DAY].getDiZhi()) {
+                case DiZhi.ZI:
+                case DiZhi.WU:
+                case DiZhi.MAO:
+                case DiZhi.YOU:
+                    sb.append("主配偶漂亮或能干");
+                    break;
+                case DiZhi.YIN:
+                case DiZhi.SHEN:
+                case DiZhi.SI:
+                case DiZhi.HAI:
+                    sb.append("主配偶长相一般，好说，聪明能干");
+                    break;
+                case DiZhi.CHEN:
+                case DiZhi.XU:
+                case DiZhi.CHOU:
+                case DiZhi.WEI:
+                    sb.append("主配偶朴素，敦厚。");
+                    break;
+
+            }
+        }
+
+        System.out.println(sb.toString());
+    }
+       
+    private void checkRiZhu() {
+        TianGan sTG = tgs[HOUR];
+        DiZhi sDZ = dzs[HOUR];
+        StringBuffer sb = new StringBuffer();
+        
+        if(sTG.getXing().getXing()==sDZ.getXing().getXing()){
+            sb.append("克妻，主婚姻不顺\n");
+        }
+        if(sTG.getXing().isSheng(sDZ.getXing())){
+            sb.append("夫妻感情好\n");
+        }
+
+        System.out.println(sb.toString());
+    }
+        
+    private void shiZhuDuan() {
+        int stg = tgs[HOUR].getTianGan();
+        int sdz = dzs[HOUR].getDiZhi();
+        StringBuffer sb = new StringBuffer();
+
+        switch (sdz) {
+            case DiZhi.ZI:
+            case DiZhi.WU:
+            case DiZhi.MAO:
+            case DiZhi.YOU:
+                sb.append("时初出生先亡父，时末先亡母，时中间多富饶\n");
+                break;
+            case DiZhi.YIN:
+            case DiZhi.SHEN:
+            case DiZhi.SI:
+            case DiZhi.HAI:
+                sb.append("时正兄弟四五个，时初时末也成双\n");
+                break;
+            case DiZhi.CHEN:
+            case DiZhi.XU:
+            case DiZhi.CHOU:
+            case DiZhi.WEI:
+                sb.append("时正多者先亡父，时初时末先亡母，兄弟少或无兄弟。此时辰出生的人克六亲\n");
+                break;
+        }
+
+        switch (stg) {
+            case TianGan.JIA:
+            case TianGan.YI:
+                sb.append("成家之后才能富贵，发达\n");
+                break;
+            case TianGan.BING:
+            case TianGan.DING:
+                sb.append("晚年家中多事，多烦恼\n");
+                break;
+            case TianGan.WU:
+            case TianGan.JI:
+                sb.append("自己富了发达了，但是六亲沾不到光\n");
+                break;
+            case TianGan.GENG:
+            case TianGan.XIN:
+                sb.append("一生多于动中谋生，善于交际门路广\n");
+                break;
+            case TianGan.REN:
+            case TianGan.GUI:
+                sb.append("一生做事多阻逆，多波折\n");
+                break;
+        }
+
+        System.out.println(sb.toString());
+    }
 
 	private void checkLiuQin() {
 		System.out.println("日主：" + tgs[2]);

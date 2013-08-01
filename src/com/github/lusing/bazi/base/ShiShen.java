@@ -21,6 +21,8 @@ public class ShiShen extends LiuQin {
      */
     public static final int ZHENGGUAN = 0x30;
     public static final int QISHA = 0x31;
+    public static final int PIANGUAN = QISHA;
+    
     /**
      * 我克者为妻财 / 财星 异性为正财 同性为偏财
      */
@@ -40,43 +42,43 @@ public class ShiShen extends LiuQin {
         switch (shishen) {
             case ZHENGYIN:
                 sb.append("正印（印绶）");
-                sb.append("\t生我者\t正母");
+                //sb.append("\t生我者\t正母");
                 break;
             case PIANYIN:
                 sb.append("偏印（枭）");
-                sb.append("\t生我者\t养母");
+                //sb.append("\t生我者\t养母");
                 break;
             case SHANGGUAN:
                 sb.append("伤官");
-                sb.append("\t我生者\t儿子(女看)");
+                //sb.append("\t我生者\t儿子(女看)");
                 break;
             case SHISHEN:
                 sb.append("食神");
-                sb.append("\t我生者\t子孙，女儿(女看)");
+                //sb.append("\t我生者\t子孙，女儿(女看)");
                 break;
             case ZHENGGUAN:
                 sb.append("正官");
-                sb.append("\t克我者\t丈夫，");
+                //sb.append("\t克我者\t丈夫，");
                 break;
             case QISHA:
                 sb.append("七杀(偏官)");
-                sb.append("\t克我者\t情夫，儿子（男）");
+                //sb.append("\t克我者\t情夫，儿子（男）");
                 break;
             case ZHENGCAI:
                 sb.append("正财");
-                sb.append("\t我克者\t正妻，金钱");
+                //sb.append("\t我克者\t正妻，金钱");
                 break;
             case PIANCAI:
                 sb.append("偏财");
-                sb.append("\t我克者\t父，妾");
+                //sb.append("\t我克者\t父，妾");
                 break;
             case BIJIAN:
                 sb.append("比肩");
-                sb.append("\t兄弟姐妹");
+                //sb.append("\t兄弟姐妹");
                 break;
             case JIECAI:
                 sb.append("劫财");
-                sb.append("\t义兄弟");
+                //sb.append("\t义兄弟");
                 break;
             default:
                 break;
