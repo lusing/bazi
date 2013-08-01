@@ -59,9 +59,10 @@ public class BaZiEngine {
 	public void run() {
 		checkLiuQin();
 		checkWuXing();
-                manRenDuan();
+        manRenDuan();
+        checkBaZhuan();
 	}
-        
+    
     private void manRenDuan() {
         shiZhuDuan();
         checkRiZhu();
@@ -221,15 +222,15 @@ public class BaZiEngine {
     }
        
     private void checkRiZhu() {
-        TianGan sTG = tgs[HOUR];
-        DiZhi sDZ = dzs[HOUR];
+        TianGan sTG = tgs[DAY];
+        DiZhi sDZ = dzs[DAY];
         StringBuffer sb = new StringBuffer();
         
         if(sTG.getXing().getXing()==sDZ.getXing().getXing()){
-            sb.append("克妻，主婚姻不顺\n");
+            sb.append("日柱比运转，克妻，主婚姻不顺\n");
         }
         if(sTG.getXing().isSheng(sDZ.getXing())){
-            sb.append("夫妻感情好\n");
+            sb.append("日干生日支夫妻感情好\n");
         }
 
         System.out.println(sb.toString());
@@ -285,6 +286,124 @@ public class BaZiEngine {
         }
 
         System.out.println(sb.toString());
+    }
+    
+    private void checkBaZhuan(){
+        if(isBaZhuan(tgs[DAY],dzs[DAY])){
+            System.out.println("日柱有淫欲煞，主有不正之妻");
+        }
+        if(isBaZhuan(tgs[HOUR],dzs[HOUR])){
+            System.out.println("时柱有淫欲煞，主有不正之子");
+        }
+        if(isJiuChou(tgs[DAY],dzs[DAY])||isJiuChou(tgs[HOUR],dzs[HOUR])){
+            System.out.println("九丑，主夫妻不睦");
+        }
+        if(isRiZuoShangGuan()){
+            System.out.println("日坐伤官，主风流好色");
+        }
+        if(isYinYangChaCuo()){
+            System.out.println("阴阳差错日，主婚姻不顺");
+        }
+        if(isShiEDaBai()){
+            System.out.println("十恶大败，主败祖业");
+        }
+    }
+    
+    private boolean isBaZhuan(TianGan tg, DiZhi dz){
+        int tg1 = tg.getTianGan();
+        int dz1 = dz.getDiZhi();
+        
+        if( (tg1 == TianGan.JIA && dz1 == DiZhi.YIN) ||
+             (tg1 == TianGan.YI && dz1 == DiZhi.MAO) ||
+                (tg1 == TianGan.JI && dz1 == DiZhi.WEI) ||
+                (tg1 == TianGan.DING && dz1 == DiZhi.WEI) ||
+                (tg1 == TianGan.GENG && dz1 == DiZhi.SHEN) ||
+                (tg1 == TianGan.XIN && dz1 == DiZhi.YOU) ||
+                (tg1 == TianGan.WU && dz1 == DiZhi.XU) ||
+                (tg1 == TianGan.GUI && dz1 == DiZhi.CHOU)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    private boolean isJiuChou(TianGan tg, DiZhi dz) {
+        int tg1 = tg.getTianGan();
+        int dz1 = dz.getDiZhi();
+
+        if ((tg1 == TianGan.REN && dz1 == DiZhi.ZI)
+                || (tg1 == TianGan.REN && dz1 == DiZhi.WU)
+                || (tg1 == TianGan.WU && dz1 == DiZhi.ZI)
+                || (tg1 == TianGan.WU && dz1 == DiZhi.WU)
+                || (tg1 == TianGan.JI && dz1 == DiZhi.YOU)
+                || (tg1 == TianGan.JI && dz1 == DiZhi.MAO)
+                || (tg1 == TianGan.YI && dz1 == DiZhi.YOU)
+                || (tg1 == TianGan.YI && dz1 == DiZhi.MAO)
+                || (tg1 == TianGan.XIN && dz1 == DiZhi.MAO)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    private boolean isRiZuoShangGuan() {
+        int tg1 = tgs[DAY].getTianGan();
+        int dz1 = dzs[DAY].getDiZhi();
+
+        if ((tg1 == TianGan.JIA && dz1 == DiZhi.ZI)
+                || (tg1 == TianGan.YI && dz1 == DiZhi.SI)
+                || (tg1 == TianGan.GENG && dz1 == DiZhi.WU)
+                || (tg1 == TianGan.XIN && dz1 == DiZhi.HAI)
+                || (tg1 == TianGan.JIA && dz1 == DiZhi.WU)
+                || (tg1 == TianGan.GENG && dz1 == DiZhi.ZI)
+                || (tg1 == TianGan.GUI && dz1 == DiZhi.HAI)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    private boolean isYinYangChaCuo(){
+        int tg1 = tgs[DAY].getTianGan();
+        int dz1 = dzs[DAY].getDiZhi();
+
+        if ((tg1 == TianGan.XIN && dz1 == DiZhi.MAO)
+                || (tg1 == TianGan.REN && dz1 == DiZhi.CHEN)
+                || (tg1 == TianGan.GUI && dz1 == DiZhi.SI)
+                || (tg1 == TianGan.BING && dz1 == DiZhi.WU)
+                || (tg1 == TianGan.DING && dz1 == DiZhi.WEI)
+                || (tg1 == TianGan.WU && dz1 == DiZhi.SHEN)
+                || (tg1 == TianGan.XIN && dz1 == DiZhi.YOU)
+                || (tg1 == TianGan.REN && dz1 == DiZhi.XU)
+                || (tg1 == TianGan.GUI && dz1 == DiZhi.HAI)
+                || (tg1 == TianGan.BING && dz1 == DiZhi.ZI)
+                || (tg1 == TianGan.DING && dz1 == DiZhi.CHOU)
+                || (tg1 == TianGan.WU && dz1 == DiZhi.YIN)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    private boolean isShiEDaBai(){
+        int tg1 = tgs[DAY].getTianGan();
+        int dz1 = dzs[DAY].getDiZhi();
+
+        if ((tg1 == TianGan.JIA && dz1 == DiZhi.CHEN)
+                || (tg1 == TianGan.YI && dz1 == DiZhi.SI)
+                || (tg1 == TianGan.REN && dz1 == DiZhi.SHEN)
+                || (tg1 == TianGan.BING && dz1 == DiZhi.SHEN)
+                || (tg1 == TianGan.DING && dz1 == DiZhi.HAI)
+                || (tg1 == TianGan.GENG && dz1 == DiZhi.CHEN)
+                || (tg1 == TianGan.GUI && dz1 == DiZhi.HAI)
+                || (tg1 == TianGan.WU && dz1 == DiZhi.XU)
+                || (tg1 == TianGan.XIN && dz1 == DiZhi.SI)
+                || (tg1 == TianGan.JI && dz1 == DiZhi.CHOU)) {
+            return true;
+        } else {
+            return false;
+        }        
     }
 
 	private void checkLiuQin() {
