@@ -9,11 +9,12 @@ import java.util.Date;
  *@author kongqz 
  * */
 public class BaZi {
-    private int year;
-    private int month;
-    private int day;
-    private boolean leap;
-    Date baseDate = null;
+	private int year;
+	private int month;
+	private int day;
+	private boolean leap;
+	Date baseDate = null;
+	public int bazi[] = null;
     final static String chineseNumber[] = {"正", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "腊"};
    public final static String[] Gan = {"甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"};
    public final static String[] Zhi = {"子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"};
@@ -35,12 +36,12 @@ public class BaZi {
         0x0b5a0, 0x056d0, 0x055b2, 0x049b0, 0x0a577, 0x0a4b0, 0x0aa50, 0x1b255, 0x06d20, 0x0ada0
     };
     
-        /**
-     * @return the month
-     */
-    public String getMonth() {
-        return chineseNumber[month- 1] ;
-    }
+	/**
+	 * @return the month
+	 */
+	public String getMonth() {
+		return chineseNumber[month - 1];
+	}
 
     /**
      * @return the year
@@ -93,10 +94,17 @@ public class BaZi {
      * @author kongqz
      * */
     public String getYearGanZhi(int hour) {
+    	if(bazi==null){
+    		bazi = new int[8];
+    	}
         //1864年是甲子年，每隔六十年一个甲子
         int idx = (year - 1864) % 60;
         //没有过春节的话那么年还算上一年的，此处求的年份的干支
         String y = jiazhi[idx];
+        
+        //Xulun
+        bazi[0] = idx % 10;
+        bazi[1] = idx % 12;
         
         String m="";
         String d="";
@@ -113,7 +121,10 @@ public class BaZi {
         if(idxm==10) idxm=0;
         //求的月份的干支
         m=Gan[(idxm+month-1)%10]+Zhi[(month+2-1)%12];
-       
+        
+        //Xulun
+        bazi[2]=(idxm+month-1)%10;
+        bazi[3]=(month+2-1)%12;
         
         /*求出和1900年1月31日甲辰日相差的天数 
          * 甲辰日是第四十天
@@ -122,6 +133,10 @@ public class BaZi {
         offset=(offset+40)%60;
         //求的日的干支
         d=jiazhi[offset];
+        
+        //Xulun
+        bazi[4]= offset%10;
+        bazi[5]= offset%12;
         
         /**
          * 日上起时
@@ -133,6 +148,11 @@ public class BaZi {
         offset=(offset % 5 )*2;
         //求得时辰的干支   
         h=Gan[(offset+hour)%10]+Zhi[hour];
+        
+        //Xulun 
+        bazi[6]=(offset+hour)%10;
+        bazi[7]=hour;
+        
         //在此处输出我们的年月日时的天干地支
         //return y+","+m+","+d+","+h;
         return y+m+d+h;

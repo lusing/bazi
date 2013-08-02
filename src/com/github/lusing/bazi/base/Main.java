@@ -3,14 +3,7 @@ package com.github.lusing.bazi.base;
 public class Main {
 
 	public static void main(String[] args) {
-		TianGan tg_jia = new TianGan(TianGan.JIA);
 
-		for (int i = TianGan.JIA; i <= TianGan.GUI; i++) {
-			// System.out.println(new TianGan(i));
-			// System.out.println(new TianGan(i).getXing());
-			// System.out.println(ShiShen.getShiShen(tg_jia,new TianGan(i)));
-
-		}
 		BaZiEngine bze0 = new BaZiEngine(TianGan.GENG, DiZhi.SHEN, TianGan.REN,
 				DiZhi.WU, TianGan.REN, DiZhi.XU, TianGan.YI, DiZhi.SI);
 		bze0.run();

@@ -26,10 +26,7 @@ public class BaZiEngine {
 	int hour_dz;
 	TianGan[] tgs;
 	DiZhi[] dzs;
-
-	private int dz_gens = 0;
-	private int dz_yins = 0;
-
+	
 	public BaZiEngine(int y1, int y2, int m1, int m2, int d1, int d2, int h1,
 			int h2) {
 		this.year_tg = y1;
@@ -55,21 +52,53 @@ public class BaZiEngine {
 		dzs[3] = new DiZhi(h2);
 
 	}
+	
+	public BaZiEngine(int[] bas){
+		if(bas==null || bas.length!=8){
+			return;
+		}else{
+			this.year_tg = bas[0];
+			this.year_dz = bas[1];
+			this.month_tg = bas[2];
+			this.month_dz = bas[3];
+			this.day_tg = bas[4];
+			this.day_dz = bas[5];
+			this.hour_tg = bas[6];
+			this.hour_dz = bas[7];
 
-	public void run() {
-		checkLiuQin();
-		checkWuXing();
-        manRenDuan();
-        checkBaZhuan();
+			tgs = new TianGan[4];
+			dzs = new DiZhi[4];
+
+			tgs[0] = new TianGan(bas[0]);
+			tgs[1] = new TianGan(bas[2]);
+			tgs[2] = new TianGan(bas[4]);
+			tgs[3] = new TianGan(bas[6]);
+
+			dzs[0] = new DiZhi(bas[1]);
+			dzs[1] = new DiZhi(bas[3]);
+			dzs[2] = new DiZhi(bas[5]);
+			dzs[3] = new DiZhi(bas[7]);
+		}
+	}
+	
+	public String run() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(checkLiuQin());
+		sb.append(checkWuXing());
+        sb.append(mangRenDuan());
+        sb.append(checkBaZhuan());
+        return sb.toString();
 	}
     
-    private void manRenDuan() {
-        shiZhuDuan();
-        checkRiZhu();
-        checkShiShen();
+    private String mangRenDuan() {
+    	StringBuilder sb = new StringBuilder();
+        sb.append(shiZhuDuan());
+        sb.append(checkRiZhu());
+        sb.append(checkShiShen());
+        return sb.toString();
     }
 
-    private void checkShiShen() {
+    private String checkShiShen() {
         StringBuffer sb = new StringBuffer();
         int year_shishen_tg = ShiShen.getShiShen(tgs[DAY], tgs[YEAR]).getShiShen();
         int year_shishen_dz = ShiShen.getShiShen(tgs[DAY], dzs[YEAR].getBenQin()).getShiShen();
@@ -218,10 +247,10 @@ public class BaZiEngine {
             }
         }
 
-        System.out.println(sb.toString());
+        return sb.toString()+"\n";
     }
        
-    private void checkRiZhu() {
+    private String checkRiZhu() {
         TianGan sTG = tgs[DAY];
         DiZhi sDZ = dzs[DAY];
         StringBuffer sb = new StringBuffer();
@@ -233,10 +262,10 @@ public class BaZiEngine {
             sb.append("日干生日支夫妻感情好\n");
         }
 
-        System.out.println(sb.toString());
+        return sb.toString()+"\n";
     }
         
-    private void shiZhuDuan() {
+    private String shiZhuDuan() {
         int stg = tgs[HOUR].getTianGan();
         int sdz = dzs[HOUR].getDiZhi();
         StringBuffer sb = new StringBuffer();
@@ -285,28 +314,30 @@ public class BaZiEngine {
                 break;
         }
 
-        System.out.println(sb.toString());
+        return sb.toString()+"\n";
     }
     
-    private void checkBaZhuan(){
+    private String checkBaZhuan(){
+    	StringBuilder sb = new StringBuilder();
         if(isBaZhuan(tgs[DAY],dzs[DAY])){
-            System.out.println("日柱有淫欲煞，主有不正之妻");
+            sb.append("日柱有淫欲煞，主有不正之妻\n");
         }
         if(isBaZhuan(tgs[HOUR],dzs[HOUR])){
-            System.out.println("时柱有淫欲煞，主有不正之子");
+        	sb.append("时柱有淫欲煞，主有不正之子\n");
         }
         if(isJiuChou(tgs[DAY],dzs[DAY])||isJiuChou(tgs[HOUR],dzs[HOUR])){
-            System.out.println("九丑，主夫妻不睦");
+        	sb.append("九丑，主夫妻不睦\n");
         }
         if(isRiZuoShangGuan()){
-            System.out.println("日坐伤官，主风流好色");
+        	sb.append("日坐伤官，主风流好色\n");
         }
         if(isYinYangChaCuo()){
-            System.out.println("阴阳差错日，主婚姻不顺");
+        	sb.append("阴阳差错日，主婚姻不顺\n");
         }
         if(isShiEDaBai()){
-            System.out.println("十恶大败，主败祖业");
+        	sb.append("十恶大败，主败祖业\n");
         }
+        return sb.toString();
     }
     
     private boolean isBaZhuan(TianGan tg, DiZhi dz){
@@ -406,15 +437,14 @@ public class BaZiEngine {
         }        
     }
 
-	private void checkLiuQin() {
-		System.out.println("日主：" + tgs[2]);
-        System.out.println(tgs[0].toString()+dzs[0]+" "+tgs[1]+dzs[1]+" "+tgs[2]+dzs[2]+" "+tgs[3]+dzs[3]);
-		System.out.println(tgs[0] + " "
-				+ ShiShen.getShiShen(tgs[2], tgs[0]).toString());
-		System.out.println(tgs[1] + " "
-				+ ShiShen.getShiShen(tgs[2], tgs[1]).toString());
-		System.out.println(tgs[3] + " "
-				+ ShiShen.getShiShen(tgs[2], tgs[3]).toString());
+	private String checkLiuQin() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("日主：" + tgs[2] + "\n");
+		sb.append(tgs[0].toString() + dzs[0] + " " + tgs[1] + dzs[1] + " "
+				+ tgs[2] + dzs[2] + " " + tgs[3] + dzs[3]+"\n");
+		sb.append(tgs[0] + " " + ShiShen.getShiShen(tgs[2], tgs[0]).toString()+"\n");
+		sb.append(tgs[1] + " " + ShiShen.getShiShen(tgs[2], tgs[1]).toString()+"\n");
+		sb.append(tgs[3] + " " + ShiShen.getShiShen(tgs[2], tgs[3]).toString()+"\n");
         
         int yins = 0;
         int bis = 0;
@@ -454,19 +484,22 @@ public class BaZiEngine {
                     break;
             }
         }
-        System.out.println("共有食伤:"+shangs+"个，财:"+cais+"个，官:"+guans+"个，印:"+yins+"个，根比："+bis+"个");
+        sb.append("共有食伤:"+shangs+"个，财:"+cais+"个，官:"+guans+"个，印:"+yins+"个，根比："+bis+"个\n");
+        return sb.toString();
 	}
 
-	private void checkWuXing() {
+	private String checkWuXing() {
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < tgs.length; i++) {
-			System.out.print(tgs[i].getXing().toString() + dzs[i].getXing()
+			sb.append(tgs[i].getXing().toString() + dzs[i].getXing()
 					+ "\t");
 		}
-		System.out.println();
+		sb.append("\n");
 
         BaziResult br = checkWangShuai();
-        System.out.println(br);
-        System.out.println(getYongShen(br));
+        sb.append(br);
+        sb.append(getYongShen(br));
+        return sb.toString();
 	}
     
     /**
@@ -513,7 +546,7 @@ public class BaZiEngine {
 				gens++;
 			}
 		}
-		System.out.println("本命共有根" + gens + "个，印" + yins + "个");
+		//System.out.println("本命共有根" + gens + "个，印" + yins + "个");
 		/**
 		 * 九. 印或根在命局地支中一次也不出现
 		 */

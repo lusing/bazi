@@ -291,13 +291,9 @@ public class BaZi {
 
             yiLei -= tongLei;
 
-            // sprintf(tmpBuf,"%.3f+ %.3f = %.3f\n",
-            // (float)strengthResult[fateProp],(float)strengthResult[srcProp],
-
-            // (float)tongLei);
-            tmpBuf.append(new Double(strengthResult[fateProp]).toString() + "+");
-            tmpBuf.append(new Double(strengthResult[srcProp]).toString() + "=");
-            tmpBuf.append(new Double(tongLei).toString() + "\n");
+            tmpBuf.append(Double.valueOf(strengthResult[fateProp]).toString() + "+");
+            tmpBuf.append(Double.valueOf(strengthResult[srcProp]).toString() + "=");
+            tmpBuf.append(Double.valueOf(tongLei).toString() + "\n");
 
             preStr.append("同类：");
 
@@ -311,7 +307,7 @@ public class BaZi {
 
             sResultBuf.append("异类：总和为 ");
 
-            sResultBuf.append(new Double(yiLei) + "\n");
+            sResultBuf.append(Double.valueOf(yiLei) + "\n");
 
         }
 

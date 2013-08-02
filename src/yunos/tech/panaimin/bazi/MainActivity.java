@@ -12,6 +12,8 @@ import android.widget.DatePicker.OnDateChangedListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import com.github.lusing.bazi.base.BaZiEngine;
+
 public class MainActivity extends Activity {
     TextView txtResult;
     Button btnEval;
@@ -67,18 +69,19 @@ public class MainActivity extends Activity {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 Calendar cal = Calendar.getInstance();
                 try {
-                        //设定此人的西元时间为1983-01-10
+                        
                         cal.setTime(sdf.parse(year+"-"+month+"-"+day));
                         luozhuanghehun.BaZi lunar = new luozhuanghehun.BaZi(cal);
                         txtResult.setText("");
                         txtResult.setText("公历生日:"+year+"年"+month+"月"+day+"日\n");
                         txtResult.setText(txtResult.getText()+"此人农历的日期【"+lunar.toString()+"】\n");
-                        //此处是为了获取时间在中国的八字学说上的显示，此人是午时生的
+                        
                         txtResult.setText(txtResult.getText()+"此人八字【"+lunar.getYearGanZhi(MainActivity.this.getHour())+"】\n");
                         //获取生肖
                         txtResult.setText(txtResult.getText()+"此人的农历生肖【"+lunar.animalsYear()+"】\n");
                         
-                        final String paraStr = lunar.getYearGanZhi(MainActivity.this.getHour()); 
+                        final String paraStr = lunar.getYearGanZhi(MainActivity.this.getHour());
+                        final int[] baBazi = lunar.bazi.clone();
                         
                         new AsyncTask<String, Integer, String>() {
                             @Override
@@ -88,8 +91,12 @@ public class MainActivity extends Activity {
 
                             @Override
                             protected String doInBackground(String... paraStrs) {
+                            	StringBuffer sb = new StringBuffer();
                                 BaZi bz = new BaZi();
-                                return bz.evalBazi(paraStrs[0]);
+                                sb.append(bz.evalBazi(paraStrs[0])+"\n");
+                                BaZiEngine bze = new BaZiEngine(baBazi);
+                                sb.append(bze.run());
+                                return sb.toString();
                             }
 
                             @Override
