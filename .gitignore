@@ -20,3 +20,5 @@ bin/AndroidManifest.xml
 *.apk
 bin/dexedLibs/android-support-v4-22b7ac6aa9b08e1addbff966a76a3209.jar
 *.cache
+bin/AndroidManifest.xml
+bin/Bazi.apk
