@@ -58,43 +58,59 @@ public class YinpanDunjia {
 
     private int[] houTianBaGua = {1, 8, 3, 4, 9, 2, 7, 6};
 
+    private int[] yangDunOrder = {0, 5, 2, 3, 8, 7, 6, 1, 4};
+    private int[] yinDunOrder = {0, 4, 1, 6, 7, 8, 3, 2, 5};
+
     private void setJu() {
         int yearNo = yearGZ.mDz.getDiZhi() + 1;
         int hourNo = hourGZ.mDz.getDiZhi() + 1;
         mJu = (yearNo + mMonth + mDay + hourNo) % 9;
     }
 
+    private int getQiyi(int i) {
+        switch (i % 9) {
+            case 0:
+                return TianGan.WU;
+            case 1:
+                return TianGan.JI;
+            case 2:
+                return TianGan.GENG;
+            case 3:
+                return TianGan.XIN;
+            case 4:
+                return TianGan.REN;
+            case 5:
+                return TianGan.GUI;
+            case 6:
+                return TianGan.DING;
+            case 7:
+                return TianGan.BING;
+            case 8:
+                return TianGan.YI;
+        }
+        return 0;
+    }
+
     private void setDiPan() {
         if (!mYang) {
             //阳遁，后天八卦
-            diPan_qiyi[0] = new TianGan(TianGan.WU);
-            diPan_qiyi[5] = new TianGan(TianGan.JI);
-            diPan_qiyi[2] = new TianGan(TianGan.GENG);
-            diPan_qiyi[3] = new TianGan(TianGan.XIN);
-            diPan_qiyi[8] = new TianGan(TianGan.REN);
-            diPan_qiyi[7] = new TianGan(TianGan.GUI);
-            diPan_qiyi[6] = new TianGan(TianGan.DING);
-            diPan_qiyi[1] = new TianGan(TianGan.BING);
-            diPan_qiyi[4] = new TianGan(TianGan.YI);
+            for (int i = 0; i < 9; i++) {
+                diPan_qiyi[yangDunOrder[i]] = new TianGan(getQiyi(i));
+            }
         } else {
             //阴遁
-            diPan_qiyi[0] = new TianGan(TianGan.WU);
-            diPan_qiyi[4] = new TianGan(TianGan.JI);
-            diPan_qiyi[1] = new TianGan(TianGan.GENG);
-            diPan_qiyi[6] = new TianGan(TianGan.XIN);
-            diPan_qiyi[7] = new TianGan(TianGan.REN);
-            diPan_qiyi[8] = new TianGan(TianGan.GUI);
-            diPan_qiyi[3] = new TianGan(TianGan.DING);
-            diPan_qiyi[2] = new TianGan(TianGan.BING);
-            diPan_qiyi[5] = new TianGan(TianGan.YI);
+            for (int i = 0; i < 9; i++) {
+                diPan_qiyi[yinDunOrder[i]] = new TianGan(getQiyi(i));
+            }
+
         }
-        
+
         System.out.println("---------");
-        System.out.println("|"+diPan_qiyi[3].toString()+"|"+diPan_qiyi[4].toString()+"|"+diPan_qiyi[5]+"|");
+        System.out.println("|" + diPan_qiyi[3].toString() + "|" + diPan_qiyi[4].toString() + "|" + diPan_qiyi[5] + "|");
         System.out.println("---------");
-        System.out.println("|"+diPan_qiyi[2].toString()+"|"+diPan_qiyi[8].toString()+"|"+diPan_qiyi[6]+"|");
+        System.out.println("|" + diPan_qiyi[2].toString() + "|" + diPan_qiyi[8].toString() + "|" + diPan_qiyi[6] + "|");
         System.out.println("---------");
-        System.out.println("|"+diPan_qiyi[1].toString()+"|"+diPan_qiyi[0].toString()+"|"+diPan_qiyi[7]+"|");
+        System.out.println("|" + diPan_qiyi[1].toString() + "|" + diPan_qiyi[0].toString() + "|" + diPan_qiyi[7] + "|");
         System.out.println("---------");
     }
 

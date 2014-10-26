@@ -22,7 +22,7 @@ public class TianGan {
     private int tg;
 
     public TianGan(int tg) {
-        this.tg = tg;
+        this.tg = tg % 10;
     }
 
     public int getTianGan() {
