@@ -92,17 +92,16 @@ public class YinpanDunjia {
     }
 
     private void setDiPan() {
-        if (!mYang) {
+        if (mYang) {
             //阳遁，后天八卦
             for (int i = 0; i < 9; i++) {
-                diPan_qiyi[yangDunOrder[i]] = new TianGan(getQiyi(i));
+                diPan_qiyi[(yangDunOrder[(i+mJu-1)%9])%9] = new TianGan(getQiyi(i));
             }
         } else {
             //阴遁
             for (int i = 0; i < 9; i++) {
-                diPan_qiyi[yinDunOrder[i]] = new TianGan(getQiyi(i));
+                diPan_qiyi[(yinDunOrder[(i+mJu-1)%9])%9] = new TianGan(getQiyi(i));
             }
-
         }
 
         System.out.println("---------");
