@@ -35,3 +35,4 @@ project.properties
 project.properties
 .settings/org.eclipse.jdt.core.prefs
 lint.xml
+gen/yunos/tech/panaimin/bazi/Manifest.java
