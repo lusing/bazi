@@ -26,3 +26,7 @@ bin/Bazi.apk
 bin/resources.ap_
 gen/yunos/tech/panaimin/bazi/BuildConfig.java
 .project
+.classpath
+bin/classes.dex
+bin/Bazi.apk
+bin/AndroidManifest.xml
