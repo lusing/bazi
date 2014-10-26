@@ -30,3 +30,6 @@ gen/yunos/tech/panaimin/bazi/BuildConfig.java
 bin/classes.dex
 bin/Bazi.apk
 bin/AndroidManifest.xml
+gen/yunos/tech/panaimin/bazi/R.java
+project.properties
+project.properties
