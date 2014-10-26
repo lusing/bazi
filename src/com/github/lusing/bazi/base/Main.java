@@ -6,7 +6,7 @@ public class Main {
 
 		BaZiEngine bze0 = new BaZiEngine(TianGan.GENG, DiZhi.SHEN, TianGan.REN,
 				DiZhi.WU, TianGan.REN, DiZhi.XU, TianGan.YI, DiZhi.SI);
-		bze0.run();
+		System.out.println(bze0.run());
         
         System.out.println("===图1,旺===");
 		BaZiEngine bze1 = new BaZiEngine(TianGan.JI, DiZhi.HAI, TianGan.GUI,
@@ -170,57 +170,57 @@ public class Main {
         System.out.println("===曾欢===");
         BaZiEngine bze_zenghuan = new BaZiEngine(TianGan.GUI, DiZhi.HAI, TianGan.BING,
                 DiZhi.CHEN, TianGan.WU, DiZhi.CHEN, TianGan.JIA, DiZhi.YIN);
-        bze_zenghuan.run();
+        System.out.println(bze_zenghuan.run());
 
         System.out.println("===勾阳===");
         BaZiEngine bze_gouyang = new BaZiEngine(TianGan.JIA, DiZhi.ZI, TianGan.DING,
                 DiZhi.CHOU, TianGan.XIN, DiZhi.HAI, TianGan.GUI, DiZhi.SI);
-        bze_gouyang.run();
+        System.out.println(bze_gouyang.run());
         System.out.println("===喜超===");
         BaZiEngine bze_xichao = new BaZiEngine(TianGan.GENG, DiZhi.SHEN, TianGan.BING,
                 DiZhi.XU, TianGan.JIA, DiZhi.YIN, TianGan.XIN, DiZhi.WEI);
-        bze_xichao.run();
+        System.out.println(bze_xichao.run());
         System.out.println("===林方君===");
         BaZiEngine bze_fangjun = new BaZiEngine(TianGan.YI, DiZhi.CHOU, TianGan.JIA,
                 DiZhi.SHEN, TianGan.XIN, DiZhi.MAO, TianGan.XIN, DiZhi.MAO);
-        bze_fangjun.run();
+        System.out.println(bze_fangjun.run());
         System.out.println("===乔俊琪===");
         BaZiEngine bze_junqi = new BaZiEngine(TianGan.WU, DiZhi.WU, TianGan.GENG,
                 DiZhi.SHEN, TianGan.GUI, DiZhi.MAO, TianGan.BING, DiZhi.CHEN);
-        bze_junqi.run();
+        System.out.println(bze_junqi.run());
         System.out.println("===厉育锦===");
         BaZiEngine bze_yujin = new BaZiEngine(TianGan.WU, DiZhi.WU, TianGan.YI,
                 DiZhi.MAO, TianGan.GENG, DiZhi.YIN, TianGan.BING, DiZhi.ZI);
-        bze_yujin.run();
+        System.out.println(bze_yujin.run());
         System.out.println("===张强===");
         BaZiEngine bze_zq = new BaZiEngine(TianGan.JIA, DiZhi.ZI, TianGan.DING,
                 DiZhi.CHOU, TianGan.DING, DiZhi.WEI, TianGan.WU, DiZhi.SHEN);
-        bze_zq.run();
+        System.out.println(bze_zq.run());
         System.out.println("===张连育===");
         BaZiEngine bze_lianyu = new BaZiEngine(TianGan.GUI, DiZhi.HAI, TianGan.YI,
                 DiZhi.MAO, TianGan.DING, DiZhi.YOU, TianGan.REN, DiZhi.YIN);
-        bze_lianyu.run();
+        System.out.println(bze_lianyu.run());
         System.out.println("===陈功===");
         BaZiEngine bze_chengong = new BaZiEngine(TianGan.XIN, DiZhi.YOU, TianGan.REN,
                 DiZhi.CHEN, TianGan.GUI, DiZhi.HAI, TianGan.BING, DiZhi.CHEN);
-        bze_chengong.run();
+        System.out.println(bze_chengong.run());
         System.out.println("===小冬===");
         BaZiEngine bze_xiaodong = new BaZiEngine(TianGan.BING, DiZhi.YIN, TianGan.BING,
                 DiZhi.SHEN, TianGan.DING, DiZhi.WEI, TianGan.WU, DiZhi.SHEN);
-        bze_xiaodong.run();
+        System.out.println(bze_xiaodong.run());
 
         System.out.println("===孙中山===");
         BaZiEngine bze_zhongshan = new BaZiEngine(TianGan.YI, DiZhi.CHOU, TianGan.DING,
                 DiZhi.HAI, TianGan.DING, DiZhi.YOU, TianGan.REN, DiZhi.YIN);
-        bze_zhongshan.run();
+        System.out.println(bze_zhongshan.run());
         System.out.println("===黄兴===");
         BaZiEngine bze_huangxing = new BaZiEngine(TianGan.JIA, DiZhi.XU, TianGan.JIA,
                 DiZhi.XU , TianGan.JIA, DiZhi.YIN, TianGan.JIA, DiZhi.XU);
-        bze_huangxing.run();
+        System.out.println(bze_huangxing.run());
         System.out.println("===袁世凯===");
         BaZiEngine bze_ysk = new BaZiEngine(TianGan.JI, DiZhi.WEI, TianGan.GUI,
                 DiZhi.YOU , TianGan.DING, DiZhi.SI, TianGan.DING, DiZhi.WEI);
-        bze_ysk.run();
+        System.out.println(bze_ysk.run());
         System.out.println("===无名氏===");
         BaZiEngine bze_g1 = new BaZiEngine(TianGan.JIA, DiZhi.ZI, TianGan.DING,
                 DiZhi.MAO , TianGan.GENG, DiZhi.SHEN, TianGan.YI, DiZhi.YOU);
@@ -228,7 +228,7 @@ public class Main {
         System.out.println("===儿子===");
         BaZiEngine bze_son = new BaZiEngine(TianGan.WU, DiZhi.ZI, TianGan.YI,
                 DiZhi.CHOU , TianGan.JI, DiZhi.SI, TianGan.REN, DiZhi.SHEN);
-        bze_son.run();
+        System.out.println(bze_son.run());
         
         System.out.println("~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("===某宰相===");
