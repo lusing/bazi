@@ -3,6 +3,9 @@ package com.github.lusing.bazi.base;
 import java.util.ArrayList;
 
 public class DiZhi {
+    /**
+     * 子
+     */
     public static final int ZI = 0;
     public static final int CHOU = 1;
     public static final int YIN = 2;
@@ -63,6 +66,10 @@ public class DiZhi {
         return new WuXing(xing);
     }
 
+    /**
+     * 获取地支中的藏干
+     * @return 
+     */
     public ArrayList<TianGan> getCangGan(){
         ArrayList<TianGan> tgList = new ArrayList<TianGan>();
                 switch (this.iDiZhi){
@@ -187,5 +194,16 @@ public class DiZhi {
     
     public boolean isSheng(DiZhi dz2){
         return getXing().isSheng(dz2.getXing());
+    }
+
+    /**
+     * 通过月地支和时地支计算命宫
+     * @param yueDZ - 月地支
+     * @param shiDZ - 时地支
+     * @return 命宫地支
+     */
+    public static DiZhi getMingGong(DiZhi yueDZ, DiZhi shiDZ) {
+        int dzsum = yueDZ.getDiZhi()-1 + shiDZ.getDiZhi()-1;
+        return new DiZhi((14 - dzsum +1) % 12);
     }
 }

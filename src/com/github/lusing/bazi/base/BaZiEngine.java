@@ -489,6 +489,8 @@ public class BaZiEngine {
         sb.append(tgs[0] + " " + ShiShen.getShiShen(tgs[2], tgs[0]).toString() + "\n");
         sb.append(tgs[1] + " " + ShiShen.getShiShen(tgs[2], tgs[1]).toString() + "\n");
         sb.append(tgs[3] + " " + ShiShen.getShiShen(tgs[2], tgs[3]).toString() + "\n");
+        
+        sb.append("命宫：").append(DiZhi.getMingGong(dzs[1], dzs[3])).append("\n");
 
         int yins = 0;
         int bis = 0;
