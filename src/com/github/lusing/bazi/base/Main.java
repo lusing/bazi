@@ -1,5 +1,7 @@
 package com.github.lusing.bazi.base;
 
+import com.github.lusing.qimen.QimenEngine;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -247,6 +249,7 @@ public class Main {
         BaZiEngine bze_lbss = new BaZiEngine(TianGan.GENG, DiZhi.SHEN, TianGan.JIA,
                 DiZhi.SHEN, TianGan.XIN, DiZhi.WEI, TianGan.REN, DiZhi.CHEN);
         bze_lbss.run();
-
+        
+        QimenEngine.run();
     }
 }

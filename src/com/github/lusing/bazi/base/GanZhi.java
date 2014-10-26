@@ -14,4 +14,9 @@ public class GanZhi {
         mTg = tg;
         mDz = dz;
     }
+    
+    public GanZhi(int tg, int dz){
+        mTg = new TianGan(tg);
+        mDz = new DiZhi(dz);
+    }
 }
