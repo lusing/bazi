@@ -33,3 +33,5 @@ bin/AndroidManifest.xml
 gen/yunos/tech/panaimin/bazi/R.java
 project.properties
 project.properties
+.settings/org.eclipse.jdt.core.prefs
+lint.xml
