@@ -58,4 +58,8 @@ public class BaMen extends WuXing {
     public String toString() {
         return String.valueOf(sBaMen.charAt(mMen));
     }
+    
+    public int getMen(){
+        return this.mMen;
+    }
 }

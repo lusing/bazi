@@ -11,7 +11,7 @@ import com.github.lusing.bazi.base.TianGan;
 public class QimenEngine {
 
     public static void run() {
-        /*
+        
         YinpanDunjia yd1 = new YinpanDunjia(
                 new GanZhi(TianGan.BING, DiZhi.XU),
                 new GanZhi(TianGan.GUI, DiZhi.SI),
@@ -41,7 +41,7 @@ public class QimenEngine {
                 1,
                 true
         );
-        System.out.println(yd3);*/
+        System.out.println(yd3);
         
         //例题，测病3
         YinpanDunjia yd4 = new YinpanDunjia(
@@ -54,5 +54,17 @@ public class QimenEngine {
                 true
         );
         System.out.println(yd4);
+        
+        //例题，测病4, 2006年6月14日，午时
+        YinpanDunjia yd5 = new YinpanDunjia(
+                new GanZhi(TianGan.BING, DiZhi.XU),
+                new GanZhi(TianGan.JIA, DiZhi.WU),
+                new GanZhi(TianGan.JIA, DiZhi.XU),
+                new GanZhi(TianGan.GENG, DiZhi.WU),
+                5,
+                19,
+                true
+        );
+        System.out.println(yd5);
     }
 }

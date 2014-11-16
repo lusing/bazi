@@ -174,13 +174,14 @@ public class YinpanDunjia {
 
         //排隐干
         int yingan = 0;
-        for (int i5 = 0; i5 < diPan_qiyi.length; i5++) {
-            if (diPan_qiyi[i5].getTianGan() == stg) {
+        for (int i5 = 0; i5 < 8; i5++) {
+            if (this.tianPan_BaMen[i5].getMen() == zhifu) {
                 yingan = i5;
             }
         }
+        System.out.println("[Debug]yingan="+yingan);
         for (int i6 = 0; i6 < 8; i6++) {
-            yinGan[(zhifu + i6) % 8] = diPan_qiyi[(yingan + i6) % 8];
+            yinGan[(yingan + i6) % 8] = diPan_qiyi[(shiganluogong + i6) % 8];
         }
 
         getKongAndMa();
