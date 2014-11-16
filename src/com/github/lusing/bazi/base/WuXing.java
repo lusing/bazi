@@ -1,23 +1,38 @@
-
 package com.github.lusing.bazi.base;
 
-public class WuXing{
+public class WuXing {
+
+    /**
+     * 木
+     */
     public static final int MU = 0;
+    /**
+     * 火
+     */
     public static final int HUO = 1;
+    /**
+     * 土
+     */
     public static final int TU = 2;
+    /**
+     * 金
+     */
     public static final int JIN = 3;
+    /**
+     * 水    
+    */
     public static final int SHUI = 4;
-    
-    private int xing;
-    
-    public int getXing(){
+
+    private final int xing;
+
+    public int getXing() {
         return xing;
     }
-    
-    public WuXing(int xing){
-        this.xing = (xing+5) % 5;
+
+    public WuXing(int xing) {
+        this.xing = (xing + 5) % 5;
     }
-    
+
     public static final String getWuXingName(int xing) {
         switch (xing % 5) {
             case MU:
@@ -34,47 +49,42 @@ public class WuXing{
                 return null;
         }
     }
-    
+
     //生, 顺位而生
-    public static final boolean isSheng(int xing1, int xing2){
-        int x1 = (xing1+5) % 5;
-        int x2 = (xing2+5) % 5;
-        
-        if((x2-x1+5)%5 == 1){
-            return true;
-        }
-        return false;
+    public static final boolean isSheng(int xing1, int xing2) {
+        int x1 = (xing1 + 5) % 5;
+        int x2 = (xing2 + 5) % 5;
+
+        return (x2 - x1) % 5 == 1;
     }
-    
+
     //克,隔位相克
-    public static final boolean isKe(int xing1, int xing2){
-        int x1 = (xing1+5) % 5;
-        int x2 = (xing2+5) % 5;
-        
-        if((x2-x1+5)%5 == 2){
-            return true;
-        }
-        return false;
+    public static final boolean isKe(int xing1, int xing2) {
+        int x1 = (xing1 + 5) % 5;
+        int x2 = (xing2 + 5) % 5;
+
+        return (x2 - x1) % 5 == 2;
     }
-    
-    public boolean equals(WuXing other){
+
+    public boolean equals(WuXing other) {
         return this.xing == other.getXing();
     }
-    
-    public boolean isSheng(WuXing xing2){
-        return isSheng(this.xing,xing2.getXing());
+
+    public boolean isSheng(WuXing xing2) {
+        return isSheng(this.xing, xing2.getXing());
     }
-    
-    public boolean isKe(WuXing xing2){
-        return isKe(this.xing,xing2.getXing());
+
+    public boolean isKe(WuXing xing2) {
+        return isKe(this.xing, xing2.getXing());
     }
-    
-    public String toString(){
+
+    @Override
+    public String toString() {
         return getWuXingName(this.xing);
     }
-    
-    public String toStringLong(){
-        StringBuffer sb = new StringBuffer();
+
+    public String toStringLong() {
+        StringBuilder sb = new StringBuilder();
         switch (xing % 5) {
             case MU:
                 sb.append("木\n");
@@ -108,8 +118,8 @@ public class WuXing{
                 break;
             default:
         }
-        
+
         return sb.toString();
     }
-    
+
 }

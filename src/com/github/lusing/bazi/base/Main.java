@@ -5,6 +5,7 @@ import com.github.lusing.qimen.QimenEngine;
 public class Main {
 
 	public static void main(String[] args) {
+            /*
 
 		BaZiEngine bze0 = new BaZiEngine(TianGan.GENG, DiZhi.SHEN, TianGan.REN,
 				DiZhi.WU, TianGan.REN, DiZhi.XU, TianGan.YI, DiZhi.SI);
@@ -248,7 +249,7 @@ public class Main {
         System.out.println("===某礼部尚书===");
         BaZiEngine bze_lbss = new BaZiEngine(TianGan.GENG, DiZhi.SHEN, TianGan.JIA,
                 DiZhi.SHEN, TianGan.XIN, DiZhi.WEI, TianGan.REN, DiZhi.CHEN);
-        bze_lbss.run();
+        bze_lbss.run();*/
         
         QimenEngine.run();
     }

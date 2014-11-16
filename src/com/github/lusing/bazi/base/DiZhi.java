@@ -7,16 +7,49 @@ public class DiZhi {
      * 子
      */
     public static final int ZI = 0;
+    /**
+     * 丑
+     */
     public static final int CHOU = 1;
+    /**
+     * 寅
+     */
     public static final int YIN = 2;
+    /**
+     * 卯
+     */
     public static final int MAO = 3;
+    /**
+     * 辰
+     */
     public static final int CHEN = 4;
+    /**
+     * 巳
+     */
     public static final int SI = 5;
+    /**
+     * 午
+     */
     public static final int WU = 6;
+    /**
+     * 未
+     */
     public static final int WEI = 7;
+    /**
+     * 申
+     */
     public static final int SHEN = 8;
+    /**
+     * 酉
+     */
     public static final int YOU = 9;
+    /**
+     * 戌
+     */
     public static final int XU = 10;
+    /**
+     * 亥
+     */
     public static final int HAI = 11;
     
     public static final String sDiZhi = "子丑寅卯辰巳午未申酉戌亥";
